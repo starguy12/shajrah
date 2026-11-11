@@ -1876,5 +1876,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
-
+<script>
+function openContributeDrawer(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const drawer = document.getElementById('contributeDrawer');
+  const backdrop = document.getElementById('contributeBackdrop');
+  const panel = document.getElementById('contributePanel');
+  if (drawer) { drawer.classList.remove('hidden'); drawer.style.display = 'block'; }
+  if (backdrop) { backdrop.classList.remove('opacity-0'); backdrop.classList.add('opacity-100'); }
+  if (panel) { panel.classList.remove('translate-x-full'); panel.classList.add('translate-x-0'); }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('btn-header-contribute');
+  if (btn) btn.onclick = openContributeDrawer;
+});
+</script>
 </body></html>
