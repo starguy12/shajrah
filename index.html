@@ -1877,17 +1877,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 <!-- CLEAN, RELIABLE CONTRIBUTE MODAL -->
-<!-- ENHANCED CONTRIBUTE MODAL WITH PHOTO FILE UPLOAD & LIVE PREVIEW -->
+<!-- RELIABLE CONTRIBUTE MODAL (BUG-FREE CLOSE & CANCEL) -->
 <div id="contributeModalOverlay" class="fixed inset-0 z-[99999] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" style="display: none;">
   <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-emerald-900/20 p-6 relative">
     
-    <!-- Header with Close Button -->
+    <!-- Header with Explicit Close Button -->
     <div class="flex items-center justify-between pb-4 border-b border-stone-200">
       <div>
         <h3 class="text-xl font-bold text-stone-900 font-serif">Contribute Ancestor Record & Portrait</h3>
         <p class="text-xs text-stone-500">Preserving verified family lineages, portraits & lore</p>
       </div>
-      <button type="button" onclick="closeContributeModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center text-lg font-bold transition">✕</button>
+      <button type="button" id="btn-close-modal-x" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center text-lg font-bold transition">✕</button>
     </div>
 
     <!-- Form Content -->
@@ -1962,7 +1962,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
 
       <div class="flex items-center justify-end gap-3 pt-3 border-t border-stone-200">
-        <button type="button" onclick="closeContributeModal()" class="px-4 py-2 text-sm text-stone-600 hover:text-stone-800">Cancel</button>
+        <button type="button" id="btn-cancel-modal" class="px-4 py-2 text-sm text-stone-600 hover:text-stone-800 transition">Cancel</button>
         <button type="submit" class="px-5 py-2 text-sm font-semibold rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white shadow transition">Submit with Photo</button>
       </div>
     </form>
@@ -1972,15 +1972,21 @@ document.addEventListener("DOMContentLoaded", function () {
 <script>
 let activePhotoData = null;
 
-function openContributeModal() {
+window.openContributeModal = function() {
   const modal = document.getElementById('contributeModalOverlay');
-  if (modal) modal.style.display = 'flex';
-}
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.style.display = 'flex';
+  }
+};
 
-function closeContributeModal() {
+window.closeContributeModal = function() {
   const modal = document.getElementById('contributeModalOverlay');
-  if (modal) modal.style.display = 'none';
-}
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+  }
+};
 
 function previewSelectedPhoto(input) {
   if (input.files && input.files[0]) {
@@ -2039,24 +2045,43 @@ function handleContributeSubmit(e) {
   
   alert("Thank you " + name + "! Record" + (hasPhoto ? " and portrait photo" : "") + " for " + rel + " submitted successfully. The admin will review and publish it.");
   
-  // Reset form
   document.getElementById('contributeQuickForm').reset();
   clearPhotoSelection();
-  closeContributeModal();
+  window.closeContributeModal();
 }
 
-// Click listener for the Contribute button
+// Global click event dispatcher: handles opening, closing, canceling, and backdrop clicks cleanly
 document.addEventListener('click', function(e) {
-  const btn = e.target.closest('#btn-header-contribute, button[onclick*="Contribute"]');
-  if (btn) {
+  // Check for CLOSE button (X) or CANCEL button
+  if (e.target.closest('#btn-close-modal-x, #btn-cancel-modal')) {
     e.preventDefault();
     e.stopPropagation();
-    openContributeModal();
+    window.closeContributeModal();
+    return;
   }
   
+  // Check for OPEN contribute button in header
+  if (e.target.closest('#btn-header-contribute')) {
+    e.preventDefault();
+    e.stopPropagation();
+    window.openContributeModal();
+    return;
+  }
+  
+  // Close when clicking directly on the dark backdrop outside the modal
   const modal = document.getElementById('contributeModalOverlay');
   if (e.target === modal) {
-    closeContributeModal();
+    window.closeContributeModal();
+  }
+}, true);
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    window.closeContributeModal();
   }
 });
-</script></body></html>
+</script>
+</body>
+</html>
+
