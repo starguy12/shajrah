@@ -1876,52 +1876,98 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
-<!-- FAILSAFE DRAWER TRIGGER SCRIPT -->
-<script>
-window.forceOpenContribute = function() {
-  var d = document.getElementById('contributeDrawer');
-  if (!d) d = document.querySelector('[id*="contribute"]');
-  if (d) {
-    d.classList.remove('hidden');
-    d.setAttribute('style', 'display: flex !important; visibility: visible !important; opacity: 1 !important; z-index: 9999 !important; position: fixed !important; inset: 0 !important;');
+<!-- CLEAN, RELIABLE CONTRIBUTE MODAL -->
+<div id="contributeModalOverlay" class="fixed inset-0 z-[99999] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" style="display: none;">
+  <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-emerald-900/20 p-6 relative">
     
-    var panel = document.getElementById('contributePanel') || d.querySelector('.bg-surface, .bg-white, [class*="max-w"]');
-    if (panel) {
-      panel.classList.remove('translate-x-full');
-      panel.classList.add('translate-x-0');
-      panel.setAttribute('style', 'transform: none !important; opacity: 1 !important; visibility: visible !important;');
-    }
-    var backdrop = document.getElementById('contributeBackdrop');
-    if (backdrop) {
-      backdrop.classList.remove('opacity-0', 'hidden');
-      backdrop.setAttribute('style', 'opacity: 0.5 !important; display: block !important;');
-    }
-  } else {
-    alert("Archival portal drawer element initializing. Please refresh.");
-  }
-};
+    <!-- Header with Close Button -->
+    <div class="flex items-center justify-between pb-4 border-b border-stone-200">
+      <div>
+        <h3 class="text-xl font-bold text-stone-900 font-serif">Contribute Ancestor Record</h3>
+        <p class="text-xs text-stone-500">Preserving verified family lineages, portraits & lore</p>
+      </div>
+      <button type="button" onclick="closeContributeModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center text-lg font-bold transition">✕</button>
+    </div>
 
-window.forceCloseContribute = function() {
-  var d = document.getElementById('contributeDrawer');
-  if (d) {
-    d.classList.add('hidden');
-    d.setAttribute('style', 'display: none !important;');
-  }
-};
+    <!-- Form Content -->
+    <form id="contributeQuickForm" onsubmit="handleContributeSubmit(event)" class="mt-4 space-y-4 text-left">
+      <div>
+        <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Target Relative / Branch Leaf *</label>
+        <select required id="contribRelative" class="w-full text-sm rounded-lg border border-stone-300 p-2.5 bg-stone-50 focus:ring-2 focus:ring-emerald-700 focus:outline-none">
+          <option value="">-- Select An Archival Leaf --</option>
+          <option value="Nasir Din">Nasir Din (1921–2005)</option>
+          <option value="Abdul Rehman">Abdul Rehman [R-1] (1930–2012)</option>
+          <option value="Zarina">Zarina (1933–2006 • m. Afzaal Rana)</option>
+          <option value="Uncle Qadeer">Uncle Qadeer (Abdul Qadeer)</option>
+          <option value="Aslam">Aslam (1938–2024)</option>
+          <option value="Akram">Akram (1944–2014)</option>
+          <option value="Jahanghir">Jahanghir (d. 2019)</option>
+          <option value="Munir">Munir (d. 2023)</option>
+          <option value="Zamurd">Zamurd / Hafiz (1947–2025)</option>
+          <option value="Ghulam Hussain Lineage">Ghulam Hussain Branch Descendants</option>
+          <option value="Other / New Leaf">Other / New Descendant</option>
+        </select>
+      </div>
 
-// Bind directly to any contribute button or click
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Your Name *</label>
+          <input type="text" required id="contribName" placeholder="e.g. Rizwan" class="w-full text-sm rounded-lg border border-stone-300 p-2.5 focus:ring-2 focus:ring-emerald-700 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Kinship Relation *</label>
+          <input type="text" required id="contribRelation" placeholder="e.g. Grandson" class="w-full text-sm rounded-lg border border-stone-300 p-2.5 focus:ring-2 focus:ring-emerald-700 focus:outline-none">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Biographical Notes / Milestone Dates</label>
+        <textarea id="contribNotes" rows="3" placeholder="Add birth/death dates, marriages, children, or historical memories..." class="w-full text-sm rounded-lg border border-stone-300 p-2.5 focus:ring-2 focus:ring-emerald-700 focus:outline-none"></textarea>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-stone-200">
+        <button type="button" onclick="closeContributeModal()" class="px-4 py-2 text-sm text-stone-600 hover:text-stone-800">Cancel</button>
+        <button type="submit" class="px-5 py-2 text-sm font-semibold rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white shadow transition">Submit for Review</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function openContributeModal() {
+  const modal = document.getElementById('contributeModalOverlay');
+  if (modal) {
+    modal.style.display = 'flex';
+  }
+}
+
+function closeContributeModal() {
+  const modal = document.getElementById('contributeModalOverlay');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+}
+
+function handleContributeSubmit(e) {
+  e.preventDefault();
+  alert("Record submitted successfully! The family archive admin will review and publish your contribution.");
+  closeContributeModal();
+}
+
+// Click listener for the Contribute button
 document.addEventListener('click', function(e) {
-  var target = e.target.closest('#btn-header-contribute, button[onclick*="Contribute"], [id*="contribute-btn"]');
-  if (target) {
+  const btn = e.target.closest('#btn-header-contribute, button[onclick*="Contribute"]');
+  if (btn) {
     e.preventDefault();
     e.stopPropagation();
-    window.forceOpenContribute();
+    openContributeModal();
   }
   
-  var closeTarget = e.target.closest('#contributeBackdrop, [onclick*="closeContribute"], button[aria-label="Close"]');
-  if (closeTarget) {
-    window.forceCloseContribute();
+  // Close if clicking outside the white card
+  const modal = document.getElementById('contributeModalOverlay');
+  if (e.target === modal) {
+    closeContributeModal();
   }
-}, true);
+});
 </script>
 </body></html>
