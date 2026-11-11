@@ -1836,6 +1836,45 @@
       renderQuickBranch('ghulam-hussain', defaultBtn);
     });
   </script>
+<script>
+// Direct fallback event bindings to ensure buttons trigger reliably
+document.addEventListener("DOMContentLoaded", function () {
+  const btnContribute = document.getElementById("btn-header-contribute") || document.querySelector("button[onclick*='Contribute']");
+  const btnAdmin = document.getElementById("btn-header-admin") || document.querySelector("button[onclick*='Admin']");
+  const contributeDrawer = document.getElementById("contributeDrawer") || document.getElementById("contribute-drawer") || document.querySelector("[id*='contribute']");
+  const adminModal = document.getElementById("adminModal") || document.getElementById("adminDrawer") || document.getElementById("admin-drawer") || document.querySelector("[id*='admin']");
 
+  if (btnContribute) {
+    btnContribute.onclick = function (e) {
+      e.preventDefault();
+      if (contributeDrawer) {
+        contributeDrawer.classList.remove("hidden", "translate-x-full");
+        contributeDrawer.style.display = "block";
+      } else if (typeof openContributeDrawer === "function") {
+        openContributeDrawer();
+      }
+    };
+  }
+
+  if (btnAdmin) {
+    btnAdmin.onclick = function (e) {
+      e.preventDefault();
+      const pin = prompt("Enter Archival Admin Passcode (Passcode: 1890):");
+      if (pin === "1890") {
+        if (adminModal) {
+          adminModal.classList.remove("hidden", "translate-x-full");
+          adminModal.style.display = "block";
+        } else if (typeof openAdminDrawer === "function") {
+          openAdminDrawer();
+        } else {
+          alert("Admin Verified! Curatorial Portal is active.");
+        }
+      } else if (pin !== null) {
+        alert("Incorrect passcode.");
+      }
+    };
+  }
+});
+</script>
 
 </body></html>
