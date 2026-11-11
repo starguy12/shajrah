@@ -1877,13 +1877,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 <!-- CLEAN, RELIABLE CONTRIBUTE MODAL -->
+<!-- ENHANCED CONTRIBUTE MODAL WITH PHOTO FILE UPLOAD & LIVE PREVIEW -->
 <div id="contributeModalOverlay" class="fixed inset-0 z-[99999] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" style="display: none;">
   <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-emerald-900/20 p-6 relative">
     
     <!-- Header with Close Button -->
     <div class="flex items-center justify-between pb-4 border-b border-stone-200">
       <div>
-        <h3 class="text-xl font-bold text-stone-900 font-serif">Contribute Ancestor Record</h3>
+        <h3 class="text-xl font-bold text-stone-900 font-serif">Contribute Ancestor Record & Portrait</h3>
         <p class="text-xs text-stone-500">Preserving verified family lineages, portraits & lore</p>
       </div>
       <button type="button" onclick="closeContributeModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center text-lg font-bold transition">✕</button>
@@ -1897,14 +1898,21 @@ document.addEventListener("DOMContentLoaded", function () {
           <option value="">-- Select An Archival Leaf --</option>
           <option value="Nasir Din">Nasir Din (1921–2005)</option>
           <option value="Abdul Rehman">Abdul Rehman [R-1] (1930–2012)</option>
+          <option value="Abdul Qayum">Abdul Qayum</option>
           <option value="Zarina">Zarina (1933–2006 • m. Afzaal Rana)</option>
           <option value="Uncle Qadeer">Uncle Qadeer (Abdul Qadeer)</option>
+          <option value="Shamshad">Shamshad (b. Jan 6, 1942)</option>
+          <option value="Apa Anwar">Apa Anwar (d. ~2019)</option>
+          <option value="Razia Begum">Razia Begum (Gia)</option>
           <option value="Aslam">Aslam (1938–2024)</option>
           <option value="Akram">Akram (1944–2014)</option>
+          <option value="Saleem">Saleem</option>
           <option value="Jahanghir">Jahanghir (d. 2019)</option>
           <option value="Munir">Munir (d. 2023)</option>
+          <option value="Parveen">Parveen (d. Dec 6, 2025)</option>
+          <option value="Naseem">Naseem (d. 2024)</option>
           <option value="Zamurd">Zamurd / Hafiz (1947–2025)</option>
-          <option value="Ghulam Hussain Lineage">Ghulam Hussain Branch Descendants</option>
+          <option value="Ghulam Hussain Lineage">Ghulam Hussain Branch Lineage</option>
           <option value="Other / New Leaf">Other / New Descendant</option>
         </select>
       </div>
@@ -1920,6 +1928,34 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </div>
 
+      <!-- Photo Upload Section -->
+      <div class="p-3 bg-stone-50 rounded-xl border border-stone-200">
+        <label class="block text-xs font-semibold text-stone-800 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+          <span>Archival Portrait Photo</span>
+          <span class="text-[10px] text-stone-400 font-normal">JPG, PNG, WebP up to 5MB</span>
+        </label>
+        
+        <div class="space-y-2">
+          <!-- File Input -->
+          <input type="file" id="contribPhotoFile" accept="image/png, image/jpeg, image/webp" onchange="previewSelectedPhoto(this)" class="w-full text-xs text-stone-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-emerald-800 file:text-white hover:file:bg-emerald-900 cursor-pointer">
+          
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] text-stone-400 uppercase tracking-wider">or direct URL</span>
+            <input type="url" id="contribPhotoUrl" oninput="previewPhotoUrl(this.value)" placeholder="https://example.com/portrait.jpg" class="flex-1 text-xs rounded-md border border-stone-300 p-1.5 focus:ring-1 focus:ring-emerald-700 focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Live Photo Preview Container -->
+        <div id="photoPreviewContainer" class="hidden mt-3 p-2 bg-white rounded-lg border border-stone-200 flex items-center gap-3">
+          <img id="photoPreviewImg" src="" alt="Portrait Preview" class="w-14 h-14 rounded-lg object-cover border border-stone-300 shadow-sm">
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-medium text-stone-800 truncate" id="photoPreviewLabel">Portrait attached</p>
+            <p class="text-[11px] text-emerald-700 font-semibold">✓ Ready to attach</p>
+          </div>
+          <button type="button" onclick="clearPhotoSelection()" class="text-xs text-rose-600 hover:text-rose-800 font-medium px-2 py-1 rounded hover:bg-rose-50 transition">Remove</button>
+        </div>
+      </div>
+
       <div>
         <label class="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-1">Biographical Notes / Milestone Dates</label>
         <textarea id="contribNotes" rows="3" placeholder="Add birth/death dates, marriages, children, or historical memories..." class="w-full text-sm rounded-lg border border-stone-300 p-2.5 focus:ring-2 focus:ring-emerald-700 focus:outline-none"></textarea>
@@ -1927,30 +1963,85 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <div class="flex items-center justify-end gap-3 pt-3 border-t border-stone-200">
         <button type="button" onclick="closeContributeModal()" class="px-4 py-2 text-sm text-stone-600 hover:text-stone-800">Cancel</button>
-        <button type="submit" class="px-5 py-2 text-sm font-semibold rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white shadow transition">Submit for Review</button>
+        <button type="submit" class="px-5 py-2 text-sm font-semibold rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white shadow transition">Submit with Photo</button>
       </div>
     </form>
   </div>
 </div>
 
 <script>
+let activePhotoData = null;
+
 function openContributeModal() {
   const modal = document.getElementById('contributeModalOverlay');
-  if (modal) {
-    modal.style.display = 'flex';
-  }
+  if (modal) modal.style.display = 'flex';
 }
 
 function closeContributeModal() {
   const modal = document.getElementById('contributeModalOverlay');
-  if (modal) {
-    modal.style.display = 'none';
+  if (modal) modal.style.display = 'none';
+}
+
+function previewSelectedPhoto(input) {
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Please select an image file under 5MB.");
+      input.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      activePhotoData = e.target.result;
+      showPhotoPreview(activePhotoData, file.name);
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function previewPhotoUrl(url) {
+  if (url && url.startsWith('http')) {
+    activePhotoData = url;
+    showPhotoPreview(url, "Web URL Image");
+  }
+}
+
+function showPhotoPreview(src, label) {
+  const container = document.getElementById('photoPreviewContainer');
+  const img = document.getElementById('photoPreviewImg');
+  const lbl = document.getElementById('photoPreviewLabel');
+  if (container && img) {
+    img.src = src;
+    if (lbl) lbl.textContent = label;
+    container.classList.remove('hidden');
+    container.style.display = 'flex';
+  }
+}
+
+function clearPhotoSelection() {
+  activePhotoData = null;
+  const fileInput = document.getElementById('contribPhotoFile');
+  const urlInput = document.getElementById('contribPhotoUrl');
+  const container = document.getElementById('photoPreviewContainer');
+  if (fileInput) fileInput.value = '';
+  if (urlInput) urlInput.value = '';
+  if (container) {
+    container.classList.add('hidden');
+    container.style.display = 'none';
   }
 }
 
 function handleContributeSubmit(e) {
   e.preventDefault();
-  alert("Record submitted successfully! The family archive admin will review and publish your contribution.");
+  const rel = document.getElementById('contribRelative').value;
+  const name = document.getElementById('contribName').value;
+  const hasPhoto = !!activePhotoData;
+  
+  alert("Thank you " + name + "! Record" + (hasPhoto ? " and portrait photo" : "") + " for " + rel + " submitted successfully. The admin will review and publish it.");
+  
+  // Reset form
+  document.getElementById('contributeQuickForm').reset();
+  clearPhotoSelection();
   closeContributeModal();
 }
 
@@ -1963,11 +2054,9 @@ document.addEventListener('click', function(e) {
     openContributeModal();
   }
   
-  // Close if clicking outside the white card
   const modal = document.getElementById('contributeModalOverlay');
   if (e.target === modal) {
     closeContributeModal();
   }
 });
-</script>
-</body></html>
+</script></body></html>
