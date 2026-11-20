@@ -110,6 +110,15 @@
       background-color: #bf9d68;
     }
 
+    /* Keyframe Animations for Toast Notification */
+    @keyframes toastFadeIn {
+      from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .toast-anim {
+      animation: toastFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
     /* CSS3 Print Media Queries (Optimized for 11x17 Poster Printing) */
     @media print {
       @page {
@@ -129,6 +138,8 @@
   </style>
 </head>
 <body class="bg-[#faf7f2] text-slate-800 font-sans min-h-screen parchment-pattern flex flex-col antialiased selection:bg-archival-gold selection:text-white">
+<!-- Dynamic Toast Notification Container -->
+<div class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none" id="toast-container"></div>
 <!-- ==========================================================================
        TECHNOLOGY: HTML5 Semantic Structure & ARIA (Top Archival Brand Header)
        Accessible navigation landmarks, screen reader labels, responsive flex/grid wrappers.
@@ -234,7 +245,7 @@
 <div class="text-xs text-slate-600 font-medium">Primary Branches</div>
 </div>
 <div class="bg-heritage-50/80 p-3 rounded-xl border border-heritage-200/60">
-<div class="text-2xl font-serif font-bold text-archival-emerald">42</div>
+<div class="text-2xl font-serif font-bold text-archival-emerald" id="stat-leaves-count">42</div>
 <div class="text-xs text-slate-600 font-medium">Distinct Gen III Leaves</div>
 </div>
 <div class="bg-heritage-50/80 p-3 rounded-xl border border-heritage-200/60">
@@ -242,7 +253,7 @@
 <div class="text-xs text-slate-600 font-medium">Living Generations</div>
 </div>
 <div class="bg-heritage-50/80 p-3 rounded-xl border border-heritage-200/60">
-<div class="text-2xl font-serif font-bold text-archival-emerald">100+</div>
+<div class="text-2xl font-serif font-bold text-archival-emerald" id="stat-cataloged-count">100+</div>
 <div class="text-xs text-slate-600 font-medium">Cataloged Relatives</div>
 </div>
 </div>
@@ -337,10 +348,10 @@
 <div class="text-[10px] font-bold text-emerald-800 uppercase">Limb 01 • Eldest Dau</div>
 <div class="font-serif font-bold text-slate-900 group-hover:text-emerald-800 text-sm">Hussain Bibi</div>
 <div class="text-[11px] text-slate-500">d. June 1942</div>
-<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block">7 Leaves</div>
+<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block" id="count-badge-branch-1">7 Leaves</div>
 </div>
-<!-- Children Leaves (7) -->
-<div class="mt-6 space-y-2 w-full text-xs">
+<!-- Children Leaves Container -->
+<div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-1">
 <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs hover:shadow text-left" onclick="showPersonModal('Nasir Din', '1921–2005 • Married to Gia (Razia Begum), also married to Baji Riaz. Father of Lalo, Tony, Mazhar.')">
 <div class="font-bold text-slate-800">Nasir Din</div>
 <div class="text-[10px] text-slate-500">1921–2005 • m. Gia</div>
@@ -380,10 +391,10 @@
 <div class="text-[10px] font-bold text-emerald-800 uppercase">Limb 02 • 2nd Dau</div>
 <div class="font-serif font-bold text-slate-900 group-hover:text-emerald-800 text-sm">Hassan Bibi</div>
 <div class="text-[11px] text-slate-500">m. Mola Baksh</div>
-<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block">6 Leaves</div>
+<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block" id="count-badge-branch-2">6 Leaves</div>
 </div>
-<!-- Children Leaves (6) -->
-<div class="mt-6 space-y-2 w-full text-xs">
+<!-- Children Leaves Container -->
+<div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-2">
 <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs hover:shadow text-left" onclick="showPersonModal('Apa Anwar', 'd. ~2019 • Matriarchal daughter of Hassan Bibi.')">
 <div class="font-bold text-slate-800">Apa Anwar</div>
 <div class="text-[10px] text-slate-500">d. ~2019 • Matriarch</div>
@@ -419,10 +430,10 @@
 <div class="text-[10px] font-bold text-emerald-800 uppercase">Limb 03 • Keystone</div>
 <div class="font-serif font-bold text-slate-900 group-hover:text-emerald-800 text-sm">Sardar Begum</div>
 <div class="text-[11px] text-slate-500">1916–2001 • m. Ismael</div>
-<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block">7 Leaves</div>
+<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block" id="count-badge-branch-3">7 Leaves</div>
 </div>
-<!-- Children Leaves (7) -->
-<div class="mt-6 space-y-2 w-full text-xs">
+<!-- Children Leaves Container -->
+<div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-3">
 <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs hover:shadow text-left" onclick="showPersonModal('Aslam', 'Jan 9, 1938 – Aug 29, 2024 • Children: Imran (b. 1968), Shahzia (b. 1969), Rizwan (b. 1970), Fauzia (b. 1973). Grandchildren: Ambereen, Alina, Hamzah, Farhan.')">
 <div class="font-bold text-slate-800">Aslam</div>
 <div class="text-[10px] text-slate-500">1938–2024 • Gen IV &amp; V</div>
@@ -462,10 +473,10 @@
 <div class="text-[10px] font-bold text-emerald-800 uppercase">Limb 04 • 4th Dau</div>
 <div class="font-serif font-bold text-slate-900 group-hover:text-emerald-800 text-sm">Ghulam Fatima</div>
 <div class="text-[11px] text-slate-500">Lahore Line</div>
-<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block">6 Leaves</div>
+<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block" id="count-badge-branch-4">6 Leaves</div>
 </div>
-<!-- Children Leaves (6) -->
-<div class="mt-6 space-y-2 w-full text-xs">
+<!-- Children Leaves Container -->
+<div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-4">
 <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs hover:shadow text-left" onclick="showPersonModal('Riaz', 'Son of Ghulam Fatima.')">
 <div class="font-bold text-slate-800">Riaz</div>
 <div class="text-[10px] text-slate-500">Individual Son</div>
@@ -501,10 +512,10 @@
 <div class="text-[10px] font-bold text-emerald-800 uppercase">Limb 05 • 5th Dau</div>
 <div class="font-serif font-bold text-slate-900 group-hover:text-emerald-800 text-sm">Mumtaz Begum</div>
 <div class="text-[11px] text-slate-500">1930–1992</div>
-<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block">6 Leaves</div>
+<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block" id="count-badge-branch-5">6 Leaves</div>
 </div>
-<!-- Children Leaves (6) -->
-<div class="mt-6 space-y-2 w-full text-xs">
+<!-- Children Leaves Container -->
+<div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-5">
 <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs hover:shadow text-left" onclick="showPersonModal('Zamurd / Hafiz', '1947 – April 9, 2025 • Eldest son of Mumtaz Begum.')">
 <div class="font-bold text-slate-800">Zamurd / Hafiz</div>
 <div class="text-[10px] text-slate-500">1947–2025 • Eldest</div>
@@ -540,10 +551,10 @@
 <div class="text-[10px] font-bold text-archival-emerald uppercase">Limb 06 • Sole Son</div>
 <div class="font-serif font-bold text-slate-900 text-sm">Ghulam Hussain</div>
 <div class="text-[11px] text-slate-500">10 Children across 2 Wives</div>
-<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-semibold inline-block">2 + 8 Lineages</div>
+<div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-semibold inline-block" id="count-badge-branch-6">2 + 8 Lineages</div>
 </div>
-<!-- Children Leaves (10 Total: 2 from 1st Wife, 8 from Khursheed) -->
-<div class="mt-6 space-y-2 w-full text-xs">
+<!-- Children Leaves Container (10 Total: 2 from 1st Wife, 8 from Khursheed) -->
+<div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-6">
 <!-- 1st Wife Subheader -->
 <div class="text-[10px] font-bold uppercase tracking-wider text-archival-emerald bg-emerald-100/60 py-1 px-2 rounded text-left">
                     1st Wife Lineage (2)
@@ -599,10 +610,10 @@
 </div>
 </div>
 </section>
-<!-- ==========================================================================
+<!-- ==========================================================
          TECHNOLOGY: HTML5 Semantic Structure (DADHAL & NANHAL LINEAGES CODEX)
          Articles and subsections organizing bilateral genealogical codex.
-         ========================================================================== -->
+         ========================================================== -->
 <section aria-labelledby="lineages-title" class="space-y-6" id="lineages">
 <div class="flex items-center gap-3">
 <div aria-hidden="true" class="w-9 h-9 rounded-lg bg-heritage-200 text-heritage-900 flex items-center justify-center">
@@ -843,52 +854,36 @@
 </button>
 </div>
 <div class="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm custom-scroll">
+<!-- Branch / Limb Selector -->
 <div>
-<label class="block font-semibold text-slate-700 mb-1" for="contrib-relative">Select Relative / Archival Branch *</label>
-<select class="w-full p-2.5 rounded-lg border border-slate-300 bg-slate-50 focus:bg-white focus:border-archival-emerald outline-none text-xs" id="contrib-relative">
-<option value="">-- Choose a Family Member --</option>
-<option value="Nasir Din">Nasir Din (1921–2005)</option>
-<option value="Abdul Rehman [R-1]">Abdul Rehman [R-1] (1930–2012)</option>
-<option value="Abdul Qayum">Abdul Qayum</option>
-<option value="Zarina">Zarina (1933–2006 • m. Afzaal Rana)</option>
-<option value="Hafiz">Hafiz</option>
-<option value="Uncle Qadeer">Uncle Qadeer (Abdul Qadeer)</option>
-<option value="Shamshad">Shamshad (b. Jan 6, 1942)</option>
-<option value="Apa Anwar">Apa Anwar (d. ~2019)</option>
-<option value="Razia Begum (Gia)">Razia Begum (Gia)</option>
-<option value="Shaukat">Shaukat (d. Nov 21, 2022)</option>
-<option value="Phima (Naseem)">Phima (Naseem)</option>
-<option value="Bia Baqi">Bia Baqi (1942–1982)</option>
-<option value="Hamida">Hamida (1941–2009)</option>
-<option value="Aslam">Aslam (1938–2024)</option>
-<option value="Akram">Akram (1944–2014)</option>
-<option value="Saleem">Saleem</option>
-<option value="Jahanghir">Jahanghir (d. 2019)</option>
-<option value="Munir">Munir (d. 2023)</option>
-<option value="Parveen">Parveen (d. Dec 6, 2025)</option>
-<option value="Naseem">Naseem (d. 2024)</option>
-<option value="Zamurd / Hafiz">Zamurd / Hafiz (1947–2025)</option>
-<option value="Hafeez">Hafeez (d. 2008)</option>
-<option value="Dilawar Hussain">Dilawar Hussain (d. 2014)</option>
-<option value="Jamshaid">Jamshaid</option>
-<option value="Tahir Hussain">Tahir Hussain (d. 2011)</option>
-<option value="Neelam">Neelam (b. 1956)</option>
-<option value="Munawar">Munawar (1st Wife Line)</option>
-<option value="Jamila">Jamila (1st Wife Line)</option>
-<option value="Bushra">Bushra (2nd Wife: Khursheed)</option>
-<option value="Yasmin">Yasmin (2nd Wife: Khursheed)</option>
-<option value="Rubina">Rubina (2nd Wife: Khursheed, d. 2023)</option>
-<option value="Saeeda">Saeeda (2nd Wife: Khursheed)</option>
-<option value="Sajda">Sajda (2nd Wife: Khursheed)</option>
-<option value="Zulfiqar">Zulfiqar (2nd Wife: Khursheed)</option>
-<option value="Falaq Sher">Falaq Sher (2nd Wife: Khursheed)</option>
-<option value="Abid Ali">Abid Ali (2nd Wife: Khursheed)</option>
-<option value="Other Relative">Other Descendant / Relative</option>
+<label class="block font-semibold text-slate-700 mb-1" for="contrib-branch">Select Ancestral Branch / Limb *</label>
+<select class="w-full p-2.5 rounded-lg border border-slate-300 bg-slate-50 focus:bg-white focus:border-archival-emerald outline-none text-xs font-medium" id="contrib-branch" onchange="handleBranchChange()">
+<option value="1">Branch 1: Hussain Bibi (Limb 01 • Eldest Dau)</option>
+<option value="2">Branch 2: Hassan Bibi (Limb 02 • 2nd Dau)</option>
+<option value="3">Branch 3: Sardar Begum (Limb 03 • Keystone)</option>
+<option value="4">Branch 4: Ghulam Fatima (Limb 04 • 4th Dau)</option>
+<option value="5">Branch 5: Mumtaz Begum (Limb 05 • 5th Dau)</option>
+<option value="6">Branch 6: Ghulam Hussain (Limb 06 • Sole Son)</option>
 </select>
+</div>
+<!-- Member / Relative Name input -->
+<div>
+<label class="block font-semibold text-slate-700 mb-1" for="contrib-person-name">Family Member Name *</label>
+<input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs focus:border-archival-emerald outline-none" id="contrib-person-name" placeholder="e.g. Tariq Din, Zainab Begum, Farooq" type="text"/>
 </div>
 <div class="grid grid-cols-2 gap-3">
 <div>
-<label class="block font-semibold text-slate-700 mb-1" for="contrib-name">Your Name *</label>
+<label class="block font-semibold text-slate-700 mb-1" for="contrib-dates">Birth &amp; Death / Dates</label>
+<input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs focus:border-archival-emerald outline-none" id="contrib-dates" placeholder="e.g. b. 1965 or 1948–2020" type="text"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 mb-1" for="contrib-subtitle">Lineage Note / Spouse / Tag</label>
+<input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs focus:border-archival-emerald outline-none" id="contrib-subtitle" placeholder="e.g. m. Parveen • 3 Kids" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-semibold text-slate-700 mb-1" for="contrib-name">Your Name (Contributor) *</label>
 <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs focus:border-archival-emerald outline-none" id="contrib-name" placeholder="Full name" type="text"/>
 </div>
 <div>
@@ -906,13 +901,16 @@
 </div>
 </div>
 <div>
-<label class="block font-semibold text-slate-700 mb-1" for="contrib-notes">Biographical Notes, Corrections, or Dates</label>
-<textarea class="w-full p-2.5 rounded-lg border border-slate-300 text-xs focus:border-archival-emerald outline-none" id="contrib-notes" placeholder="Add missing children, spouses, birth/death dates, or ancestral anecdotes..." rows="3"></textarea>
+<label class="block font-semibold text-slate-700 mb-1" for="contrib-notes">Biographical Notes, Inscription, or Lore</label>
+<textarea class="w-full p-2.5 rounded-lg border border-slate-300 text-xs focus:border-archival-emerald outline-none" id="contrib-notes" placeholder="Biographical history, generation, children, ancestral anecdotes..." rows="3"></textarea>
 </div>
 </div>
 <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2">
 <button class="px-4 py-2 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-medium" onclick="closeContributeModal()">Cancel</button>
-<button class="px-4 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold shadow" onclick="submitContribution()">Submit to Archival Review</button>
+<button class="px-4 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold shadow flex items-center gap-1.5" onclick="submitContribution()">
+<span class="material-symbols-outlined text-sm">send</span>
+<span>Submit &amp; Inscribe to Tree</span>
+</button>
 </div>
 </div>
 </div>
@@ -921,13 +919,13 @@
        Curatorial verification suite with authentication check and pending queues.
        ========================================================================== -->
 <div aria-labelledby="admin-title" aria-modal="true" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 hidden" id="adminModal" role="dialog">
-<div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-heritage-300 overflow-hidden flex flex-col max-h-[90vh]">
+<div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl border border-heritage-300 overflow-hidden flex flex-col max-h-[90vh]">
 <div class="bg-slate-900 text-white p-5 flex items-center justify-between border-b border-slate-700">
 <div class="flex items-center gap-2">
 <span aria-hidden="true" class="material-symbols-outlined text-amber-400">admin_panel_settings</span>
 <div>
 <h4 class="font-serif font-bold text-base" id="admin-title">Curatorial Admin &amp; Verification Portal</h4>
-<p class="text-[11px] text-slate-300">Review pending family entries and inscriptions</p>
+<p class="text-[11px] text-slate-300">Review pending family entries, verify leaves, or remove records</p>
 </div>
 </div>
 <button aria-label="Close Admin Portal" class="text-slate-300 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors" onclick="closeAdminPortal()">
@@ -938,10 +936,10 @@
 <div class="grid grid-cols-3 gap-3 text-center">
 <div class="p-3 bg-slate-50 border rounded-xl">
 <div class="text-xl font-bold text-amber-600" id="admin-pending-count">0</div>
-<div class="text-[10px] text-slate-500">Pending Review</div>
+<div class="text-[10px] text-slate-500">Contributed Leaves</div>
 </div>
 <div class="p-3 bg-slate-50 border rounded-xl">
-<div class="text-xl font-bold text-emerald-600">42</div>
+<div class="text-xl font-bold text-emerald-600" id="admin-verified-count">42</div>
 <div class="text-[10px] text-slate-500">Leaves Certified</div>
 </div>
 <div class="p-3 bg-slate-50 border rounded-xl">
@@ -951,11 +949,15 @@
 </div>
 <div class="border rounded-xl p-4 bg-slate-50/50">
 <div class="flex items-center justify-between mb-2">
-<span class="font-bold text-slate-800 text-xs">Contributions Awaiting Verification</span>
-<button class="text-[11px] text-emerald-700 font-semibold hover:underline" onclick="approveAllContributions()">Approve All</button>
+<span class="font-bold text-slate-800 text-xs">Dynamic Inscriptions &amp; User Submissions</span>
+<div class="flex gap-2">
+<button class="text-[11px] text-emerald-700 font-semibold hover:underline" onclick="verifyAllContributions()">Certify All</button>
+<span class="text-slate-300">|</span>
+<button class="text-[11px] text-red-600 font-semibold hover:underline" onclick="clearAllContributions()">Reset Custom Records</button>
 </div>
-<div class="text-xs text-slate-500 py-3 text-center" id="admin-submissions-list">
-            No pending submissions in queue. Relatives can submit via the "Contribute Record" button in the header.
+</div>
+<div class="text-xs text-slate-500 py-3 text-center space-y-2" id="admin-submissions-list">
+            No contributed records found. Relatives can submit via the "Contribute Record" button.
           </div>
 </div>
 </div>
@@ -982,7 +984,7 @@
 <div class="p-5">
 <p class="text-xs sm:text-sm text-slate-700 leading-relaxed" id="personModalBody"></p>
 <div class="mt-4 pt-3 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500">
-<span>Certified Standalone Leaf</span>
+<span id="personModalTag">Certified Standalone Leaf</span>
 <button class="px-3 py-1.5 rounded-lg bg-heritage-100 hover:bg-heritage-200 text-slate-800 font-medium" onclick="closePersonModal()">Close</button>
 </div>
 </div>
@@ -999,31 +1001,54 @@
 </div>
 </footer>
 <!-- ==========================================================================
-       TECHNOLOGY: Vanilla JavaScript (ES6+) - Application State & DOM Manipulation
-       TECHNOLOGY: JavaScript Event Handlers & Mobile Interactivity
-       State managers, CSS transform controllers, form readers, and keyboard listeners.
+       TECHNOLOGY: Vanilla JavaScript (ES6+) - Application State & Dynamic DOM Rendering
        ========================================================================== -->
 <script>
     /**
      * Application State Store
-     * Tracks interactive zoom scale, administrative pending items, and localStorage fallback.
      */
     let treeScale = 1;
-    let pendingSubmissions = [];
+    let customLeaves = [];
 
-    // Initialize state from browser localStorage if available
-    try {
-      const stored = localStorage.getItem('shajara_submissions');
-      if (stored) {
-        pendingSubmissions = JSON.parse(stored);
+    // Branch Names Dictionary
+    const branchNames = {
+      "1": "Branch 1: Hussain Bibi",
+      "2": "Branch 2: Hassan Bibi",
+      "3": "Branch 3: Sardar Begum",
+      "4": "Branch 4: Ghulam Fatima",
+      "5": "Branch 5: Mumtaz Begum",
+      "6": "Branch 6: Ghulam Hussain"
+    };
+
+    // Branch Base Counts
+    const branchBaseCounts = {
+      "1": 7,
+      "2": 6,
+      "3": 7,
+      "4": 6,
+      "5": 6,
+      "6": 10
+    };
+
+    /**
+     * Initialize state from localStorage
+     */
+    function loadStoredLeaves() {
+      try {
+        const stored = localStorage.getItem('family_shajara_custom_leaves') || localStorage.getItem('family_shajara_submissions');
+        if (stored) {
+          customLeaves = JSON.parse(stored);
+        }
+      } catch (e) {
+        console.warn('localStorage not accessible, using runtime queue.', e);
+        customLeaves = [];
       }
-    } catch (e) {
-      console.warn('localStorage not accessible, using runtime memory queue.');
+      renderAllCustomLeaves();
+      updateCounters();
     }
 
     /**
      * Zooms the pedigree canvas smoothly with bounds between 0.6x and 1.8x
-     * @param {number} delta - Zoom increment or decrement
      */
     function zoomTree(delta) {
       treeScale = Math.max(0.6, Math.min(1.8, treeScale + delta));
@@ -1051,7 +1076,7 @@
       const modal = document.getElementById('contributeModal');
       if (modal) {
         modal.classList.remove('hidden');
-        document.getElementById('contrib-relative')?.focus();
+        document.getElementById('contrib-person-name')?.focus();
       }
     }
 
@@ -1066,8 +1091,14 @@
     }
 
     /**
-     * Authenticates and opens Curatorial Admin Verification Portal
-     * Passcode: 1890
+     * Handle Branch dropdown change
+     */
+    function handleBranchChange() {
+      // Optional callback for specific branch adjustments
+    }
+
+    /**
+     * Authenticates and opens Curatorial Admin Verification Portal (Passcode: 1890)
      */
     function openAdminPortal() {
       const code = prompt("Enter Archival Passcode:", "1890");
@@ -1094,16 +1125,24 @@
 
     /**
      * Displays Person Details modal inspector
-     * @param {string} title - Full ancestral name
-     * @param {string} details - Biographical inscription and descendants
      */
-    function showPersonModal(title, details) {
+    function showPersonModal(title, details, isCustom, status) {
       const modal = document.getElementById('personModal');
       const titleEl = document.getElementById('personModalTitle');
       const bodyEl = document.getElementById('personModalBody');
+      const tagEl = document.getElementById('personModalTag');
       if (modal && titleEl && bodyEl) {
         titleEl.textContent = title;
         bodyEl.textContent = details;
+        if (tagEl) {
+          if (isCustom) {
+            tagEl.innerHTML = status === 'certified' 
+              ? '<span class="text-emerald-700 font-bold">✓ Archival Certified Leaf</span>' 
+              : '<span class="text-amber-700 font-bold">● Newly Inscribed Leaf (Pending Verification)</span>';
+          } else {
+            tagEl.textContent = 'Certified Standalone Leaf';
+          }
+        }
         modal.classList.remove('hidden');
       }
     }
@@ -1120,7 +1159,6 @@
 
     /**
      * File Reader Preview Handler for ancestral photo uploads
-     * @param {Event} event - Input change event
      */
     function previewUpload(event) {
       const file = event.target.files[0];
@@ -1139,73 +1177,252 @@
     }
 
     /**
-     * Submits new genealogical leaf or note to curatorial review queue
+     * Display transient toast message
+     */
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'toast-anim bg-archival-deepgreen text-amber-50 border border-archival-gold/50 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-xs max-w-sm pointer-events-auto';
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-emerald-400 text-lg">check_circle</span>
+        <div class="flex-grow font-medium">${message}</div>
+        <button onclick="this.parentElement.remove()" class="text-amber-200/60 hover:text-white text-sm">✕</button>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-10px)';
+        setTimeout(() => toast.remove(), 400);
+      }, 4500);
+    }
+
+    /**
+     * Creates and returns a dynamic DOM element for a contributed leaf card
+     */
+    function createLeafCardElement(item) {
+      const card = document.createElement('div');
+      card.id = `leaf-${item.id}`;
+      card.className = "dynamic-leaf cursor-pointer bg-white p-2 rounded-lg border-2 border-emerald-400/80 hover:border-emerald-600 shadow-2xs hover:shadow text-left transition-all relative overflow-hidden group";
+      
+      const badgeClass = item.status === 'certified' 
+        ? "bg-emerald-100 text-emerald-800 border-emerald-300" 
+        : "bg-amber-100 text-amber-900 border-amber-300";
+      
+      const badgeText = item.status === 'certified' ? 'Certified' : 'Newly Added';
+
+      card.innerHTML = `
+        <div class="flex items-center justify-between gap-1 mb-1">
+          <div class="font-bold text-slate-900 group-hover:text-emerald-800">${escapeHtml(item.personName)}</div>
+          <span class="text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.2 rounded border ${badgeClass} whitespace-nowrap">
+            ${badgeText}
+          </span>
+        </div>
+        <div class="text-[10px] text-slate-500">
+          ${item.dates ? escapeHtml(item.dates) : 'Contributed Member'} 
+          ${item.subtitle ? `• ${escapeHtml(item.subtitle)}` : ''}
+        </div>
+      `;
+
+      card.onclick = function() {
+        const fullDetail = `${item.personName}${item.dates ? ` (${item.dates})` : ''} • Contributed by ${item.contributorName || 'Family Member'} (${item.contributorRel || 'Kin'}). Notes: ${item.notes || 'No extended notes provided.'}`;
+        showPersonModal(item.personName, fullDetail, true, item.status);
+      };
+
+      return card;
+    }
+
+    /**
+     * Escape HTML helper
+     */
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    /**
+     * Renders all stored custom leaves into the DOM columns
+     */
+    function renderAllCustomLeaves() {
+      // Remove any previously rendered dynamic leaves
+      document.querySelectorAll('.dynamic-leaf').forEach(el => el.remove());
+
+      customLeaves.forEach(item => {
+        const branchContainer = document.getElementById(`branch-leaves-${item.branch}`);
+        if (branchContainer) {
+          const cardEl = createLeafCardElement(item);
+          branchContainer.appendChild(cardEl);
+        }
+      });
+    }
+
+    /**
+     * Updates leaf badges and census counter
+     */
+    function updateCounters() {
+      // Update each branch's badge count
+      for (let b = 1; b <= 6; b++) {
+        const addedInBranch = customLeaves.filter(l => String(l.branch) === String(b)).length;
+        const totalBranchCount = branchBaseCounts[String(b)] + addedInBranch;
+        const badge = document.getElementById(`count-badge-branch-${b}`);
+        if (badge) {
+          if (b === 6) {
+            badge.textContent = `2 + 8 (${addedInBranch > 0 ? `+${addedInBranch}` : ''} Total ${totalBranchCount})`;
+          } else {
+            badge.textContent = `${totalBranchCount} Leaves`;
+          }
+        }
+      }
+
+      // Update global census stats
+      const totalGen3 = 42 + customLeaves.length;
+      const statLeavesEl = document.getElementById('stat-leaves-count');
+      if (statLeavesEl) {
+        statLeavesEl.textContent = totalGen3;
+      }
+
+      const totalCataloged = 100 + customLeaves.length;
+      const statCatalogedEl = document.getElementById('stat-cataloged-count');
+      if (statCatalogedEl) {
+        statCatalogedEl.textContent = `${totalCataloged}+`;
+      }
+    }
+
+    /**
+     * Submits contribution from user form, injects card immediately, saves to localStorage
      */
     function submitContribution() {
-      const relative = document.getElementById('contrib-relative').value;
-      const name = document.getElementById('contrib-name').value;
-      const rel = document.getElementById('contrib-rel').value;
-      const notes = document.getElementById('contrib-notes').value;
+      const branch = document.getElementById('contrib-branch').value;
+      const personName = document.getElementById('contrib-person-name').value.trim();
+      const dates = document.getElementById('contrib-dates').value.trim();
+      const subtitle = document.getElementById('contrib-subtitle').value.trim();
+      const contributorName = document.getElementById('contrib-name').value.trim();
+      const contributorRel = document.getElementById('contrib-rel').value.trim();
+      const notes = document.getElementById('contrib-notes').value.trim();
 
-      if (!relative || !name) {
-        alert("Please select a relative and enter your name.");
+      if (!personName) {
+        alert("Please enter the Family Member's Name.");
+        document.getElementById('contrib-person-name').focus();
+        return;
+      }
+      if (!contributorName) {
+        alert("Please enter your name as the contributor.");
+        document.getElementById('contrib-name').focus();
         return;
       }
 
-      const submission = {
-        relative,
-        name,
-        rel,
-        notes,
+      const newRecord = {
+        id: 'leaf_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+        branch: branch,
+        personName: personName,
+        dates: dates,
+        subtitle: subtitle,
+        contributorName: contributorName,
+        contributorRel: contributorRel,
+        notes: notes,
+        status: 'pending',
         timestamp: new Date().toLocaleDateString()
       };
 
-      pendingSubmissions.push(submission);
+      // Add to array
+      customLeaves.push(newRecord);
       saveState();
-      updateAdminUI();
 
-      alert("Your record contribution has been submitted for curatorial archival review! Thank you for preserving our family history.");
-      
-      // Reset form
-      document.getElementById('contrib-relative').value = "";
+      // Immediately dynamically inject card into the specific branch column
+      const targetColumn = document.getElementById(`branch-leaves-${branch}`);
+      if (targetColumn) {
+        const cardEl = createLeafCardElement(newRecord);
+        targetColumn.appendChild(cardEl);
+        
+        // Visual scroll/focus animation
+        cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // Update counters
+      updateCounters();
+
+      // Show celebratory notification
+      showToast(`Record for "${personName}" added to the Tree Skeleton!`);
+
+      // Reset form fields
+      document.getElementById('contrib-person-name').value = "";
+      document.getElementById('contrib-dates').value = "";
+      document.getElementById('contrib-subtitle').value = "";
       document.getElementById('contrib-name').value = "";
       document.getElementById('contrib-rel').value = "";
       document.getElementById('contrib-notes').value = "";
       const previewBox = document.getElementById('preview-box');
       if (previewBox) previewBox.classList.add('hidden');
+      const fileInput = document.getElementById('contrib-file');
+      if (fileInput) fileInput.value = "";
 
+      // Close modal
       closeContributeModal();
     }
 
     /**
-     * Synchronizes in-memory pending queue to localStorage
+     * Save current list to localStorage
      */
     function saveState() {
       try {
-        localStorage.setItem('shajara_submissions', JSON.stringify(pendingSubmissions));
+        localStorage.setItem('family_shajara_custom_leaves', JSON.stringify(customLeaves));
+        localStorage.setItem('family_shajara_submissions', JSON.stringify(customLeaves));
       } catch (e) {
-        // Continue silently if storage quota exceeded or disabled
+        console.warn('Could not persist to localStorage:', e);
       }
     }
 
     /**
-     * Updates Admin Modal UI with live list of submissions
+     * Update Admin dialog UI
      */
     function updateAdminUI() {
       const countEl = document.getElementById('admin-pending-count');
       const listEl = document.getElementById('admin-submissions-list');
-      if (countEl) countEl.textContent = pendingSubmissions.length;
+      const verifiedEl = document.getElementById('admin-verified-count');
+
+      if (countEl) countEl.textContent = customLeaves.length;
+      if (verifiedEl) verifiedEl.textContent = 42 + customLeaves.filter(l => l.status === 'certified').length;
 
       if (listEl) {
-        if (pendingSubmissions.length === 0) {
-          listEl.innerHTML = 'No pending submissions in queue. Relatives can submit via the "Contribute Record" button in the header.';
+        if (customLeaves.length === 0) {
+          listEl.innerHTML = '<div class="py-4 text-slate-400 italic">No custom contributed records in queue. Add one via "Contribute Record".</div>';
         } else {
-          listEl.innerHTML = pendingSubmissions.map((s, idx) => `
-            <div class="p-3 bg-white rounded-lg border border-slate-200 text-left mb-2 shadow-2xs">
-              <div class="font-bold text-slate-800">${s.relative}</div>
-              <div class="text-[11px] text-slate-600">Submitted by <strong>${s.name}</strong> (${s.rel}) on ${s.timestamp}</div>
-              ${s.notes ? `<div class="mt-1 text-slate-500 italic text-[11px]">"${s.notes}"</div>` : ''}
-              <button onclick="approveSingle(${idx})" class="mt-2 text-xs px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-medium">Approve &amp; Inscribe</button>
+          listEl.innerHTML = customLeaves.map((item, idx) => `
+            <div class="p-3 bg-white rounded-lg border border-slate-200 text-left mb-2 shadow-2xs flex flex-col sm:flex-row justify-between gap-3 items-start sm:items-center">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-slate-800">${escapeHtml(item.personName)}</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded ${item.status === 'certified' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'} font-semibold">
+                    ${item.status === 'certified' ? 'Certified' : 'Pending Verification'}
+                  </span>
+                </div>
+                <div class="text-[11px] text-slate-500 mt-0.5">
+                  ${branchNames[item.branch] || `Branch ${item.branch}`} • Dates: ${escapeHtml(item.dates || 'N/A')}
+                </div>
+                <div class="text-[10px] text-slate-400 mt-0.5">
+                  Submitted by <strong>${escapeHtml(item.contributorName)}</strong> (${escapeHtml(item.contributorRel)}) on ${item.timestamp}
+                </div>
+                ${item.notes ? `<div class="text-[11px] text-slate-600 italic mt-1">"${escapeHtml(item.notes)}"</div>` : ''}
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-center">
+                ${item.status !== 'certified' ? `
+                  <button onclick="certifySingle(${idx})" class="text-xs px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-medium shadow-2xs">
+                    Certify
+                  </button>
+                ` : ''}
+                <button onclick="deleteSingle(${idx})" class="text-xs px-2.5 py-1 bg-red-100 hover:bg-red-200 text-red-800 rounded font-medium">
+                  Remove
+                </button>
+              </div>
             </div>
           `).join('');
         }
@@ -1213,29 +1430,63 @@
     }
 
     /**
-     * Approves and inscribes an individual pending record
-     * @param {number} idx - Index in pending submissions array
+     * Mark single contribution as verified
      */
-    function approveSingle(idx) {
-      pendingSubmissions.splice(idx, 1);
-      saveState();
-      updateAdminUI();
-      alert("Submission certified and inscribed into the active session ledger!");
+    function certifySingle(index) {
+      if (customLeaves[index]) {
+        customLeaves[index].status = 'certified';
+        saveState();
+        renderAllCustomLeaves();
+        updateCounters();
+        updateAdminUI();
+        showToast(`Certified record: ${customLeaves[index].personName}`);
+      }
     }
 
     /**
-     * Approves all pending records in batch
+     * Delete a single contribution
      */
-    function approveAllContributions() {
-      if (pendingSubmissions.length === 0) return;
-      pendingSubmissions = [];
-      saveState();
-      updateAdminUI();
-      alert("All pending contributions have been approved and certified!");
+    function deleteSingle(index) {
+      if (confirm("Are you sure you want to remove this ancestral record leaf?")) {
+        const removed = customLeaves.splice(index, 1);
+        saveState();
+        renderAllCustomLeaves();
+        updateCounters();
+        updateAdminUI();
+        showToast(`Removed record leaf from Tree.`);
+      }
     }
 
     /**
-     * Global keyboard event listeners (ESC key modal dismissal)
+     * Certify all pending contributions
+     */
+    function verifyAllContributions() {
+      if (customLeaves.length === 0) return;
+      customLeaves.forEach(l => l.status = 'certified');
+      saveState();
+      renderAllCustomLeaves();
+      updateCounters();
+      updateAdminUI();
+      showToast("All custom leaves have been certified!");
+    }
+
+    /**
+     * Reset all custom entries
+     */
+    function clearAllContributions() {
+      if (customLeaves.length === 0) return;
+      if (confirm("Reset all locally added records back to default folio tree?")) {
+        customLeaves = [];
+        saveState();
+        renderAllCustomLeaves();
+        updateCounters();
+        updateAdminUI();
+        showToast("Custom leaves reset.");
+      }
+    }
+
+    /**
+     * Keyboard listeners for modal dismissal
      */
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
@@ -1244,5 +1495,8 @@
         closePersonModal();
       }
     });
+
+    // Run loader on startup
+    window.addEventListener('DOMContentLoaded', loadStoredLeaves);
   </script>
 </body></html>
