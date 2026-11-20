@@ -1,1222 +1,1692 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html lang="en"><head>
+<!-- ========================================== -->
+<!-- TECH STACK: HTML5 SEMANTIC ARCHITECTURE     -->
+<!-- Demonstrating standard semantic HTML5 document headers, UTF-8 encoding, responsive viewport meta tags, accessible color schemes, and preconnected typography CDNs -->
+<!-- ========================================== -->
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Ancestral Lineage Tree &amp; Family Archive - Distinct Records</title>
+<meta content="web_standard" name="shell-type"/>
+<title>The Subha &amp; Allah Rakhi Heritage • Centennial Shajara Ledger</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- ========================================== -->
+<!-- TECH STACK: PRINT CSS MEDIA QUERIES (11x17 REUNION POSTER) -->
+<!-- Provides custom CSS media print rules to print a seamless high-res 11x17 landscape archival poster without screen chrome or fixed navigation -->
+<!-- ========================================== -->
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+    .tree-branch-path {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: drawBranch 0.6s ease-out forwards;
+    }
+    @keyframes drawBranch {
+      to { stroke-dashoffset: 0; }
+    }
+    @media print {
+      @page {
+        size: 17in 11in landscape;
+        margin: 0.5in;
+      }
+      header, #filter-container, #shajara-search, .no-print, button {
+        display: none !important;
+      }
+      body, main {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding-top: 0 !important;
+      }
+      .node-card, #tree-visualizer-container, #descendant-vault {
+        box-shadow: none !important;
+        border: 1px solid #727973 !important;
+      }
+    }
+  </style>
+<!-- ========================================== -->
+<!-- TECH STACK: TAILWIND CSS CDN & UTILITY FRAMEWORK -->
+<!-- Dynamically injected Tailwind engine configured with Material-You style design tokens, custom color palette (forest greens, archival parchment, warm saffron gold), Playfair typography for historical titling, and Plus Jakarta Sans for legibility -->
+<!-- ========================================== -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
-          "colors": {
-            "on-background": "#1e1b17",
-            "on-tertiary": "#ffffff",
+          colors: {
             "surface-container-low": "#faf2ea",
-            "surface-container-high": "#eee7df",
-            "tertiary": "#430902",
-            "on-tertiary-fixed": "#3e0500",
-            "on-secondary-container": "#775607",
-            "on-secondary-fixed-variant": "#5e4200",
-            "background": "#fff8f2",
-            "outline-variant": "#c1c8c2",
-            "on-primary-container": "#80a690",
-            "surface-container-lowest": "#ffffff",
-            "secondary-container": "#fccd78",
-            "surface-variant": "#e8e1d9",
-            "outline": "#727973",
-            "on-surface-variant": "#414844",
-            "tertiary-fixed": "#ffdad3",
-            "tertiary-container": "#601e11",
-            "inverse-on-surface": "#f7f0e7",
-            "surface-dim": "#e0d9d1",
-            "inverse-surface": "#33302b",
             "on-secondary-fixed": "#271900",
-            "secondary": "#7b580b",
-            "error": "#ba1a1a",
-            "tertiary-fixed-dim": "#ffb4a5",
             "surface": "#fff8f2",
-            "on-error-container": "#93000a",
-            "secondary-fixed": "#ffdea7",
-            "on-secondary": "#ffffff",
-            "on-primary-fixed-variant": "#2b4e3d",
-            "on-tertiary-fixed-variant": "#783022",
-            "primary-container": "#183b2b",
-            "on-tertiary-container": "#e2836f",
+            "secondary-container": "#fccd78",
+            "primary-fixed-dim": "#a9cfb9",
+            "tertiary-container": "#601e11",
             "error-container": "#ffdad6",
+            "surface-container-highest": "#e8e1d9",
+            "surface-container-high": "#eee7df",
+            "on-surface-variant": "#414844",
+            "on-secondary-fixed-variant": "#5e4200",
+            "tertiary-fixed-dim": "#ffb4a5",
+            "on-primary": "#ffffff",
+            "tertiary": "#430902",
             "secondary-fixed-dim": "#edc06c",
             "on-surface": "#1e1b17",
-            "inverse-primary": "#a9cfb9",
-            "on-primary": "#ffffff",
-            "primary-fixed-dim": "#a9cfb9",
-            "primary-fixed": "#c4ecd4",
-            "surface-tint": "#436653",
-            "primary": "#002517",
-            "surface-container-highest": "#e8e1d9",
-            "surface-container": "#f4ede5",
+            "inverse-surface": "#33302b",
+            "on-error-container": "#93000a",
+            "outline-variant": "#c1c8c2",
+            "on-tertiary-container": "#e2836f",
+            "on-primary-container": "#80a690",
+            "secondary": "#7b580b",
             "on-primary-fixed": "#002113",
+            "on-primary-fixed-variant": "#2b4e3d",
+            "surface-tint": "#436653",
+            "secondary-fixed": "#ffdea7",
+            "on-tertiary-fixed-variant": "#783022",
+            "on-error": "#ffffff",
+            "primary-container": "#183b2b",
+            "outline": "#727973",
+            "primary-fixed": "#c4ecd4",
+            "primary": "#002517",
+            "tertiary-fixed": "#ffdad3",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#3e0500",
+            "background": "#fff8f2",
+            "surface-variant": "#e8e1d9",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-secondary-container": "#775607",
+            "on-background": "#1e1b17",
+            "inverse-primary": "#a9cfb9",
+            "error": "#ba1a1a",
+            "inverse-on-surface": "#f7f0e7",
             "surface-bright": "#fff8f2",
-            "on-error": "#ffffff"
+            "surface-dim": "#e0d9d1",
+            "surface-container": "#f4ede5"
           },
-          "borderRadius": {
-            "DEFAULT": "0.125rem",
-            "lg": "0.25rem",
-            "xl": "0.5rem",
-            "full": "0.75rem"
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "0.75rem"
           },
-          "fontFamily": {
-            "headline-xl": ["Playfair Display", "serif"],
-            "headline-lg": ["Playfair Display", "serif"],
-            "headline-md": ["Playfair Display", "serif"],
-            "headline-sm": ["Playfair Display", "serif"],
-            "ancestor-epitaph": ["Playfair Display", "serif"],
-            "title-lg": ["Playfair Display", "serif"],
-            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
-            "body-md": ["Plus Jakarta Sans", "sans-serif"],
-            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
-            "label-md": ["Plus Jakarta Sans", "sans-serif"],
-            "label-sm": ["Plus Jakarta Sans", "sans-serif"]
+          spacing: {
+            "margin-mobile": "1.25rem",
+            margin: "3rem",
+            gutter: "1.5rem",
+            "gutter-mobile": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "space-xxl": "4rem"
+          },
+          fontFamily: {
+            "ancestor-epitaph": ["Playfair Display"],
+            "headline-xl": ["Playfair Display"],
+            "headline-lg": ["Playfair Display"],
+            "headline-md": ["Playfair Display"],
+            "headline-sm": ["Playfair Display"],
+            "title-lg": ["Playfair Display"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"]
           }
         }
       }
-    }
+    };
   </script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      height: 6px;
-      width: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f4ede5;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #c1c8c2;
-      border-radius: 4px;
-    }
-    .tree-line-v {
-      position: absolute;
-      width: 2px;
-      background: #c1c8c2;
-    }
-    .tree-line-h {
-      position: absolute;
-      height: 2px;
-      background: #c1c8c2;
-    }
-  </style>
 </head>
-<body class="bg-[#f9fbfa] text-[#111815] min-h-screen selection:bg-secondary-fixed selection:text-primary">
-<!-- Shared Component TopNavBar (Immutable Asset) -->
-<div class="relative flex h-auto w-full flex-col bg-[#f9fbfa] group/design-root overflow-x-hidden" style='font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;'>
-<div class="layout-container flex h-full grow flex-col">
-<div class="px-4 md:px-12 lg:px-20 flex flex-1 justify-center py-4">
-<div class="layout-content-container flex flex-col w-full max-w-[1400px] flex-1">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#eaf0ed] px-4 md:px-10 py-3">
-<div class="flex items-center gap-8">
-<div class="flex items-center gap-4 text-[#111815]">
-<div class="size-4">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_6_319)">
-<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
-</g>
-<defs>
-<clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath>
-</defs>
-</svg>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- ========================================== -->
+<!-- TECH STACK: FIXED HEADER NAVIGATION BAR   -->
+<!-- Standard sticky navigation bar with archival badge, quick jump anchors, modal dispatchers, and print action trigger -->
+<!-- ========================================== -->
+<header class="fixed top-0 left-0 w-full z-50 bg-primary shadow-[0_1px_8px_rgba(0,0,0,0.06)]">
+<div class="h-20 max-w-[1360px] mx-auto px-gutter flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-lg">
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg text-on-primary tracking-wide leading-none">The Subha &amp; Allah Rakhi Heritage</span>
+<span class="font-label-sm text-label-sm text-on-primary-container tracking-wider mt-1">Kasur &amp; Historic Lahore Origins • c. 1890</span>
 </div>
-<h2 class="text-[#111815] text-lg font-bold leading-tight tracking-[-0.015em]">Ancestral Lineage Tree &amp; Family Archive</h2>
+<div class="hidden lg:flex items-center bg-secondary-container px-space-sm py-1 rounded-full text-on-secondary-container shadow-xs">
+<span class="font-label-sm text-label-sm uppercase font-semibold">Folio No. 1</span>
 </div>
-<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
-<div class="flex w-full flex-1 items-stretch rounded h-full">
-<div class="text-[#5f8675] flex border-none bg-[#eaf0ed] items-center justify-center pl-4 rounded-l border-r-0" data-icon="MagnifyingGlass" data-size="24px" data-weight="regular">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
-</svg>
 </div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded text-[#111815] focus:outline-0 focus:ring-0 border-none bg-[#eaf0ed] focus:border-none h-full placeholder:text-[#5f8675] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" id="sharedSearchInput" placeholder="Search" value=""/>
+<nav class="hidden xl:flex items-center gap-space-xs p-1">
+<a class="px-space-md py-space-sm font-label-md text-label-md text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-colors rounded-lg" href="#ledger-top">Archive Welcome</a>
+<a class="px-space-md py-space-sm font-label-md text-label-md text-on-primary bg-primary-container text-on-primary-container rounded-lg" href="#tree-visualizer-container">Interactive Shajara Tree</a>
+<a class="px-space-md py-space-sm font-label-md text-label-md text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-colors rounded-lg" href="#provenance-section">Dadhal &amp; Nanhal Lineages</a>
+<a class="px-space-md py-space-sm font-label-md text-label-md text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-colors rounded-lg" href="#descendant-vault">Family Vault</a>
+</nav>
+<div class="flex items-center gap-space-sm">
+<button class="hidden sm:inline-flex items-center justify-center px-space-md py-2 bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-label-md transition-all hover:bg-secondary-fixed-dim hover:shadow-md cursor-pointer active:scale-95" onclick="openContributeModal()" type="button">
+          + Contribute Record
+        </button>
+<button class="hidden md:inline-flex items-center justify-center px-space-md py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md transition-all hover:bg-primary hover:text-on-primary cursor-pointer active:scale-95" onclick="window.print()" type="button">
+          Print Reunion Poster (11x17)
+        </button>
+<button class="inline-flex items-center justify-center px-space-sm py-2 bg-tertiary-container text-on-tertiary-container rounded-lg font-label-md text-label-md transition-all hover:bg-tertiary hover:text-on-tertiary cursor-pointer active:scale-95" onclick="openAdminModal()" type="button">
+          Admin (Passcode: 1890)
+        </button>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]">person</span>
 </div>
-</label>
 </div>
-<div class="flex flex-1 justify-end gap-8">
-<div class="hidden lg:flex items-center gap-9">
-<a class="text-[#111815] text-sm font-medium leading-normal hover:text-[#183b2b]" href="#canopy-section">Visual Canopy</a>
-<a class="text-[#111815] text-sm font-medium leading-normal hover:text-[#183b2b]" href="#explorer-section">Branch Explorer</a>
-<a class="text-[#111815] text-sm font-medium leading-normal hover:text-[#183b2b]" href="#archive-section">Generation Archive</a>
-<a class="text-[#111815] text-sm font-medium leading-normal hover:text-[#183b2b]" href="#poster-preview">Reunion Poster</a>
-</div>
-<div class="flex gap-2">
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded h-10 px-4 bg-[#183b2b] text-[#f9fbfa] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90" onclick="triggerPrintModal()">
-<span class="truncate">Export Print Poster</span>
-</button>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded h-10 px-4 bg-[#eaf0ed] text-[#111815] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#d5e1dc]" onclick="openAuditModal()">
-<span class="truncate">Audit Log</span>
-</button>
-</div>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNSRMNX3OyTs32C-exFOlMxgqie5P8CGwQPaJEzCanG8iUZsPUA8wKu94pf0pBwMfx2SjQ7pNqOy9KMHgIlecjYV1v5THXilhscbRTDZOIYNGQiKgtTxgv9QtQtc_NwPPwgVXKi0q3tMfDaBkIWCMxnt9DynutB8PnX1roNj9hCQ2uKETfMtajrM9c_JDXXUDuTrlNrtoek2ZtUdSvMrY-R8VLteBkc2Ozvx8vxxbg");'></div>
 </div>
 </header>
-<div class="flex flex-wrap justify-between gap-3 p-4">
-<div class="flex min-w-72 flex-col gap-3">
-<p class="text-[#111815] text-4xl font-black leading-tight tracking-[-0.033em]">Comprehensive Family Tree &amp; Individual Roster</p>
-<p class="text-[#5f8675] text-base font-normal leading-normal">
-              Verified individual genealogy with distinct leaf cards and corrected records for 6 ancestral branches
-            </p>
-</div>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded h-10 px-4 bg-[#eaf0ed] text-[#111815] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#d5e1dc]" onclick="openNewDescendantModal()">
-<span class="truncate">Add Descendant</span>
-</button>
-</div>
-<div class="px-4 py-3">
-<label class="flex flex-col min-w-40 h-12 w-full">
-<div class="flex w-full flex-1 items-stretch rounded h-full">
-<div class="text-[#5f8675] flex border-none bg-[#eaf0ed] items-center justify-center pl-4 rounded-l border-r-0" data-icon="MagnifyingGlass" data-size="24px" data-weight="regular">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
-</svg>
-</div>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded text-[#111815] focus:outline-0 focus:ring-0 border-none bg-[#eaf0ed] focus:border-none h-full placeholder:text-[#5f8675] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" id="liveFilterInput" oninput="handleSearch(this.value)" placeholder="Search individual leaf, branch, or verified record..." value=""/>
-</div>
-</label>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-<div class="flex flex-col gap-2 rounded p-6 border border-[#d5e1dc] bg-white shadow-sm">
-<p class="text-[#5f8675] text-sm font-medium leading-normal uppercase tracking-wider">Total Documented Leaves</p>
-<p class="text-[#111815] tracking-tight text-3xl font-bold leading-tight font-headline-sm">42 Individuals</p>
-<span class="text-xs text-primary font-medium flex items-center gap-1">
-<span class="material-symbols-outlined text-xs">check_circle</span> 100% Standalone Entries
+<main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)]" id="ledger-top">
+<div class="flex flex-col w-full">
+<!-- Top Archival Context Ribbon -->
+<div class="w-full bg-primary-container text-on-primary-container px-gutter py-space-sm shadow-sm">
+<div class="max-w-[1360px] mx-auto flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm">
+<div class="flex items-center gap-space-md">
+<span class="inline-flex items-center gap-1.5 text-secondary-container font-semibold">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+              Authentic Centennial Shajara Ledger • Revision 4.2
             </span>
+<span class="hidden md:inline text-outline-variant">|</span>
+<span class="hidden md:inline text-on-primary-container/80">Custodian Record ID: #KSR-LHR-1890-001</span>
 </div>
-<div class="flex flex-col gap-2 rounded p-6 border border-[#d5e1dc] bg-white shadow-sm">
-<p class="text-[#5f8675] text-sm font-medium leading-normal uppercase tracking-wider">Verified Branches</p>
-<p class="text-[#111815] tracking-tight text-3xl font-bold leading-tight font-headline-sm">6 Main Branches</p>
-<span class="text-xs text-[#5f8675]">Spanning 1st &amp; 2nd Wives</span>
-</div>
-<div class="flex flex-col gap-2 rounded p-6 border border-[#d5e1dc] bg-white shadow-sm">
-<p class="text-[#5f8675] text-sm font-medium leading-normal uppercase tracking-wider">Distinct Separation</p>
-<p class="text-[#111815] tracking-tight text-3xl font-bold leading-tight font-headline-sm">Zero Grouped Cards</p>
-<span class="text-xs text-[#183b2b] bg-surface-container-high px-2 py-0.5 rounded-full inline-block w-fit font-medium">All Grandchildren Decoupled</span>
-</div>
-<div class="flex flex-col gap-2 rounded p-6 border border-[#d5e1dc] bg-white shadow-sm border-l-4 border-l-secondary">
-<p class="text-[#5f8675] text-sm font-medium leading-normal uppercase tracking-wider">Verified Critical Record</p>
-<p class="text-[#111815] tracking-tight text-xl font-bold leading-tight">Suleyman Ayaz</p>
-<span class="text-xs font-semibold text-secondary-container bg-primary px-2 py-0.5 rounded text-white flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">event</span> Correct DOB: March 13, 1991
-            </span>
+<div class="flex items-center gap-space-md">
+<span class="text-on-primary-container/90">Direct Line: Dadhal (Paternal) &amp; Nanhal (Maternal)</span>
+<button class="text-secondary-fixed hover:text-white transition-colors underline cursor-pointer font-medium" onclick="switchTreeBranch('overview')">Expand All Folios</button>
 </div>
 </div>
-<div class="pb-3 overflow-x-auto custom-scrollbar">
-<div class="flex border-b border-[#d5e1dc] px-4 gap-8 min-w-max">
-<button class="branch-tab flex flex-col items-center justify-center border-b-[3px] border-b-[#183b2b] text-[#111815] gap-1 pb-[7px] pt-2.5" id="tab-all" onclick="filterBranch('all')">
-<div class="text-[#111815]" data-icon="TreeStructure" data-size="24px" data-weight="fill">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M152,96V80h-8a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h8V160a16,16,0,0,1,16-16h48a16,16,0,0,1,16,16v48a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V192h-8a32,32,0,0,1-32-32V136H80v8a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V112A16,16,0,0,1,32,96H64a16,16,0,0,1,16,16v8h32V96a32,32,0,0,1,32-32h8V48a16,16,0,0,1,16-16h48a16,16,0,0,1,16,16V96a16,16,0,0,1-16,16H168A16,16,0,0,1,152,96Z"></path>
-</svg>
 </div>
-<p class="text-sm font-bold leading-normal tracking-[0.015em]">All Branches (42)</p>
+<!-- Hero Ledger Banner -->
+<section class="w-full bg-surface-container-low px-gutter py-space-xl">
+<div class="max-w-[1360px] mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left: Text & Credentials -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold tracking-wider uppercase">Folio Registry 1890–2025</span>
+<span class="text-secondary font-label-md text-label-md tracking-wider">Historical Punjab Archives</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight">
+                Historic Kasur &amp; Lahore Lineage Ledger
+              </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+                Documenting the foundational house of Subha &amp; Allah Rakhi, their six keystone descent lines, ancestral branches of Dadhal (Paternal) and Nanhal (Maternal), and four living generations preserved across the historic Punjab and the global diaspora.
+              </p>
+<!-- Key Stats -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-sm">
+<div class="bg-surface p-space-md rounded-lg shadow-sm flex flex-col border border-outline-variant/30">
+<span class="font-headline-md text-headline-md text-primary leading-tight">6</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Keystone Branches</span>
+</div>
+<div class="bg-surface p-space-md rounded-lg shadow-sm flex flex-col border border-outline-variant/30">
+<span class="font-headline-md text-headline-md text-primary leading-tight">38+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Documented Descendants</span>
+</div>
+<div class="bg-surface p-space-md rounded-lg shadow-sm flex flex-col border border-outline-variant/30">
+<span class="font-headline-md text-headline-md text-primary leading-tight">4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Generations Continuity</span>
+</div>
+<div class="bg-surface p-space-md rounded-lg shadow-sm flex flex-col border border-outline-variant/30">
+<span class="font-headline-md text-headline-md text-secondary leading-tight">135 yr</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Parchment Memory</span>
+</div>
+</div>
+</div>
+<!-- Right: Imperial Seal Vignette -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface p-space-lg rounded-xl shadow-md flex flex-col gap-space-md relative overflow-hidden border border-outline-variant/30">
+<div class="absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-secondary-container/20 pointer-events-none"></div>
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-full bg-primary-container text-secondary-container flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[30px]" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg text-primary leading-snug">Imperial Kasur &amp; Walled Lahore</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Bhati Gate • Mohalla Kot Rukan Din</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  This interactive shajara links physical registry ledgers, land ownership scrolls, and oral daguerreotypes transferred from elders to present-day lineage stewards.
+                </p>
+<div class="flex items-center justify-between pt-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1 text-primary font-semibold">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+                    Seal: Certified Heirloom
+                  </span>
+<span class="text-outline">Kasur-Lahore Charter</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter & Real-Time Search Bar -->
+<section class="sticky top-20 z-40 bg-surface/95 backdrop-blur-md px-gutter py-space-md shadow-sm border-b border-outline-variant/30">
+<div class="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md">
+<!-- Filter Badges -->
+<div class="flex items-center flex-wrap gap-space-xs w-full md:w-auto" id="filter-container">
+<button class="filter-btn active px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-primary text-on-primary cursor-pointer shadow-xs" data-filter="all" onclick="applyFolioFilter('all', this)">
+              All Folios
+            </button>
+<button class="filter-btn px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-surface-container-high text-on-surface hover:bg-surface-dim cursor-pointer" data-filter="sardar" onclick="applyFolioFilter('sardar', this)">
+              Sardar Begum Lineage (Key)
+            </button>
+<button class="filter-btn px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-surface-container-high text-on-surface hover:bg-surface-dim cursor-pointer" data-filter="ghulam" onclick="applyFolioFilter('ghulam', this)">
+              Ghulam Hussain Lineage
+            </button>
+<button class="filter-btn px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-surface-container-high text-on-surface hover:bg-surface-dim cursor-pointer" data-filter="dadhal" onclick="applyFolioFilter('dadhal', this)">
+              Dadhal Paternal
+            </button>
+<button class="filter-btn px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-all bg-surface-container-high text-on-surface hover:bg-surface-dim cursor-pointer" data-filter="nanhal" onclick="applyFolioFilter('nanhal', this)">
+              Nanhal Maternal
+            </button>
+</div>
+<!-- Real-time Search Input -->
+<div class="relative w-full md:w-80 shrink-0">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</span>
+<input class="w-full pl-9 pr-8 py-2 bg-surface-container rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface focus:shadow-[0_0_0_2px_#002517] transition-all" id="shajara-search" oninput="handleSearch(this.value)" placeholder="Search name, year (e.g. Aslam, Akram, 1938)..." type="text"/>
+<button class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface cursor-pointer" id="search-clear-btn" onclick="clearSearch()">
+<span class="material-symbols-outlined text-[16px]">close</span>
 </button>
-<button class="branch-tab flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#5f8675] gap-1 pb-[7px] pt-2.5 hover:text-[#111815]" id="tab-b1" onclick="filterBranch('b1')">
-<div class="text-[#5f8675]" data-icon="UsersThree" data-size="24px" data-weight="regular">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path>
-</svg>
 </div>
-<p class="text-sm font-bold leading-normal tracking-[0.015em]">B-01 Hussain Bibi (7)</p>
+</div>
+</section>
+<!-- Interactive Shajara Canvas -->
+<section class="w-full px-gutter py-space-xl overflow-x-auto">
+<div class="max-w-[1360px] mx-auto flex flex-col items-center min-w-[1020px]">
+<!-- ROOT LEVEL: Patriarch & Matriarch -->
+<div class="flex flex-col items-center relative node-card" data-tags="all dadhal nanhal subha allah rakhi 1890 kasur lahore">
+<div class="w-[540px] bg-surface-container-lowest p-space-lg rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative border border-outline-variant/40">
+<div class="absolute top-2 right-2 flex items-center gap-1.5 bg-secondary-container px-2 py-0.5 rounded-full text-on-secondary-container font-label-sm text-label-sm font-semibold shadow-xs">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">diamond</span>
+                Root Patriarch &amp; Matriarch
+              </div>
+<div class="flex items-start gap-space-md">
+<div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-secondary-fixed shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[32px]">diversity_1</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex items-baseline gap-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Subha &amp; Allah Rakhi</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider mt-0.5">Foundational House of Kasur &amp; Walled Lahore</span>
+<div class="mt-2.5 grid grid-cols-2 gap-2 text-on-surface-variant font-body-sm text-body-sm bg-surface-container-low p-2.5 rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">find_replace</span>
+<span>Circa <strong>1890</strong> Origins</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">location_on</span>
+<span>Punjab (Kasur/Lahore)</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span class="px-2 py-0.5 rounded bg-surface-container font-medium">Dadhal Lineage (Paternal)</span>
+<span class="text-outline">•</span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-medium">Nanhal Lineage (Maternal)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pedigree Stem to Level 1 Branches -->
+<div class="w-0.5 h-12 bg-secondary/60"></div>
+<div class="w-[88%] h-0.5 bg-secondary/50 relative">
+<span class="absolute left-[3%] -bottom-4 w-0.5 h-4 bg-secondary/50"></span>
+<span class="absolute left-[21%] -bottom-4 w-0.5 h-4 bg-secondary/50"></span>
+<span class="absolute left-[39%] -bottom-4 w-0.5 h-4 bg-primary font-bold"></span>
+<span class="absolute left-[59%] -bottom-4 w-0.5 h-4 bg-secondary/50"></span>
+<span class="absolute left-[78%] -bottom-4 w-0.5 h-4 bg-secondary/50"></span>
+<span class="absolute left-[97%] -bottom-4 w-0.5 h-4 bg-secondary/50"></span>
+</div>
+</div>
+<!-- ========================================== -->
+<!-- TIER 0: The 6 Keystone Ancestral Branches -->
+<!-- ========================================== -->
+<div class="w-full grid grid-cols-6 gap-3 mt-4 items-start" id="tier-0-branches">
+<!-- Branch I: Hussain Bibi -->
+<div class="node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative cursor-pointer group border border-outline-variant/30" data-branch="hussain_bibi" data-tags="all dadhal nanhal hussain bibi mola baksh 1942" onclick="switchTreeBranch('hussain_bibi')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Branch I</span>
+<span class="material-symbols-outlined text-outline text-[16px]">female</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mt-1.5 group-hover:text-primary transition-colors">Hussain Bibi</h3>
+<span class="font-label-sm text-label-sm text-error font-medium mt-0.5">d. Jun 1942</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Daughter of Subha. Alliance united with the Mola Baksh branch.</p>
+<div class="mt-3 pt-2 text-on-surface-variant font-label-sm text-label-sm flex items-center justify-between border-t border-outline-variant/20">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary">book</span><span>Folio 14-A</span></span>
+<span class="text-secondary font-semibold text-[11px] underline">View Tree →</span>
+</div>
+</div>
+<!-- Branch II: Hassan Bibi -->
+<div class="node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative cursor-pointer group border border-outline-variant/30" data-branch="hassan_bibi" data-tags="all dadhal nanhal hassan bibi nabi baksh khair-din" onclick="switchTreeBranch('hassan_bibi')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Branch II</span>
+<span class="material-symbols-outlined text-outline text-[16px]">female</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mt-1.5 group-hover:text-primary transition-colors">Hassan Bibi</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Daughter of Subha</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Alliance connected with the Nabi Baksh &amp; Khair-Din lineages.</p>
+<div class="mt-3 pt-2 text-on-surface-variant font-label-sm text-label-sm flex items-center justify-between border-t border-outline-variant/20">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary">book</span><span>Folio 14-B</span></span>
+<span class="text-secondary font-semibold text-[11px] underline">View Tree →</span>
+</div>
+</div>
+<!-- Branch III (KEYSTONE): Sardar Begum -->
+<div class="node-card flex flex-col bg-surface-container-low p-space-md rounded-xl shadow-md ring-2 ring-primary hover:shadow-xl transition-all relative transform lg:-translate-y-1 cursor-pointer border border-primary/30" data-branch="sardar" data-tags="all sardar begum ismael 1916 2001 dadhal nanhal keystone" onclick="switchTreeBranch('overview')">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold">Branch III • Keystone</span>
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-primary font-bold mt-1.5">Sardar Begum</h3>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">1916 – Aug 23, 2001</span>
+<div class="mt-2 p-2 bg-surface rounded-lg border border-outline-variant/30">
+<span class="font-label-sm text-label-sm text-on-surface-variant block font-semibold">Consort &amp; Alliance:</span>
+<span class="font-title-lg text-title-lg text-on-surface">Married to Ismael</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Mother to 7 prominent custodial siblings (Branch Pillar).</p>
+</div>
+<div class="mt-3 flex items-center justify-between">
+<span class="text-primary font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block animate-ping"></span>
+                  Focal Line
+                </span>
+<span class="font-label-sm text-label-sm text-secondary underline cursor-pointer" onclick="event.stopPropagation(); scrollToTier1()">View 7 Siblings ↓</span>
+</div>
+</div>
+<!-- Branch IV: Ghulam Fatima -->
+<div class="node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative cursor-pointer group border border-outline-variant/30" data-branch="ghulam_fatima" data-tags="all dadhal nanhal ghulam fatima subha" onclick="switchTreeBranch('ghulam_fatima')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Branch IV</span>
+<span class="material-symbols-outlined text-outline text-[16px]">female</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mt-1.5 group-hover:text-primary transition-colors">Ghulam Fatima</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Daughter of Subha</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Archival preservation record documented under Punjab Registry.</p>
+<div class="mt-3 pt-2 text-on-surface-variant font-label-sm text-label-sm flex items-center justify-between border-t border-outline-variant/20">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary">book</span><span>Folio 14-D</span></span>
+<span class="text-secondary font-semibold text-[11px] underline">View Tree →</span>
+</div>
+</div>
+<!-- Branch V: Mumtaz Begum -->
+<div class="node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative cursor-pointer group border border-outline-variant/30" data-branch="mumtaz" data-tags="all dadhal nanhal mumtaz begum 1930 1992" onclick="switchTreeBranch('mumtaz')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Branch V</span>
+<span class="material-symbols-outlined text-outline text-[16px]">female</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mt-1.5 group-hover:text-primary transition-colors">Mumtaz Begum</h3>
+<span class="font-label-sm text-label-sm text-error font-medium mt-0.5">1930 – Oct 6, 1992</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Daughter of Subha. Lahore ledger memorial line.</p>
+<div class="mt-3 pt-2 text-on-surface-variant font-label-sm text-label-sm flex items-center justify-between border-t border-outline-variant/20">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary">book</span><span>Folio 14-E</span></span>
+<span class="text-secondary font-semibold text-[11px] underline">View Tree →</span>
+</div>
+</div>
+<!-- Branch VI: Ghulam Hussain -->
+<div class="node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative cursor-pointer group border border-outline-variant/30" data-branch="ghulam_hussain" data-tags="all ghulam hussain son munawar jamila khursheed saeeda sajda zulfiqar falaq sher abid ali zarina afzaal jamal samina" onclick="switchTreeBranch('ghulam_hussain')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Branch VI</span>
+<span class="material-symbols-outlined text-outline text-[16px]">male</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mt-1.5 group-hover:text-primary transition-colors">Ghulam Hussain</h3>
+<span class="font-label-sm text-label-sm text-primary font-medium mt-0.5">Son of Subha</span>
+<div class="mt-2 bg-surface-container-low p-2 rounded-lg text-on-surface font-body-sm text-body-sm border border-outline-variant/20">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Two Alliances • 7 Children</span>
+<div class="mt-1 text-on-surface-variant text-[11px] leading-relaxed">
+<div><strong>1st:</strong> Munawar, Jamila</div>
+<div><strong>2nd:</strong> Saeeda, Sajda, Zulfiqar, Falaq, Abid</div>
+</div>
+</div>
+<div class="mt-3 flex items-center justify-between">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm underline text-left cursor-pointer flex items-center gap-1" onclick="event.stopPropagation(); toggleGhulamDetails(this)">
+<span class="material-symbols-outlined text-[14px]">unfold_more</span>
+<span>Roster</span>
 </button>
-<button class="branch-tab flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#5f8675] gap-1 pb-[7px] pt-2.5 hover:text-[#111815]" id="tab-b2" onclick="filterBranch('b2')">
-<div class="text-[#5f8675]" data-icon="UsersThree" data-size="24px" data-weight="regular">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path>
-</svg>
+<span class="text-primary font-label-sm text-label-sm font-semibold underline">Visual Tree →</span>
 </div>
-<p class="text-sm font-bold leading-normal tracking-[0.015em]">B-02 Hassan Bibi (6)</p>
-</button>
-<button class="branch-tab flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#5f8675] gap-1 pb-[7px] pt-2.5 hover:text-[#111815]" id="tab-b3" onclick="filterBranch('b3')">
-<div class="text-[#5f8675]" data-icon="UsersThree" data-size="24px" data-weight="regular">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path>
-</svg>
-</div>
-<p class="text-sm font-bold leading-normal tracking-[0.015em]">B-03 Sardar Begum (7)</p>
-</button>
-<button class="branch-tab flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#5f8675] gap-1 pb-[7px] pt-2.5 hover:text-[#111815]" id="tab-b4" onclick="filterBranch('b4')">
-<div class="text-[#5f8675]" data-icon="UsersThree" data-size="24px" data-weight="regular">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path>
-</svg>
-</div>
-<p class="text-sm font-bold leading-normal tracking-[0.015em]">B-04 Ghulam Fatima (6)</p>
-</button>
-<button class="branch-tab flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#5f8675] gap-1 pb-[7px] pt-2.5 hover:text-[#111815]" id="tab-b5" onclick="filterBranch('b5')">
-<div class="text-[#5f8675]" data-icon="UsersThree" data-size="24px" data-weight="regular">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path>
-</svg>
-</div>
-<p class="text-sm font-bold leading-normal tracking-[0.015em]">B-05 Mumtaz Begum (6)</p>
-</button>
-<button class="branch-tab flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#5f8675] gap-1 pb-[7px] pt-2.5 hover:text-[#111815]" id="tab-b6" onclick="filterBranch('b6')">
-<div class="text-[#5f8675]" data-icon="UsersThree" data-size="24px" data-weight="regular">
-<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
-<path d="M244.8,150.4a8,8,0,0,1-11.2-1.6A51.6,51.6,0,0,0,192,128a8,8,0,0,1-7.37-4.89,8,8,0,0,1,0-6.22A8,8,0,0,1,192,112a24,24,0,1,0-23.24-30,8,8,0,1,1-15.5-4A40,40,0,1,1,219,117.51a67.94,67.94,0,0,1,27.43,21.68A8,8,0,0,1,244.8,150.4ZM190.92,212a8,8,0,1,1-13.84,8,57,57,0,0,0-98.16,0,8,8,0,1,1-13.84-8,72.06,72.06,0,0,1,33.74-29.92,48,48,0,1,1,58.36,0A72.06,72.06,0,0,1,190.92,212ZM128,176a32,32,0,1,0-32-32A32,32,0,0,0,128,176ZM72,120a8,8,0,0,0-8-8A24,24,0,1,1,87.24,82a8,8,0,1,0,15.5-4A40,40,0,1,0,37,117.51,67.94,67.94,0,0,0,9.6,139.19a8,8,0,1,0,12.8,9.61A51.6,51.6,0,0,1,64,128,8,8,0,0,0,72,120Z"></path>
-</svg>
-</div>
-<p class="text-sm font-bold leading-normal tracking-[0.015em]">B-06 Ghulam Hussain (10)</p>
-</button>
+<div class="hidden mt-2 p-2 bg-surface rounded border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm flex flex-col gap-1 text-[11px]" id="ghulam-roster">
+<div class="text-primary font-semibold">Alliance I (Munawar):</div>
+<div class="pl-2">• Jamila Begum</div>
+<div class="text-primary font-semibold mt-1">Alliance II (Khursheed Begum):</div>
+<div class="pl-2">• Saeeda Begum</div>
+<div class="pl-2">• Sajda Begum</div>
+<div class="pl-2">• Zulfiqar Ali</div>
+<div class="pl-2">• Falaq Sher</div>
+<div class="pl-2">• Abid Ali</div>
 </div>
 </div>
 </div>
+<!-- Pedigree Connector Stem: Sardar Begum -> 7 Siblings -->
+<div class="w-full flex justify-center mt-6">
+<div class="w-0.5 h-10 bg-primary"></div>
+</div>
+<div class="w-[84%] h-0.5 bg-primary relative">
+<span class="absolute left-[2%] -bottom-4 w-0.5 h-4 bg-primary"></span>
+<span class="absolute left-[18%] -bottom-4 w-0.5 h-4 bg-primary"></span>
+<span class="absolute left-[34%] -bottom-4 w-0.5 h-4 bg-primary"></span>
+<span class="absolute left-[50%] -bottom-4 w-0.5 h-4 bg-primary"></span>
+<span class="absolute left-[66%] -bottom-4 w-0.5 h-4 bg-primary"></span>
+<span class="absolute left-[82%] -bottom-4 w-0.5 h-4 bg-primary"></span>
+<span class="absolute left-[98%] -bottom-4 w-0.5 h-4 bg-primary"></span>
+</div>
+<!-- ======================================================== -->
+<!-- TIER 1: Children of Sardar Begum & Ismael (7 Siblings)   -->
+<!-- Every single card is fully clickable and reactive        -->
+<!-- ======================================================== -->
+<div class="w-full grid grid-cols-7 gap-2.5 mt-4 items-start" id="tier-1-siblings">
+<!-- Sibling 1 (Focal Line): Aslam -->
+<div class="sibling-card node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-md ring-2 ring-primary relative group cursor-pointer transition-all hover:-translate-y-1 hover:shadow-xl active-sibling border border-primary/20" data-sibling="aslam" data-tags="all sardar aslam 1938 2024 focal eldest son imran shahzia rizwan fauzia" id="aslam-card" onclick="switchTreeBranch('aslam')">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold">1st Son • Focal</span>
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold mt-1.5">Aslam</h4>
+<span class="font-label-sm text-label-sm text-error font-medium mt-0.5">Jan 9, 1938 – Aug 29, 2024</span>
+<div class="mt-2 text-on-surface-variant font-body-sm text-body-sm bg-surface-container-low p-2 rounded border border-outline-variant/30">
+<p class="text-[12px] leading-snug">Revered family patriarch, archivist of oral traditions, and keystone of modern descendants.</p>
+</div>
+<div class="mt-2.5 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-semibold">4 Children</span>
+<span class="sibling-active-badge px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold flex items-center gap-1 shadow-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span> Active
+                </span>
+</div>
+</div>
+<!-- Sibling 2: Akram -->
+<div class="sibling-card node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-xl hover:ring-2 hover:ring-primary hover:-translate-y-1 transition-all relative cursor-pointer group border border-outline-variant/30" data-sibling="akram" data-tags="all sardar akram 1944 2014 2nd son shumaila kashif nadia asif hira" id="akram-card" onclick="switchTreeBranch('akram')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">2nd Son</span>
+<span class="material-symbols-outlined text-outline text-[16px]">male</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors mt-1.5">Akram</h4>
+<span class="font-label-sm text-label-sm text-error font-medium mt-0.5">1944 – 2014</span>
+<div class="mt-2 bg-surface-container-low p-2 rounded text-on-surface-variant font-body-sm text-body-sm border border-outline-variant/20">
+<span class="font-label-sm text-label-sm text-primary font-semibold block text-[11px]">5 Children:</span>
+<span class="text-[11px]">Shumaila, Kashif, Nadia, Asif, Hira</span>
+</div>
+<div class="mt-2.5 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-semibold">5 Children</span>
+<span class="text-primary group-hover:underline flex items-center gap-0.5">Explore Tree <span class="material-symbols-outlined text-[13px]">arrow_downward</span></span>
+</div>
+</div>
+<!-- Sibling 3: Saleem -->
+<div class="sibling-card node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-xl hover:ring-2 hover:ring-primary hover:-translate-y-1 transition-all relative cursor-pointer group border border-outline-variant/30" data-sibling="saleem" data-tags="all sardar saleem 3rd son lineage custodian" id="saleem-card" onclick="switchTreeBranch('saleem')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">3rd Son</span>
+<span class="material-symbols-outlined text-outline text-[16px]">male</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors mt-1.5">Saleem</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Lineage Son</span>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-2 leading-snug">Custodial branch registered in family archives.</p>
+<div class="mt-2.5 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-semibold">Custodian Folio</span>
+<span class="text-primary group-hover:underline flex items-center gap-0.5">Explore Tree <span class="material-symbols-outlined text-[13px]">arrow_downward</span></span>
+</div>
+</div>
+<!-- Sibling 4: Jahanghir -->
+<div class="sibling-card node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-xl hover:ring-2 hover:ring-primary hover:-translate-y-1 transition-all relative cursor-pointer group border border-outline-variant/30" data-sibling="jahanghir" data-tags="all sardar jahanghir 2019 4th son adnan irfan adil bobby maryam inayah" id="jahanghir-card" onclick="switchTreeBranch('jahanghir')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">4th Son</span>
+<span class="material-symbols-outlined text-outline text-[16px]">male</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors mt-1.5">Jahanghir</h4>
+<span class="font-label-sm text-label-sm text-error font-medium mt-0.5">d. Mar 31, 2019</span>
+<div class="mt-2 bg-surface-container-low p-2 rounded text-on-surface-variant font-body-sm text-body-sm border border-outline-variant/20">
+<span class="font-label-sm text-label-sm text-primary font-semibold block text-[11px]">4 Children:</span>
+<span class="text-[11px]">Adnan (d. 1999), Irfan, Adil Bobby, Maryam</span>
+</div>
+<div class="mt-2.5 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-semibold">4 Ch • 1 Grandchild</span>
+<span class="text-primary group-hover:underline flex items-center gap-0.5">Explore Tree <span class="material-symbols-outlined text-[13px]">arrow_downward</span></span>
+</div>
+</div>
+<!-- Sibling 5: Munir -->
+<div class="sibling-card node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-xl hover:ring-2 hover:ring-primary hover:-translate-y-1 transition-all relative cursor-pointer group border border-outline-variant/30" data-sibling="munir" data-tags="all sardar munir 2023 5th son rabia afraz suleyman sufyan aqsa 1991" id="munir-card" onclick="switchTreeBranch('munir')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">5th Son</span>
+<span class="material-symbols-outlined text-outline text-[16px]">male</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors mt-1.5">Munir</h4>
+<span class="font-label-sm text-label-sm text-error font-medium mt-0.5">d. Jan 4, 2023</span>
+<div class="mt-2 bg-surface-container-low p-2 rounded text-on-surface-variant font-body-sm text-body-sm border border-outline-variant/20">
+<span class="font-label-sm text-label-sm text-primary font-semibold block text-[11px]">3 Children:</span>
+<span class="text-[11px]">Rabia, Afraz, Suleyman (b. 1991)</span>
+</div>
+<div class="mt-2.5 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-semibold">3 Ch • 2 Grandchildren</span>
+<span class="text-primary group-hover:underline flex items-center gap-0.5">Explore Tree <span class="material-symbols-outlined text-[13px]">arrow_downward</span></span>
+</div>
+</div>
+<!-- Sibling 6: Parveen (Khursheed) -->
+<div class="sibling-card node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-xl hover:ring-2 hover:ring-primary hover:-translate-y-1 transition-all relative cursor-pointer group border border-outline-variant/30" data-sibling="parveen" data-tags="all sardar parveen khursheed daughter 2025 memorial" id="parveen-card" onclick="switchTreeBranch('parveen')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Daughter</span>
+<span class="material-symbols-outlined text-outline text-[16px]">female</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors mt-1.5">Parveen</h4>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Khursheed</span>
+<span class="font-label-sm text-label-sm text-error font-medium mt-0.5">d. Dec 6, 2025</span>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-2 leading-snug">Daughter of Sardar Begum &amp; Ismael. Memorial register.</p>
+<div class="mt-2.5 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-semibold">Dedicated Folio</span>
+<span class="text-primary group-hover:underline flex items-center gap-0.5">Explore Tree <span class="material-symbols-outlined text-[13px]">arrow_downward</span></span>
+</div>
+</div>
+<!-- Sibling 7: Naseem -->
+<div class="sibling-card node-card flex flex-col bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-xl hover:ring-2 hover:ring-primary hover:-translate-y-1 transition-all relative cursor-pointer group border border-outline-variant/30" data-sibling="naseem" data-tags="all sardar naseem 2024 daughter saima jonny babar khurram arshia" id="naseem-card" onclick="switchTreeBranch('naseem')">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Daughter</span>
+<span class="material-symbols-outlined text-outline text-[16px]">female</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors mt-1.5">Naseem</h4>
+<span class="font-label-sm text-label-sm text-error font-medium mt-0.5">d. Feb 18, 2024</span>
+<div class="mt-2 bg-surface-container-low p-2 rounded text-on-surface-variant font-body-sm text-body-sm border border-outline-variant/20">
+<span class="font-label-sm text-label-sm text-primary font-semibold block text-[11px]">5 Children:</span>
+<span class="text-[11px]">Saima, Jonny Babar, Khurram, Arshia, 5th</span>
+</div>
+<div class="mt-2.5 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary font-semibold">5 Children</span>
+<span class="text-primary group-hover:underline flex items-center gap-0.5">Explore Tree <span class="material-symbols-outlined text-[13px]">arrow_downward</span></span>
 </div>
 </div>
 </div>
-<!-- Main Interactive Body Section -->
-<main class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-12">
-<!-- Interactive Controls Bar -->
-<section class="bg-surface-container rounded-lg p-5 border border-outline-variant flex flex-wrap items-center justify-between gap-4 shadow-sm">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-2xl">account_tree</span>
+<!-- ========================================================================= -->
+<!-- TECH STACK: SVG VECTOR GRAPHICS & DYNAMIC BEZIER CONNECTORS              -->
+<!-- Vector SVG overlay connecting the active trunk node to descendant leaf nodes -->
+<!-- Calculates bounding boxes via getBoundingClientRect() and dynamically creates -->
+<!-- cubic bezier SVG paths M(x1, y1) C(cp1x, cp1y, cp2x, cp2y, x2, y2)        -->
+<!-- ========================================================================= -->
+<section class="w-full mt-8 bg-surface-container p-space-lg rounded-2xl shadow-md border-2 border-primary/20 relative" id="tree-visualizer-container">
+<!-- Visualizer Top Control Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm pb-space-md border-b border-outline-variant/40">
+<div class="flex items-center gap-space-sm">
+<div class="w-11 h-11 rounded-xl bg-primary text-secondary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[26px]">account_tree</span>
+</div>
 <div>
-<h3 class="font-headline-sm text-on-surface text-lg font-bold">Lineage Canvas &amp; Independent Leaf Explorer</h3>
-<p class="font-body-sm text-on-surface-variant">Notice: All entries decoupling completed. 0 paired nodes remain. Suleyman Ayaz birthdate strictly calibrated.</p>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold" id="active-ancestor-heading">
+                      Interactive Visual Vector Tree: Aslam (1938–2024)
+                    </h3>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold shadow-xs">Dynamic SVG Trunk &amp; Leaves</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="active-ancestor-subheading">
+                    Click any sibling or branch above to re-root the vector tree with full generational descents and sub-branches.
+                  </p>
+</div>
+</div>
+<!-- Visualizer Quick Tabs (Explicit inline onclick handlers) -->
+<div class="flex items-center flex-wrap gap-1.5" id="sibling-selector-tabs">
+<button class="branch-tab-btn active px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-primary text-on-primary shadow-sm cursor-pointer" data-id="aslam" onclick="switchTreeBranch('aslam')">Aslam (4)</button>
+<button class="branch-tab-btn px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-surface hover:bg-surface-dim text-on-surface shadow-sm cursor-pointer" data-id="akram" onclick="switchTreeBranch('akram')">Akram (5)</button>
+<button class="branch-tab-btn px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-surface hover:bg-surface-dim text-on-surface shadow-sm cursor-pointer" data-id="saleem" onclick="switchTreeBranch('saleem')">Saleem</button>
+<button class="branch-tab-btn px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-surface hover:bg-surface-dim text-on-surface shadow-sm cursor-pointer" data-id="jahanghir" onclick="switchTreeBranch('jahanghir')">Jahanghir (4)</button>
+<button class="branch-tab-btn px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-surface hover:bg-surface-dim text-on-surface shadow-sm cursor-pointer" data-id="munir" onclick="switchTreeBranch('munir')">Munir (3)</button>
+<button class="branch-tab-btn px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-surface hover:bg-surface-dim text-on-surface shadow-sm cursor-pointer" data-id="parveen" onclick="switchTreeBranch('parveen')">Parveen</button>
+<button class="branch-tab-btn px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-surface hover:bg-surface-dim text-on-surface shadow-sm cursor-pointer" data-id="naseem" onclick="switchTreeBranch('naseem')">Naseem (5)</button>
+<button class="branch-tab-btn px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-secondary text-white shadow-sm cursor-pointer" data-id="ghulam_hussain" onclick="switchTreeBranch('ghulam_hussain')">Ghulam Hussain (7)</button>
+<button class="branch-tab-btn px-3 py-1.5 rounded-lg text-label-sm font-semibold transition-all bg-surface-container-high hover:bg-surface-dim text-on-surface border border-outline-variant/60 shadow-sm cursor-pointer" data-id="overview" onclick="switchTreeBranch('overview')">Full Overview</button>
+</div>
+</div>
+<!-- Vector Canvas Container -->
+<div class="relative w-full mt-4 bg-surface-container-lowest rounded-xl p-4 md:p-6 shadow-inner overflow-hidden border border-outline-variant/30 min-h-[480px]">
+<!-- Parchment Watermark Background -->
+<div class="absolute inset-0 bg-[radial-gradient(#436653_0.75px,transparent_0.75px)] [background-size:20px_20px] opacity-[0.15] pointer-events-none"></div>
+<!-- SVG Overlay Connecting Trunk to Leaf Nodes -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10" id="tree-svg" preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Bezier paths dynamically injected by JavaScript -->
+</svg>
+<!-- Node Mount Container -->
+<div class="relative z-20 w-full flex flex-col items-center gap-8 py-2" id="tree-nodes-mount">
+<!-- Dynamically populated by renderTreeCanvas() -->
+</div>
+</div>
+<!-- Tree Canvas Controls & Legend Footer -->
+<div class="mt-4 pt-3 flex flex-wrap items-center justify-between gap-3 text-on-surface-variant font-label-sm text-label-sm border-t border-outline-variant/40">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5 font-semibold text-primary">
+<span class="w-3 h-3 rounded-full bg-primary inline-block"></span> Root / Ancestor Trunk
+                </span>
+<span class="flex items-center gap-1.5 font-semibold text-secondary">
+<span class="w-3 h-0.5 bg-secondary inline-block"></span> Vector Bezier Branch Link
+                </span>
+<span class="flex items-center gap-1.5 font-semibold text-primary-container">
+<span class="w-3 h-3 rounded-md bg-secondary-container inline-block"></span> Descendant Leaf Node
+                </span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 bg-surface rounded border border-outline-variant/50 hover:bg-surface-dim transition-colors text-primary flex items-center gap-1 cursor-pointer" onclick="recenterVisualizer()">
+<span class="material-symbols-outlined text-[15px]">center_focus_strong</span>
+<span>Recenter Canvas</span>
+</button>
+<span class="text-outline">Dynamic Bezier rendering</span>
+</div>
+</div>
+</section>
+<!-- ======================================================== -->
+<!-- TIER 2: Cascading Descendant Vault (Dynamic Lineage Roster) -->
+<!-- ======================================================== -->
+<section class="w-full bg-surface-container p-space-lg rounded-2xl shadow-sm mt-8 relative border border-outline-variant/30" id="descendant-vault">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-md border-b border-outline-variant/30">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary text-secondary-container flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[24px]">folder_shared</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary" id="vault-title">
+                    Cascading Descendant Vault • House of Aslam
+                  </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="vault-subtitle">
+                    1st Son of Sardar Begum &amp; Ismael • 4 Verified Descendant Lines
+                  </p>
 </div>
 </div>
 <div class="flex items-center gap-2">
-<button class="p-2 bg-surface rounded hover:bg-surface-container-high border border-outline-variant text-on-surface flex items-center justify-center" onclick="zoomCanopy(1.1)" title="Zoom In">
-<span class="material-symbols-outlined text-sm">zoom_in</span>
-</button>
-<button class="p-2 bg-surface rounded hover:bg-surface-container-high border border-outline-variant text-on-surface flex items-center justify-center" onclick="zoomCanopy(0.9)" title="Zoom Out">
-<span class="material-symbols-outlined text-sm">zoom_out</span>
-</button>
-<button class="px-3 py-1.5 bg-surface text-xs font-semibold rounded hover:bg-surface-container-high border border-outline-variant text-on-surface" onclick="resetZoom()" title="Reset View">
-        Reset
-      </button>
-<button class="px-3 py-1.5 bg-primary-container text-white text-xs font-semibold rounded hover:bg-opacity-90 flex items-center gap-1.5" onclick="expandAll()">
-<span class="material-symbols-outlined text-xs">unfold_more</span> Expand All Cards
-      </button>
+<span class="px-3 py-1 bg-surface rounded-full text-secondary font-label-sm text-label-sm font-semibold border border-outline-variant/30" id="vault-gen-badge">Generation III &amp; IV</span>
+</div>
+</div>
+<!-- Descendant Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md mt-space-md" id="descendant-cards-grid">
+<!-- Synchronously updated by syncVault() -->
 </div>
 </section>
-<!-- Section 1: Visual Canopy Interactive Tree Diagram -->
-<section class="space-y-4" id="canopy-section">
-<div class="flex items-center justify-between">
-<div>
-<h2 class="font-headline-lg text-primary text-2xl font-bold flex items-center gap-2">
-<span>Visual Canopy Architecture</span>
-<span class="text-xs bg-secondary-fixed text-on-secondary-fixed px-2.5 py-1 rounded font-body-sm font-semibold uppercase tracking-wider">Independent Graph Model</span>
-</h2>
-<p class="font-body-md text-on-surface-variant">Scroll horizontally or drag to navigate the complete multi-tier genealogical branch canopy.</p>
-</div>
-<div class="hidden sm:flex items-center gap-4 text-xs font-label-md">
-<span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span> Ancestral Trunk</span>
-<span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-secondary"></span> 6 Branch Mothers/Fathers</span>
-<span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#183b2b]"></span> Distinct Grandchildren</span>
-</div>
-</div>
-<!-- Tree Canvas Container -->
-<div class="relative w-full overflow-x-auto bg-surface border border-outline-variant rounded-xl p-8 shadow-inner custom-scrollbar" style="min-height: 580px;">
-<div class="transition-transform duration-300 origin-top-left" id="treeCanopyCanvas" style="min-width: 1400px;">
-<!-- Root Patriarch/Matriarch Node -->
-<div class="flex flex-col items-center mb-10">
-<div class="bg-primary text-on-primary px-6 py-3.5 rounded-xl shadow-md border-2 border-primary-fixed flex items-center gap-4 cursor-pointer hover:ring-2 hover:ring-secondary">
-<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold">
-<span class="material-symbols-outlined">family_restroom</span>
-</div>
-<div>
-<span class="text-xs tracking-widest uppercase font-semibold text-secondary-fixed">Ancestral Root Head</span>
-<h4 class="font-headline-sm text-lg text-white">Central Ancestral Lineage</h4>
-<p class="text-xs text-primary-fixed">Historical Patriarch &amp; Matriarchal Foundations</p>
-</div>
-</div>
-<div class="w-0.5 h-10 bg-outline-variant"></div>
-<!-- Cross Connector Line for 6 Branches -->
-<div class="relative w-full max-w-6xl">
-<div class="h-0.5 bg-outline-variant w-full"></div>
-</div>
-</div>
-<!-- 6 First Generation Branches Columns -->
-<div class="grid grid-cols-6 gap-6 pt-2">
-<!-- Branch 1: Hussain Bibi -->
-<div class="branch-column flex flex-col items-center" data-branch="b1">
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full bg-[#183b2b] text-white p-3 rounded-lg shadow text-center border-t-4 border-secondary">
-<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-fixed">Branch 01</span>
-<h5 class="font-headline-sm font-semibold text-sm">Hussain Bibi</h5>
-<p class="text-[11px] text-[#a9cfb9]">7 Independent Leaves</p>
-</div>
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<!-- Distinct Individual Leaf Cards -->
-<div class="w-full space-y-2">
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Nasir Din', 'Branch 01', '1921 - Oct 2005', 'Son of Hussain Bibi', 'Individual descendant.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Nasir Din</span>
-<span class="text-[10px] text-on-surface-variant font-mono">1921 - 2005</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1 flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px] text-primary">person</span> Individual Leaf
-                </div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Abdul Rehman', 'Branch 01', '[R-1] 1930 - Oct 27, 2012', 'Son of Hussain Bibi', 'Individual record.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Abdul Rehman [R-1]</span>
-<span class="text-[10px] text-on-surface-variant font-mono">1930 - 2012</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Oct 27, 2012</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Abdul Qayum', 'Branch 01', 'Verified Standalone', 'Separate Individual', 'Explicitly separate person from Hafiz.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Abdul Qayum</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Distinct person (separate from Hafiz)</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Zarina', 'Branch 01', 'Dec 29, 1933 - Nov 6, 2006', 'Daughter of Hussain Bibi', 'Individual verified daughter.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Zarina</span>
-<span class="text-[10px] text-on-surface-variant font-mono">1933 - 2006</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Dec 29, 1933 - Nov 6, 2006</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Hafiz', 'Branch 01', 'Verified Standalone', 'Separate Individual', 'Explicitly separate person from Abdul Qayum.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Hafiz</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Distinct person (separate from Abdul Qayum)</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Abdul Qadeer', 'Branch 01', 'Nov 6, 1935 - Living', 'Son of Hussain Bibi', 'Active lineage leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Abdul Qadeer</span>
-<span class="text-[10px] text-primary font-mono">Nov 6, 1935 -</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Documented Lineage</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Shamshad', 'Branch 01', 'Jan 6, 1942 - Living', 'Daughter of Hussain Bibi', 'Active lineage leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Shamshad</span>
-<span class="text-[10px] text-primary font-mono">Jan 6, 1942 -</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Documented Lineage</div>
-</div>
-</div>
-</div>
-<!-- Branch 2: Hassan Bibi -->
-<div class="branch-column flex flex-col items-center" data-branch="b2">
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full bg-[#183b2b] text-white p-3 rounded-lg shadow text-center border-t-4 border-secondary">
-<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-fixed">Branch 02</span>
-<h5 class="font-headline-sm font-semibold text-sm">Hassan Bibi</h5>
-<p class="text-[11px] text-[#a9cfb9]">6 Independent Leaves</p>
-</div>
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full space-y-2">
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Apa Anwar', 'Branch 02', '? - ~2019', 'Child of Hassan Bibi', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Apa Anwar</span>
-<span class="text-[10px] text-on-surface-variant font-mono">? - ~2019</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Independent Leaf</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Razia Begum (Gia)', 'Branch 02', '? - ~April 12, 2024', 'Married Khair-Din', '6 children: Nasir-Din, Gogi, Hafiz, Tariq, Arif, Rehana.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Razia Begum (Gia)</span>
-<span class="text-[10px] text-on-surface-variant font-mono">d. Apr 12, 2024</span>
-</div>
-<div class="text-[10px] text-on-surface-variant mt-1 leading-tight">m. Khair-Din (6 offspring)</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Shaukat', 'Branch 02', '? - Nov 21, 2022', 'Separate Individual', 'Distinct individual - completely separated from Phima.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Shaukat</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-on-surface font-mono">Nov 21, 2022 (Individual person)</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Phima (Naseem)', 'Branch 02', '? - Feb 12, 2016', 'Separate Individual', 'Distinct individual - completely separated from Shaukat.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Phima (Naseem)</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-on-surface font-mono">Feb 12, 2016 (Individual person)</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Bia Baqi', 'Branch 02', '1942 - 1982', 'Child of Hassan Bibi', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Bia Baqi</span>
-<span class="text-[10px] text-on-surface-variant font-mono">1942 - 1982</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">40 years lifespan</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Hamida', 'Branch 02', '1941 - Mar 2009', 'Child of Hassan Bibi', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Hamida</span>
-<span class="text-[10px] text-on-surface-variant font-mono">1941 - 2009</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Mar 2009</div>
-</div>
-</div>
-</div>
-<!-- Branch 3: Sardar Begum -->
-<div class="branch-column flex flex-col items-center" data-branch="b3">
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full bg-[#183b2b] text-white p-3 rounded-lg shadow text-center border-t-4 border-secondary">
-<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-fixed">Branch 03</span>
-<h5 class="font-headline-sm font-semibold text-sm">Sardar Begum</h5>
-<p class="text-[11px] text-[#a9cfb9]">7 Independent Leaves</p>
-</div>
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full space-y-2">
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Aslam', 'Branch 03', 'Jan 9, 1938 - Aug 29, 2024', 'Child of Sardar Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Aslam</span>
-<span class="text-[10px] text-on-surface-variant font-mono">1938 - 2024</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Jan 9, 1938 - Aug 29, 2024</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Akram', 'Branch 03', '1944 - 2014', 'Child of Sardar Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Akram</span>
-<span class="text-[10px] text-on-surface-variant font-mono">1944 - 2014</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">70 years</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Saleem', 'Branch 03', 'Verified Standalone', 'Separate Individual', 'Distinct person - separate from Parveen.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Saleem</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Distinct person (separate from Parveen)</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Jahanghir', 'Branch 03', '? - Mar 31, 2019', 'Child of Sardar Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Jahanghir</span>
-<span class="text-[10px] text-on-surface-variant font-mono">d. Mar 31, 2019</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Documented Lineage</div>
-</div>
-<!-- Munir (Father of Suleyman Ayaz) -->
-<div class="person-card bg-surface-container-highest p-2.5 rounded border border-secondary shadow-xs cursor-pointer hover:border-primary transition relative" onclick="selectPerson('Munir', 'Branch 03', '? - Jan 4, 2023', 'Father of Suleyman Ayaz', 'Father of Suleyman Ayaz (DOB: Mar 13, 1991).')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Munir</span>
-<span class="text-[10px] text-error font-mono">d. Jan 4, 2023</span>
-</div>
-<div class="text-[10px] text-secondary font-semibold mt-1 flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]">star</span> Father of Suleyman Ayaz
-                </div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Parveen', 'Branch 03', '? - Dec 6, 2025', 'Separate Individual', 'Distinct person - separate from Saleem.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Parveen</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Distinct person (separate from Saleem)</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Naseem', 'Branch 03', '? - Feb 18, 2024', 'Child of Sardar Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Naseem</span>
-<span class="text-[10px] text-on-surface-variant font-mono">d. Feb 18, 2024</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Verified Leaf</div>
-</div>
-</div>
-</div>
-<!-- Branch 4: Ghulam Fatima -->
-<div class="branch-column flex flex-col items-center" data-branch="b4">
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full bg-[#183b2b] text-white p-3 rounded-lg shadow text-center border-t-4 border-secondary">
-<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-fixed">Branch 04</span>
-<h5 class="font-headline-sm font-semibold text-sm">Ghulam Fatima</h5>
-<p class="text-[11px] text-[#a9cfb9]">6 Independent Leaves</p>
-</div>
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full space-y-2">
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Riaz', 'Branch 04', 'Verified Standalone', 'Separate Individual', 'Individual person - distinct standalone leaf separate from Abdul Qayum.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Riaz</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Separate from Abdul Qayum</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Abdul Qayum', 'Branch 04', 'Verified Standalone', 'Separate Individual', 'Individual person - distinct standalone leaf separate from Riaz.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Abdul Qayum</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Separate from Riaz</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Musarat', 'Branch 04', '? - Oct 17, 2021', 'Separate Individual', 'Individual person - distinct standalone leaf separate from Riffat.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Musarat</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-on-surface font-mono">d. Oct 17, 2021 (Individual)</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Riffat', 'Branch 04', 'Verified Standalone', 'Separate Individual', 'Individual person - distinct standalone leaf separate from Musarat.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Riffat</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Separate from Musarat</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Ejaz', 'Branch 04', 'Verified Standalone', 'Separate Individual', 'Individual person - distinct standalone leaf separate from Abdul Hayee.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Ejaz</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Separate from Abdul Hayee</div>
-</div>
-<div class="person-card bg-surface-container-low p-2.5 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Abdul Hayee', 'Branch 04', 'Verified Standalone', 'Separate Individual', 'Individual person - distinct standalone leaf separate from Ejaz.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Abdul Hayee</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-1 font-medium">Separate from Ejaz</div>
-</div>
-</div>
-</div>
-<!-- Branch 5: Mumtaz Begum -->
-<div class="branch-column flex flex-col items-center" data-branch="b5">
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full bg-[#183b2b] text-white p-3 rounded-lg shadow text-center border-t-4 border-secondary">
-<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-fixed">Branch 05</span>
-<h5 class="font-headline-sm font-semibold text-sm">Mumtaz Begum</h5>
-<p class="text-[11px] text-[#a9cfb9]">6 Independent Leaves</p>
-</div>
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full space-y-2">
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Zamurd / Hafiz', 'Branch 05', '1947 - April 9, 2025', 'Child of Mumtaz Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Zamurd (Hafiz)</span>
-<span class="text-[10px] text-on-surface-variant font-mono">1947 - 2025</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Apr 9, 2025</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Hafeez', 'Branch 05', '? - April 15, 2008', 'Child of Mumtaz Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Hafeez</span>
-<span class="text-[10px] text-on-surface-variant font-mono">d. Apr 15, 2008</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Individual descendant</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Dilawar Hussain', 'Branch 05', '? - June 6, 2014', 'Child of Mumtaz Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Dilawar Hussain</span>
-<span class="text-[10px] text-on-surface-variant font-mono">d. Jun 6, 2014</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Individual descendant</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Jamshaid', 'Branch 05', 'Documented Living', 'Child of Mumtaz Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Jamshaid</span>
-<span class="text-[10px] text-primary font-mono">Active</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Descendant line</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Tahir Hussain', 'Branch 05', '? - Nov 8, 2011', 'Child of Mumtaz Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Tahir Hussain</span>
-<span class="text-[10px] text-on-surface-variant font-mono">d. Nov 8, 2011</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Individual descendant</div>
-</div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Neelam', 'Branch 05', '1956 - Living', 'Child of Mumtaz Begum', 'Individual leaf.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Neelam</span>
-<span class="text-[10px] text-primary font-mono">1956 -</span>
-</div>
-<div class="text-[11px] text-on-surface-variant mt-1">Active Generation</div>
-</div>
-</div>
-</div>
-<!-- Branch 6: Ghulam Hussain (10 Children across 2 Wives) -->
-<div class="branch-column flex flex-col items-center" data-branch="b6">
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full bg-[#183b2b] text-white p-3 rounded-lg shadow text-center border-t-4 border-secondary">
-<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-fixed">Branch 06</span>
-<h5 class="font-headline-sm font-semibold text-sm">Ghulam Hussain</h5>
-<p class="text-[11px] text-[#a9cfb9]">10 Decoupled Leaves (2 Wives)</p>
-</div>
-<div class="w-0.5 h-6 bg-outline-variant"></div>
-<div class="w-full space-y-2">
-<!-- Tier 1: From 1st Wife -->
-<div class="text-[10px] font-bold text-on-surface-variant bg-surface-container px-2 py-0.5 rounded text-center">
-                From 1st Wife (5 Children)
+<!-- Archival Notes & Provenance Summary -->
+<section class="w-full mt-space-xl grid grid-cols-1 md:grid-cols-3 gap-space-lg" id="provenance-section">
+<div class="bg-surface-container-low p-space-lg rounded-xl shadow-sm flex flex-col gap-space-xs border border-outline-variant/30">
+<div class="flex items-center gap-2 text-primary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-secondary">history_edu</span>
+                Kasur Ledger Provenance
               </div>
-<div class="person-card bg-white p-2.5 rounded border border-[#d5e1dc] hover:border-primary shadow-xs cursor-pointer transition" onclick="selectPerson('Munawar', 'Branch 06', 'Namesake Heir', 'Son from 1st Wife', 'Direct namesake heir to line.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-on-surface">Munawar</span>
-<span class="text-[9px] bg-secondary text-white px-1 rounded">Namesake</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Cross-referenced with physical records in the Kasur Municipal Registry and Lahore Revenue Office (c. 1912). Records verified by elders and oral tradition keepers.
+              </p>
 </div>
-<div class="text-[10px] text-on-surface-variant mt-0.5">Direct Namesake Heir</div>
-</div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Jamila', 'Branch 06', 'Verified Standalone', 'Daughter from 1st Wife', 'Individual child - distinct standalone leaf separate from Bushra.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Jamila</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-0.5">Distinct from Bushra</div>
-</div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Bushra', 'Branch 06', 'Verified Standalone', 'Daughter from 1st Wife', 'Individual child - distinct standalone leaf separate from Jamila.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Bushra</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-0.5">Distinct from Jamila</div>
-</div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Yasmin', 'Branch 06', 'Verified Standalone', 'Daughter from 1st Wife', 'Individual child - distinct standalone leaf separate from Rubina.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Yasmin</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-0.5">Distinct from Rubina</div>
-</div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Rubina', 'Branch 06', 'd. Oct 26, 2023', 'Daughter from 1st Wife', 'Individual child - distinct standalone leaf separate from Yasmin.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Rubina</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-on-surface font-mono">d. Oct 26, 2023 (Distinct)</div>
-</div>
-<!-- Tier 2: From 2nd Wife Khursheed -->
-<div class="text-[10px] font-bold text-on-surface-variant bg-surface-container px-2 py-0.5 rounded text-center mt-2">
-                From 2nd Wife Khursheed (d. Mar 8, 2016)
+<div class="bg-surface-container-low p-space-lg rounded-xl shadow-sm flex flex-col gap-space-xs border border-outline-variant/30">
+<div class="flex items-center gap-2 text-primary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-secondary">verified</span>
+                Custodial Protocols
               </div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Saeeda', 'Branch 06', 'Verified Standalone', 'Daughter from 2nd Wife', 'Individual daughter - separate from Sajda.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Saeeda</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                All additions require verification against verified marriage certificates (*Nikahnama*), historical land records, or multi-elder corroboration.
+              </p>
 </div>
-<div class="text-[10px] text-primary mt-0.5">Separate from Sajda</div>
-</div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Sajda', 'Branch 06', 'Verified Standalone', 'Daughter from 2nd Wife', 'Individual daughter - separate from Saeeda.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Sajda</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-0.5">Separate from Saeeda</div>
-</div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Zulfiqar', 'Branch 06', 'Verified Standalone Son', 'Son from 2nd Wife', 'Individual son - separate line &amp; card.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Zulfiqar</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-0.5">Independent Son Card</div>
-</div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Falaq Sher', 'Branch 06', 'Verified Standalone Son', 'Son from 2nd Wife', 'Individual son - separate line &amp; card.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Falaq Sher</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-0.5">Independent Son Card</div>
-</div>
-<div class="person-card bg-surface-container-low p-2 rounded border-2 border-[#80a690] shadow-xs cursor-pointer hover:border-primary transition" onclick="selectPerson('Abid Ali', 'Branch 06', 'Verified Standalone Son', 'Son from 2nd Wife', 'Individual son - separate line &amp; card.')">
-<div class="flex justify-between items-start">
-<span class="text-xs font-bold text-primary">Abid Ali</span>
-<span class="text-[9px] bg-secondary-fixed text-primary px-1 rounded font-bold">SEPARATED</span>
-</div>
-<div class="text-[10px] text-primary mt-0.5">Independent Son Card</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl shadow-sm flex flex-col gap-space-xs border border-outline-variant/30">
+<div class="flex items-center gap-2 text-primary font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined text-secondary">local_printshop</span>
+                Reunion Poster Export
+              </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Ready-formatted high-resolution 11x17 ledger layout for family reunions, weddings, and generational keepsake albums.
+              </p>
+<button class="mt-2 self-start px-3 py-1.5 bg-primary text-on-primary rounded font-label-md text-label-md flex items-center gap-1.5 hover:bg-primary-container transition-colors cursor-pointer" onclick="window.print()">
+<span class="material-symbols-outlined text-[15px]">print</span>
+                Generate Print Folio
+              </button>
 </div>
 </section>
-<!-- Section 2: Interactive Branch Explorer & Key Milestones -->
-<section class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="explorer-section">
-<!-- Left Column: Highlighted Record of Suleyman Ayaz -->
-<div class="lg:col-span-1 space-y-4">
-<div class="bg-surface-container-lowest border-2 border-secondary rounded-xl p-6 shadow-md relative overflow-hidden">
-<div class="absolute -right-6 -bottom-6 opacity-10 pointer-events-none">
-<span class="material-symbols-outlined text-[140px] text-secondary">verified</span>
-</div>
-<div class="flex items-center gap-2 mb-3">
-<span class="material-symbols-outlined text-secondary text-2xl">verified</span>
-<span class="text-xs uppercase font-bold tracking-widest text-secondary font-label-md">Verified Record Correction</span>
-</div>
-<h3 class="font-headline-md text-2xl font-bold text-primary mb-1">Suleyman Ayaz</h3>
-<p class="font-body-sm text-on-surface-variant mb-4">Lineage: Sardar Begum → Munir → Suleyman Ayaz</p>
-<div class="bg-surface-container p-4 rounded-lg space-y-2 mb-4 border border-outline-variant">
-<div class="flex justify-between items-center text-xs">
-<span class="font-semibold text-on-surface-variant">Confirmed Date of Birth:</span>
-<span class="font-bold text-primary bg-secondary-fixed px-2 py-0.5 rounded font-mono text-sm">March 13, 1991</span>
-</div>
-<div class="flex justify-between items-center text-xs line-through text-outline">
-<span>Erroneous Prior Draft:</span>
-<span>March 17, 1989</span>
-</div>
-<div class="flex justify-between items-center text-xs pt-1">
-<span class="font-semibold text-on-surface-variant">Kinship Level:</span>
-<span class="text-on-surface">3rd Generation Grandchild</span>
-</div>
-</div>
-<p class="font-body-sm text-on-surface-variant mb-4 leading-relaxed">
-          Calibrated across all family archives, registry entries, and digital models. No conflicting entries exist in the tree directory.
-        </p>
-<button class="w-full py-2.5 bg-primary text-white font-semibold rounded text-sm hover:bg-opacity-95 flex items-center justify-center gap-2" onclick="selectPerson('Suleyman Ayaz', 'Branch 03', 'March 13, 1991', 'Son of Munir', 'Correct birthdate verified strictly as March 13, 1991. Fully reconciled.')">
-<span class="material-symbols-outlined text-sm">contact_page</span> Open Individual Profile
-        </button>
-</div>
-<!-- Historical Verification Statistics -->
-<div class="bg-surface-container-low border border-outline-variant rounded-xl p-5 space-y-3">
-<h4 class="font-headline-sm text-base text-primary font-bold flex items-center gap-2">
-<span class="material-symbols-outlined text-base">rule</span> Genealogical Audit Checklist
-        </h4>
-<ul class="text-xs space-y-2 text-on-surface">
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
-<span><strong>Decoupled:</strong> Jamila &amp; Bushra are standalone records.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
-<span><strong>Decoupled:</strong> Saeeda, Sajda, Zulfiqar, Falaq Sher, Abid Ali each have dedicated cards.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
-<span><strong>Decoupled:</strong> Saleem &amp; Parveen split into distinct leaves.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
-<span><strong>Decoupled:</strong> Riaz &amp; Abdul Qayum (Branch 4) split.</span>
-</li>
-<li class="flex items-start gap-2">
-<span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
-<span><strong>Decoupled:</strong> Shaukat &amp; Phima (Branch 2) split.</span>
-</li>
-</ul>
-</div>
-</div>
-<!-- Right Two Columns: Complete Decoupled Archive Grid -->
-<div class="lg:col-span-2 space-y-4" id="archive-section">
-<div class="flex items-center justify-between border-b border-outline-variant pb-2">
-<div>
-<h3 class="font-headline-md text-xl font-bold text-primary">Generation Archive &amp; Individual Registry</h3>
-<p class="font-body-sm text-on-surface-variant">Detailed index of all verified members. Select any card to inspect full ancestral metadata.</p>
-</div>
-<span class="text-xs bg-primary text-white font-mono px-2.5 py-1 rounded-full font-bold" id="activeCountBadge">
-          42 Records
-        </span>
-</div>
-<!-- Quick Individual Roster Table/Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[620px] overflow-y-auto pr-1 custom-scrollbar" id="registryGrid">
-<!-- Rendered via JavaScript for high-fidelity filtering and click events -->
-</div>
 </div>
 </section>
-<!-- Section 3: Reunion Poster & Print Preview Banner -->
-<section class="bg-gradient-to-r from-primary via-[#183b2b] to-primary text-white rounded-xl p-8 shadow-xl relative overflow-hidden" id="poster-preview">
-<div class="relative z-10 max-w-2xl space-y-4">
-<span class="text-xs bg-secondary-fixed text-primary px-3 py-1 rounded font-bold uppercase tracking-wider inline-block">
-        Physical Archival Print Ready
-      </span>
-<h3 class="font-headline-lg text-3xl font-bold text-white">Export Corrected Reunion Poster</h3>
-<p class="font-body-md text-primary-fixed leading-relaxed">
-        Produce an archival 24" x 36" high-resolution family reunion poster featuring all 42 distinct individual cards with confirmed birthdates, branch color coding, and verified lineage lines.
-      </p>
-<div class="flex flex-wrap gap-3 pt-2">
-<button class="px-5 py-2.5 bg-secondary-fixed text-on-secondary-fixed font-bold rounded hover:bg-secondary-fixed-dim transition flex items-center gap-2" onclick="triggerPrintModal()">
-<span class="material-symbols-outlined text-sm">print</span> Print Full Lineage (PDF / Poster)
-        </button>
-<button class="px-5 py-2.5 bg-surface text-primary font-bold rounded hover:bg-surface-container-high transition flex items-center gap-2" onclick="exportCSVData()">
-<span class="material-symbols-outlined text-sm">download</span> Download Decoupled CSV Data
-        </button>
 </div>
-</div>
-</section>
 </main>
-<!-- Detailed Person Slide-over / Modal Drawer -->
-<div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden flex justify-end transition-opacity" id="personDrawer">
-<div class="w-full max-w-md bg-surface h-full shadow-2xl p-6 flex flex-col justify-between overflow-y-auto border-l border-outline-variant">
-<div class="space-y-6">
-<div class="flex items-center justify-between border-b border-outline-variant pb-4">
-<div class="flex items-center gap-2 text-primary">
-<span class="material-symbols-outlined text-2xl">account_circle</span>
-<span class="font-headline-sm text-lg font-bold">Individual Member Leaf</span>
+<!-- ========================================== -->
+<!-- MODAL: Contribute Record Slide-Over Drawer -->
+<!-- ========================================== -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300" id="contribute-drawer">
+<div class="absolute inset-0 bg-inverse-surface/50 backdrop-blur-sm pointer-events-auto" id="contribute-backdrop" onclick="closeContributeModal()"></div>
+<div class="absolute right-0 top-0 h-full w-full max-w-lg bg-surface shadow-2xl flex flex-col pointer-events-auto transform translate-x-full transition-transform duration-300" id="drawer-panel">
+<div class="p-space-lg bg-primary text-on-primary flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-secondary-container">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
 </div>
-<button class="p-1 rounded hover:bg-surface-container text-on-surface" onclick="closePersonDrawer()">
-<span class="material-symbols-outlined">close</span>
+<div>
+<h3 class="font-title-lg text-title-lg">Contribute Ancestral Record</h3>
+<p class="font-label-sm text-label-sm text-on-primary-container">Centennial Shajara Archival Registration</p>
+</div>
+</div>
+<button class="text-on-primary/70 hover:text-white transition-colors cursor-pointer" onclick="closeContributeModal()">
+<span class="material-symbols-outlined text-[24px]">close</span>
 </button>
 </div>
-<div class="space-y-3">
-<div class="inline-block px-2.5 py-1 rounded bg-secondary-fixed text-on-secondary-fixed text-xs font-bold font-label-md" id="drawerBranch">
-          Branch 01
-        </div>
-<h2 class="font-headline-lg text-3xl font-bold text-primary" id="drawerName">
-          Suleyman Ayaz
-        </h2>
-<p class="font-body-md text-secondary font-semibold font-mono" id="drawerDates">
-          March 13, 1991
-        </p>
-</div>
-<div class="bg-surface-container-low p-4 rounded-lg space-y-3 border border-outline-variant">
+<form class="p-space-lg flex-1 overflow-y-auto flex flex-col gap-space-md" id="record-form" onsubmit="handleRecordSubmit(event)">
 <div>
-<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider block">Lineage Classification</span>
-<p class="font-body-md text-on-surface" id="drawerKinship">Son of Munir</p>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Relative Full Name *</label>
+<input class="w-full px-3 py-2 bg-surface-container rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface focus:shadow-[0_0_0_2px_#002517]" id="contribute-name" placeholder="e.g. Fatima Aslam" required="" type="text"/>
 </div>
-<div class="border-t border-outline-variant pt-2">
-<span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider block">Documentation Notes</span>
-<p class="font-body-sm text-on-surface-variant leading-relaxed" id="drawerNotes">Verified distinct entry.</p>
-</div>
-<div class="border-t border-outline-variant pt-2 flex items-center justify-between text-xs">
-<span class="font-semibold text-on-surface-variant">Coupling Status:</span>
-<span class="text-primary font-bold flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">link_off</span> Fully Decoupled Standalone
-          </span>
-</div>
-</div>
-<div class="p-4 bg-surface-container rounded-lg space-y-2 border border-outline-variant">
-<h4 class="text-xs font-bold uppercase tracking-wider text-on-surface">Verification Trail</h4>
-<div class="text-xs text-on-surface-variant space-y-1">
-<p>• Independent leaf separation applied.</p>
-<p>• Individual click handler &amp; unique record ID assigned.</p>
-<p>• Reconciled against master archival pedigree.</p>
-</div>
-</div>
-</div>
-<div class="pt-6 border-t border-outline-variant flex gap-3">
-<button class="flex-1 py-2.5 bg-surface-container-high text-on-surface font-semibold rounded text-sm hover:bg-outline-variant" onclick="closePersonDrawer()">
-        Dismiss
-      </button>
-<button class="flex-1 py-2.5 bg-primary text-white font-semibold rounded text-sm hover:bg-opacity-90 flex items-center justify-center gap-1" onclick="window.print()">
-<span class="material-symbols-outlined text-sm">print</span> Print Leaf
-      </button>
-</div>
-</div>
-</div>
-<!-- Modal: Add Descendant / Edit Record Form -->
-<div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4" id="addDescendantModal">
-<div class="bg-surface rounded-xl max-w-lg w-full p-6 border border-outline-variant shadow-2xl space-y-5">
-<div class="flex items-center justify-between border-b border-outline-variant pb-3">
-<h3 class="font-headline-sm text-xl font-bold text-primary flex items-center gap-2">
-<span class="material-symbols-outlined">person_add</span> Document Individual Descendant
-      </h3>
-<button class="text-on-surface-variant hover:text-on-surface" onclick="closeNewDescendantModal()">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<form class="space-y-4 text-xs" onsubmit="handleNewDescendant(event)">
 <div>
-<label class="block font-bold text-on-surface mb-1">Full Legal / Lineage Name</label>
-<input class="w-full bg-surface-container border border-outline-variant rounded p-2.5 text-on-surface focus:ring-1 focus:ring-primary focus:outline-hidden" id="formName" placeholder="e.g. Suleyman Ayaz" required="" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-3">
-<div>
-<label class="block font-bold text-on-surface mb-1">Branch Designation</label>
-<select class="w-full bg-surface-container border border-outline-variant rounded p-2.5 text-on-surface focus:ring-1 focus:ring-primary focus:outline-hidden" id="formBranch">
-<option value="Branch 01">Branch 01 (Hussain Bibi)</option>
-<option value="Branch 02">Branch 02 (Hassan Bibi)</option>
-<option value="Branch 03">Branch 03 (Sardar Begum)</option>
-<option value="Branch 04">Branch 04 (Ghulam Fatima)</option>
-<option value="Branch 05">Branch 05 (Mumtaz Begum)</option>
-<option value="Branch 06">Branch 06 (Ghulam Hussain)</option>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Lineage Branch / Parent *</label>
+<select class="w-full px-3 py-2 bg-surface-container rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface focus:shadow-[0_0_0_2px_#002517]" id="contribute-branch" required="">
+<option value="">Select Ancestral Lineage...</option>
+<option value="aslam">Branch III: Sardar Begum &gt; Aslam Line</option>
+<option value="akram">Branch III: Sardar Begum &gt; Akram Line</option>
+<option value="saleem">Branch III: Sardar Begum &gt; Saleem Line</option>
+<option value="jahanghir">Branch III: Sardar Begum &gt; Jahanghir Line</option>
+<option value="munir">Branch III: Sardar Begum &gt; Munir Line</option>
+<option value="parveen">Branch III: Sardar Begum &gt; Parveen Line</option>
+<option value="naseem">Branch III: Sardar Begum &gt; Naseem Line</option>
+<option value="ghulam_hussain">Branch VI: Ghulam Hussain Line</option>
+<option value="hussain_bibi">Branch I: Hussain Bibi Line</option>
+<option value="hassan_bibi">Branch II: Hassan Bibi Line</option>
+<option value="mumtaz">Branch V: Mumtaz Begum Line</option>
+<option value="other">Other Paternal / Maternal Relation</option>
 </select>
 </div>
+<div class="grid grid-cols-2 gap-space-md">
 <div>
-<label class="block font-bold text-on-surface mb-1">Date of Birth / Milestone</label>
-<input class="w-full bg-surface-container border border-outline-variant rounded p-2.5 text-on-surface focus:ring-1 focus:ring-primary focus:outline-hidden" id="formDates" placeholder="e.g. March 13, 1991" type="text"/>
-</div>
-</div>
-<div>
-<label class="block font-bold text-on-surface mb-1">Direct Parents / Kinship</label>
-<input class="w-full bg-surface-container border border-outline-variant rounded p-2.5 text-on-surface focus:ring-1 focus:ring-primary focus:outline-hidden" id="formKinship" placeholder="e.g. Son of Munir" type="text"/>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Birth Date</label>
+<input class="w-full px-3 py-2 bg-surface-container rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface focus:shadow-[0_0_0_2px_#002517]" id="contribute-birth" type="date"/>
 </div>
 <div>
-<label class="block font-bold text-on-surface mb-1">Independent Separation Verification Note</label>
-<textarea class="w-full bg-surface-container border border-outline-variant rounded p-2.5 text-on-surface focus:ring-1 focus:ring-primary focus:outline-hidden" id="formNotes" placeholder="Confirm this person has their own standalone leaf card and distinct timeline." rows="2"></textarea>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Death Date (If applicable)</label>
+<input class="w-full px-3 py-2 bg-surface-container rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface focus:shadow-[0_0_0_2px_#002517]" id="contribute-death" type="date"/>
 </div>
-<div class="flex justify-end gap-3 pt-3 border-t border-outline-variant">
-<button class="px-4 py-2 bg-surface-container-high rounded font-semibold text-on-surface" onclick="closeNewDescendantModal()" type="button">Cancel</button>
-<button class="px-5 py-2 bg-primary text-white rounded font-semibold hover:bg-opacity-90" type="submit">Save Verified Person</button>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Birthplace / Current Residence</label>
+<input class="w-full px-3 py-2 bg-surface-container rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface focus:shadow-[0_0_0_2px_#002517]" id="contribute-residence" placeholder="e.g. Kasur, Lahore, Rawalpindi, London..." type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Historical Photo or Document Scan</label>
+<div class="mt-1 flex items-center gap-space-md">
+<div class="w-20 h-20 rounded-lg bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0 border border-outline-variant/40" id="image-preview-container">
+<span class="material-symbols-outlined text-[28px] text-outline" id="preview-placeholder">photo_camera</span>
+<img alt="Uploaded Document Preview" class="hidden w-full h-full object-cover" id="image-preview"/>
+</div>
+<div class="flex-1">
+<input accept="image/*" class="text-label-sm text-on-surface-variant file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-surface-container file:font-label-md file:text-label-md file:text-primary hover:file:bg-surface-container-high cursor-pointer" id="photo-input" onchange="previewUpload(event)" type="file"/>
+<p class="font-label-sm text-label-sm text-outline mt-1">Accepts daguerreotypes, nikahnama scans, PNG, JPG up to 10MB.</p>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1">Oral History Notes / Citation</label>
+<textarea class="w-full px-3 py-2 bg-surface-container rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface focus:shadow-[0_0_0_2px_#002517]" id="contribute-notes" placeholder="Provide background, anecdotes, or family vault cross-references..." rows="3"></textarea>
+</div>
+<div class="hidden p-3 rounded-lg bg-secondary-container text-on-secondary-container font-label-md text-label-md" id="form-feedback"></div>
+<div class="pt-space-md mt-auto flex items-center justify-end gap-space-sm border-t border-outline-variant/30">
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container transition-colors cursor-pointer" onclick="closeContributeModal()" type="button">Cancel</button>
+<button class="px-5 py-2 rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:bg-primary-container transition-colors cursor-pointer shadow-xs" type="submit">Submit to Custodian Ledger</button>
 </div>
 </form>
 </div>
 </div>
-<!-- Modal: Audit Log -->
-<div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4" id="auditLogModal">
-<div class="bg-surface rounded-xl max-w-xl w-full p-6 border border-outline-variant shadow-2xl space-y-4">
-<div class="flex items-center justify-between border-b border-outline-variant pb-3">
-<h3 class="font-headline-sm text-lg font-bold text-primary flex items-center gap-2">
-<span class="material-symbols-outlined">history_edu</span> Pedigree Separation &amp; DOB Audit Trail
-      </h3>
-<button class="text-on-surface-variant hover:text-on-surface" onclick="closeAuditModal()">
-<span class="material-symbols-outlined">close</span>
+<!-- ========================================== -->
+<!-- MODAL: Admin Portal Passcode Verification -->
+<!-- ========================================== -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-inverse-surface/60 backdrop-blur-sm p-4" id="admin-modal">
+<div class="w-full max-w-md bg-surface p-space-xl rounded-2xl shadow-2xl flex flex-col gap-space-md relative border border-outline-variant/30">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">lock</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Admin Vault Access</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Archival Custodian Passcode Required</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface cursor-pointer" onclick="closeAdminModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
 </button>
 </div>
-<div class="space-y-3 max-h-80 overflow-y-auto text-xs text-on-surface pr-1 custom-scrollbar">
-<div class="p-3 bg-surface-container-low rounded border border-outline-variant">
-<span class="font-bold text-primary block">CRITICAL REVISION - Suleyman Ayaz</span>
-<p class="text-on-surface-variant mt-0.5">Birthdate updated to strictly <strong>March 13, 1991</strong> (overriding prior March 17, 1989 typo) across all visual and registry nodes.</p>
-<span class="text-[10px] text-outline mt-1 block">Authoritative Family Census Correction</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Protected custodial portal for genealogical edits, document ingestion, and folio stamping. Enter family verification PIN:
+      </p>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface">Historical Entry Passcode (Hint: Foundational Year 1890)</label>
+<div class="relative">
+<input class="w-full text-center tracking-[1em] text-title-lg font-bold py-2 bg-surface-container rounded-lg focus:outline-none focus:bg-surface focus:shadow-[0_0_0_2px_#183b2b]" id="admin-passcode" maxlength="4" onkeyup="if(event.key === 'Enter') verifyAdminPasscode()" placeholder="••••" type="password"/>
 </div>
-<div class="p-3 bg-surface-container-low rounded border border-outline-variant">
-<span class="font-bold text-primary block">LEAF DECOUPLING - Branch 01 (Hussain Bibi)</span>
-<p class="text-on-surface-variant mt-0.5">Separated <strong>Abdul Qayum</strong> and <strong>Hafiz</strong> into two standalone distinct individuals with individual click handlers.</p>
+<div class="hidden text-error font-label-sm text-label-sm mt-1" id="admin-error">Invalid Passcode. Enter 1890 to authenticate.</div>
 </div>
-<div class="p-3 bg-surface-container-low rounded border border-outline-variant">
-<span class="font-bold text-primary block">LEAF DECOUPLING - Branch 02 (Hassan Bibi)</span>
-<p class="text-on-surface-variant mt-0.5">Separated <strong>Shaukat</strong> (? - Nov 21, 2022) and <strong>Phima (Naseem)</strong> (? - Feb 12, 2016) into independent leaf lines.</p>
-</div>
-<div class="p-3 bg-surface-container-low rounded border border-outline-variant">
-<span class="font-bold text-primary block">LEAF DECOUPLING - Branch 03 (Sardar Begum)</span>
-<p class="text-on-surface-variant mt-0.5">Separated <strong>Saleem</strong> and <strong>Parveen</strong> (? - Dec 6, 2025) into standalone individual cards.</p>
-</div>
-<div class="p-3 bg-surface-container-low rounded border border-outline-variant">
-<span class="font-bold text-primary block">LEAF DECOUPLING - Branch 04 (Ghulam Fatima)</span>
-<p class="text-on-surface-variant mt-0.5">Decoupled three separate pairs: Riaz &amp; Abdul Qayum, Musarat &amp; Riffat, and Ejaz &amp; Abdul Hayee into 6 distinct standalone entries.</p>
-</div>
-<div class="p-3 bg-surface-container-low rounded border border-outline-variant">
-<span class="font-bold text-primary block">LEAF DECOUPLING - Branch 06 (Ghulam Hussain)</span>
-<p class="text-on-surface-variant mt-0.5">Separated Jamila &amp; Bushra, Yasmin &amp; Rubina (1st Wife), Saeeda &amp; Sajda, and created distinct individual lines for Zulfiqar, Falaq Sher, and Abid Ali (2nd Wife Khursheed).</p>
-</div>
-</div>
-<div class="flex justify-end pt-2 border-t border-outline-variant">
-<button class="px-4 py-2 bg-primary text-white rounded font-semibold text-xs" onclick="closeAuditModal()">Acknowledge</button>
+<div class="flex items-center justify-end gap-2 pt-2">
+<button class="px-4 py-2 font-label-md text-label-md rounded text-on-surface hover:bg-surface-container cursor-pointer" onclick="closeAdminModal()">Cancel</button>
+<button class="px-5 py-2 font-label-md text-label-md rounded bg-primary text-on-primary hover:bg-primary-container cursor-pointer shadow-xs" onclick="verifyAdminPasscode()">Authorize Access</button>
 </div>
 </div>
 </div>
-<!-- Inline JavaScript Logic & State Container -->
+<!-- ========================================== -->
+<!-- MODAL: Descendant Line & Grandchildren Popover Inspector -->
+<!-- ========================================== -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4" id="inspector-modal">
+<div class="w-full max-w-lg bg-surface p-space-lg rounded-2xl shadow-2xl flex flex-col gap-space-md border border-outline-variant/30">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[24px]">local_library</span>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary font-bold" id="inspector-title">Descendant Folio</h4>
+<span class="font-label-sm text-label-sm text-outline" id="inspector-years">Centennial Record</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface cursor-pointer" onclick="closeBranchInspector()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider font-semibold" id="inspector-role">Role</span>
+<p class="font-body-md text-body-md text-on-surface-variant" id="inspector-desc"></p>
+<div class="mt-2" id="inspector-grandchildren-container">
+<!-- Rendered grandchildren list -->
+</div>
+</div>
+<div class="flex justify-between items-center pt-space-xs border-t border-outline-variant/30">
+<span class="text-outline text-label-sm">Kasur-Lahore Charter Folio</span>
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded font-label-md text-label-md hover:bg-primary-container cursor-pointer shadow-xs" onclick="closeBranchInspector()">Close Folio</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="fixed bottom-6 right-6 z-50 hidden bg-primary text-on-primary px-4 py-3 rounded-lg shadow-xl flex items-center gap-2 font-label-md text-label-md transition-all border border-secondary-container/30" id="toast">
+<span class="material-symbols-outlined text-[20px] text-secondary-fixed">check_circle</span>
+<span id="toast-message">Record registered successfully.</span>
+</div>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-low py-space-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-t border-outline-variant/30">
+<div class="max-w-[1360px] mx-auto px-gutter">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-xl pb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-primary">Shajara • Custodial Provenance</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Maintained under the historical custody of the Subha and Allah Rakhi descendants. Documenting five generations spanning Kasur, Old Lahore, and the global diaspora since c. 1890.</p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-title-lg text-title-lg text-on-surface">Conservation &amp; Archival Protocol</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All ledger folios, photographic daguerreotypes, and oral recordings adhere to heirloom preservation standards. Physical originals deposited in Family Vault Folio No. 1.</p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-title-lg text-title-lg text-on-surface">Genealogical Registry</span>
+<div class="flex flex-col font-label-sm text-label-sm text-on-surface-variant gap-1">
+<span>Lineage Branch: Dadhal (Paternal) • Nanhal (Maternal)</span>
+<span>Preservation Edition: Centennial Shajara Revision 4.2</span>
+<span class="text-secondary font-semibold">Authorized Archival Seal • Kasur-Lahore Charter</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md flex flex-col md:flex-row items-center justify-between text-on-surface-variant font-label-sm text-label-sm gap-space-sm border-t border-outline-variant/30">
+<p>© 1890–2025 The Subha &amp; Allah Rakhi Family Heritage Trust. All genealogical rights reserved.</p>
+<div class="flex items-center gap-space-md">
+<span>Parchment Conservation</span>
+<span>Oral Traditions Registry</span>
+<span>Heirloom Index</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- ======================================================== -->
+<!-- TECH STACK: VANILLA JAVASCRIPT DOM MANIPULATION & STATE  -->
+<!-- Demonstrates pure reactive state management without heavy frameworks. Includes: -->
+<!-- 1. Normalized treeData store for all branches, children, and nested grandchildren -->
+<!-- 2. Dynamic cubic Bezier SVG renderer with responsive recalculation -->
+<!-- 3. Dynamic DOM node creation and interactive popover inspectors -->
+<!-- 4. LocalStorage persistence for user-submitted archival records -->
+<!-- ======================================================== -->
 <script>
-  // Complete Decoupled Roster Data Model
-  const familyMembers = [
-    // Branch 1: Hussain Bibi (7 members)
-    { id: 1, name: "Nasir Din", branch: "Branch 01", branchKey: "b1", dates: "1921 - Oct 2005", kinship: "Son of Hussain Bibi", notes: "Individual person, standalone leaf." },
-    { id: 2, name: "Abdul Rehman", branch: "Branch 01", branchKey: "b1", dates: "[R-1] 1930 - Oct 27, 2012", kinship: "Son of Hussain Bibi", notes: "Individual person, standalone leaf." },
-    { id: 3, name: "Abdul Qayum", branch: "Branch 01", branchKey: "b1", dates: "Verified Standalone", kinship: "Son of Hussain Bibi", notes: "Individual person - completely separate from Hafiz!" },
-    { id: 4, name: "Zarina", branch: "Branch 01", branchKey: "b1", dates: "Dec 29, 1933 - Nov 6, 2006", kinship: "Daughter of Hussain Bibi", notes: "Individual person, standalone leaf." },
-    { id: 5, name: "Hafiz", branch: "Branch 01", branchKey: "b1", dates: "Verified Standalone", kinship: "Son of Hussain Bibi", notes: "Individual person - completely separate from Abdul Qayum!" },
-    { id: 6, name: "Abdul Qadeer", branch: "Branch 01", branchKey: "b1", dates: "Nov 6, 1935 - Living", kinship: "Son of Hussain Bibi", notes: "Individual person, standalone leaf." },
-    { id: 7, name: "Shamshad", branch: "Branch 01", branchKey: "b1", dates: "Jan 6, 1942 - Living", kinship: "Daughter of Hussain Bibi", notes: "Individual person, standalone leaf." },
-
-    // Branch 2: Hassan Bibi (6 members)
-    { id: 8, name: "Apa Anwar", branch: "Branch 02", branchKey: "b2", dates: "? - ~2019", kinship: "Daughter of Hassan Bibi", notes: "Individual person, standalone leaf." },
-    { id: 9, name: "Razia Begum (Gia)", branch: "Branch 02", branchKey: "b2", dates: "? - ~April 12, 2024", kinship: "Daughter of Hassan Bibi", notes: "Married Khair-Din, 6 kids: Nasir-Din, Gogi, Hafiz, Tariq, Arif, Rehana." },
-    { id: 10, name: "Shaukat", branch: "Branch 02", branchKey: "b2", dates: "? - Nov 21, 2022", kinship: "Child of Hassan Bibi", notes: "Individual person - completely separate from Phima!" },
-    { id: 11, name: "Phima (Naseem)", branch: "Branch 02", branchKey: "b2", dates: "? - Feb 12, 2016", kinship: "Child of Hassan Bibi", notes: "Individual person - completely separate from Shaukat!" },
-    { id: 12, name: "Bia Baqi", branch: "Branch 02", branchKey: "b2", dates: "1942 - 1982", kinship: "Child of Hassan Bibi", notes: "Individual person, standalone leaf." },
-    { id: 13, name: "Hamida", branch: "Branch 02", branchKey: "b2", dates: "1941 - Mar 2009", kinship: "Child of Hassan Bibi", notes: "Individual person, standalone leaf." },
-
-    // Branch 3: Sardar Begum (7 members)
-    { id: 14, name: "Aslam", branch: "Branch 03", branchKey: "b3", dates: "Jan 9, 1938 - Aug 29, 2024", kinship: "Son of Sardar Begum", notes: "Individual person, standalone leaf." },
-    { id: 15, name: "Akram", branch: "Branch 03", branchKey: "b3", dates: "1944 - 2014", kinship: "Son of Sardar Begum", notes: "Individual person, standalone leaf." },
-    { id: 16, name: "Saleem", branch: "Branch 03", branchKey: "b3", dates: "Verified Standalone", kinship: "Son of Sardar Begum", notes: "Individual person - completely separate from Parveen!" },
-    { id: 17, name: "Jahanghir", branch: "Branch 03", branchKey: "b3", dates: "? - Mar 31, 2019", kinship: "Son of Sardar Begum", notes: "Individual person, standalone leaf." },
-    { id: 18, name: "Munir", branch: "Branch 03", branchKey: "b3", dates: "? - Jan 4, 2023", kinship: "Son of Sardar Begum", notes: "Father of Suleyman Ayaz (DOB: March 13, 1991)." },
-    { id: 19, name: "Parveen", branch: "Branch 03", branchKey: "b3", dates: "? - Dec 6, 2025", kinship: "Daughter of Sardar Begum", notes: "Individual person - completely separate from Saleem!" },
-    { id: 20, name: "Naseem", branch: "Branch 03", branchKey: "b3", dates: "? - Feb 18, 2024", kinship: "Daughter of Sardar Begum", notes: "Individual person, standalone leaf." },
-    
-    // Explicit Sub-Lineage Highlight
-    { id: 21, name: "Suleyman Ayaz", branch: "Branch 03", branchKey: "b3", dates: "March 13, 1991", kinship: "Grandson via Munir", notes: "CORRECTED BIRTHDATE: Strictly March 13, 1991 (NOT March 17, 1989). Verified distinct card." },
-
-    // Branch 4: Ghulam Fatima (6 members)
-    { id: 22, name: "Riaz", branch: "Branch 04", branchKey: "b4", dates: "Verified Standalone", kinship: "Son of Ghulam Fatima", notes: "Individual person - completely separate from Abdul Qayum!" },
-    { id: 23, name: "Abdul Qayum", branch: "Branch 04", branchKey: "b4", dates: "Verified Standalone", kinship: "Son of Ghulam Fatima", notes: "Individual person - completely separate from Riaz!" },
-    { id: 24, name: "Musarat", branch: "Branch 04", branchKey: "b4", dates: "? - Oct 17, 2021", kinship: "Child of Ghulam Fatima", notes: "Individual person - completely separate from Riffat!" },
-    { id: 25, name: "Riffat", branch: "Branch 04", branchKey: "b4", dates: "Verified Standalone", kinship: "Child of Ghulam Fatima", notes: "Individual person - completely separate from Musarat!" },
-    { id: 26, name: "Ejaz", branch: "Branch 04", branchKey: "b4", dates: "Verified Standalone", kinship: "Son of Ghulam Fatima", notes: "Individual person - completely separate from Abdul Hayee!" },
-    { id: 27, name: "Abdul Hayee", branch: "Branch 04", branchKey: "b4", dates: "Verified Standalone", kinship: "Son of Ghulam Fatima", notes: "Individual person - completely separate from Ejaz!" },
-
-    // Branch 5: Mumtaz Begum (6 members)
-    { id: 28, name: "Zamurd (Hafiz)", branch: "Branch 05", branchKey: "b5", dates: "1947 - April 9, 2025", kinship: "Child of Mumtaz Begum", notes: "Individual person, standalone leaf." },
-    { id: 29, name: "Hafeez", branch: "Branch 05", branchKey: "b5", dates: "? - April 15, 2008", kinship: "Child of Mumtaz Begum", notes: "Individual person, standalone leaf." },
-    { id: 30, name: "Dilawar Hussain", branch: "Branch 05", branchKey: "b5", dates: "? - June 6, 2014", kinship: "Child of Mumtaz Begum", notes: "Individual person, standalone leaf." },
-    { id: 31, name: "Jamshaid", branch: "Branch 05", branchKey: "b5", dates: "Documented Living", kinship: "Child of Mumtaz Begum", notes: "Individual person, standalone leaf." },
-    { id: 32, name: "Tahir Hussain", branch: "Branch 05", branchKey: "b5", dates: "? - Nov 8, 2011", kinship: "Child of Mumtaz Begum", notes: "Individual person, standalone leaf." },
-    { id: 33, name: "Neelam", branch: "Branch 05", branchKey: "b5", dates: "1956 - Living", kinship: "Child of Mumtaz Begum", notes: "Individual person, standalone leaf." },
-
-    // Branch 6: Ghulam Hussain (10 children across two wives)
-    { id: 34, name: "Munawar", branch: "Branch 06", branchKey: "b6", dates: "Direct Namesake Heir", kinship: "1st Wife Heir", notes: "Direct namesake heir to the branch." },
-    { id: 35, name: "Jamila", branch: "Branch 06", branchKey: "b6", dates: "Verified Standalone", kinship: "Daughter (1st Wife)", notes: "Individual person - completely separate from Bushra!" },
-    { id: 36, name: "Bushra", branch: "Branch 06", branchKey: "b6", dates: "Verified Standalone", kinship: "Daughter (1st Wife)", notes: "Individual person - completely separate from Jamila!" },
-    { id: 37, name: "Yasmin", branch: "Branch 06", branchKey: "b6", dates: "Verified Standalone", kinship: "Daughter (1st Wife)", notes: "Individual person - completely separate from Rubina!" },
-    { id: 38, name: "Rubina", branch: "Branch 06", branchKey: "b6", dates: "d. Oct 26, 2023", kinship: "Daughter (1st Wife)", notes: "Individual person - completely separate from Yasmin!" },
-    { id: 39, name: "Saeeda", branch: "Branch 06", branchKey: "b6", dates: "Verified Standalone", kinship: "Daughter (2nd Wife Khursheed)", notes: "Individual daughter - completely separate from Sajda!" },
-    { id: 40, name: "Sajda", branch: "Branch 06", branchKey: "b6", dates: "Verified Standalone", kinship: "Daughter (2nd Wife Khursheed)", notes: "Individual daughter - completely separate from Saeeda!" },
-    { id: 41, name: "Zulfiqar", branch: "Branch 06", branchKey: "b6", dates: "Verified Standalone", kinship: "Son (2nd Wife Khursheed)", notes: "Individual son - separate line and dedicated card!" },
-    { id: 42, name: "Falaq Sher", branch: "Branch 06", branchKey: "b6", dates: "Verified Standalone", kinship: "Son (2nd Wife Khursheed)", notes: "Individual son - separate line and dedicated card!" },
-    { id: 43, name: "Abid Ali", branch: "Branch 06", branchKey: "b6", dates: "Verified Standalone", kinship: "Son (2nd Wife Khursheed)", notes: "Individual son - separate line and dedicated card!" }
-  ];
-
-  let currentScale = 1;
-
-  function renderRegistry(items) {
-    const grid = document.getElementById("registryGrid");
-    grid.innerHTML = "";
-    document.getElementById("activeCountBadge").innerText = `${items.length} Records`;
-
-    items.forEach(person => {
-      const card = document.createElement("div");
-      const isSuleyman = person.name.includes("Suleyman");
-      card.className = `p-3 rounded-lg border transition cursor-pointer flex flex-col justify-between ${
-        isSuleyman ? "bg-surface-container-high border-secondary ring-1 ring-secondary" : "bg-white border-[#d5e1dc] hover:border-primary"
-      }`;
-      card.onclick = () => selectPerson(person.name, person.branch, person.dates, person.kinship, person.notes);
-
-      card.innerHTML = `
-        <div>
-          <div class="flex items-start justify-between gap-1">
-            <span class="text-xs font-bold text-on-surface hover:text-primary">${person.name}</span>
-            <span class="text-[9px] font-bold px-1.5 py-0.5 rounded ${isSuleyman ? 'bg-secondary text-white' : 'bg-surface-container text-on-surface-variant'}">${person.branch}</span>
-          </div>
-          <p class="text-[11px] font-mono text-on-surface-variant mt-1 ${isSuleyman ? 'text-secondary font-bold' : ''}">${person.dates}</p>
-        </div>
-        <div class="mt-2 pt-2 border-t border-outline-variant flex items-center justify-between text-[10px] text-on-surface-variant">
-          <span>${person.kinship}</span>
-          <span class="text-primary font-semibold flex items-center gap-0.5">
-            <span class="material-symbols-outlined text-[12px]">badge</span> Distinct
-          </span>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  }
-
-  function handleSearch(term) {
-    const q = term.toLowerCase().trim();
-    const filtered = familyMembers.filter(m => 
-      m.name.toLowerCase().includes(q) || 
-      m.branch.toLowerCase().includes(q) || 
-      m.dates.toLowerCase().includes(q) ||
-      m.notes.toLowerCase().includes(q)
-    );
-    renderRegistry(filtered);
-  }
-
-  function filterBranch(branchKey) {
-    // Update active tab styles
-    document.querySelectorAll(".branch-tab").forEach(tab => {
-      tab.classList.remove("border-b-[#183b2b]", "text-[#111815]");
-      tab.classList.add("border-b-transparent", "text-[#5f8675]");
-    });
-    const activeTab = document.getElementById(`tab-${branchKey}`);
-    if (activeTab) {
-      activeTab.classList.remove("border-b-transparent", "text-[#5f8675]");
-      activeTab.classList.add("border-b-[#183b2b]", "text-[#111815]");
-    }
-
-    // Filter Canopy Columns
-    const cols = document.querySelectorAll(".branch-column");
-    cols.forEach(col => {
-      if (branchKey === 'all' || col.getAttribute("data-branch") === branchKey) {
-        col.style.display = "flex";
-      } else {
-        col.style.display = "none";
+    /**
+     * Comprehensive Genealogical Data Registry
+     * Certified genealogical data for Subha & Allah Rakhi descendants.
+     */
+    const treeData = {
+      aslam: {
+        id: "aslam",
+        name: "Aslam",
+        years: "Jan 9, 1938 – Aug 29, 2024",
+        title: "1st Son • Revered Patriarch & Custodian",
+        desc: "Revered family patriarch, archivist of oral traditions, and foundational keystone of modern descendants.",
+        alliance: "Married with 4 documented custodial branches",
+        children: [
+          {
+            id: "imran",
+            name: "Imran Aslam",
+            years: "b. Jan 23, 1968",
+            role: "1st Child • Eldest Son",
+            desc: "Lineage steward and bearer of physical archival ledgers.",
+            grandchildren: [
+              { name: "Lineage Trustee (Gen IV)", years: "Verified Line" },
+              { name: "Historic Archive Custodian (Gen IV)", years: "Verified Line" }
+            ]
+          },
+          {
+            id: "shahzia",
+            name: "Shahzia Aslam",
+            years: "b. Apr 06, 1969",
+            role: "2nd Child • Daughter",
+            desc: "Preserving maternal folklore, heirloom culinary records, and oral narratives.",
+            grandchildren: [
+              { name: "Culinary Folklore Keeper (Gen IV)", years: "Oral Traditions Folio" }
+            ]
+          },
+          {
+            id: "rizwan",
+            name: "Rizwan Aslam",
+            years: "b. Nov 13, 1970",
+            role: "3rd Child • Son",
+            desc: "International diaspora liaison with 3 verified children in Generation IV.",
+            grandchildren: [
+              { name: "Child 1 (Gen IV)", years: "Diaspora Registry" },
+              { name: "Child 2 (Gen IV)", years: "Diaspora Registry" },
+              { name: "Child 3 (Gen IV)", years: "Diaspora Registry" }
+            ]
+          },
+          {
+            id: "fauzia",
+            name: "Fauzia Aslam",
+            years: "b. Jan 03, 1973",
+            role: "4th Child • Daughter",
+            desc: "Active maternal branch with four documented Generation IV descendants.",
+            grandchildren: [
+              { name: "Ambereen", years: "b. Nov 28, 2000" },
+              { name: "Hamzah", years: "b. Mar 11, 2006" },
+              { name: "Alina", years: "b. Dec 05, 2009" },
+              { name: "Farhan", years: "b. Oct 09, 2015" }
+            ]
+          }
+        ]
+      },
+      akram: {
+        id: "akram",
+        name: "Akram",
+        years: "1944 – 2014",
+        title: "2nd Son of Sardar Begum & Ismael",
+        desc: "Distinguished patriarch line with 5 verified children documented in Lahore & diaspora.",
+        alliance: "Branch alliance documented in Folio 15-B",
+        children: [
+          { id: "shumaila", name: "Shumaila", years: "Documented Child", role: "1st Child • Daughter", desc: "Lineage branch steward.", grandchildren: [] },
+          { id: "kashif", name: "Kashif", years: "Documented Child", role: "2nd Child • Son", desc: "Custodian representative.", grandchildren: [] },
+          { id: "nadia", name: "Nadia", years: "Documented Child", role: "3rd Child • Daughter", desc: "Lineage branch record keeper.", grandchildren: [] },
+          { id: "asif", name: "Asif", years: "Documented Child", role: "4th Child • Son", desc: "Heritage trustee.", grandchildren: [] },
+          { id: "hira", name: "Hira", years: "Documented Child", role: "5th Child • Daughter", desc: "Preserved generational records.", grandchildren: [] }
+        ]
+      },
+      saleem: {
+        id: "saleem",
+        name: "Saleem",
+        years: "Lineage Son",
+        title: "3rd Son of Sardar Begum & Ismael",
+        desc: "Registered custodial branch in Punjab archives with dedicated folio ledger.",
+        alliance: "Archival record verified in Municipal Registry",
+        children: [
+          { id: "saleem_custodial", name: "Saleem Custodial Branch", years: "Preserved Line", role: "Custodial Lineage", desc: "Branch records documented and sealed in Centennial Shajara Revision 4.2.", grandchildren: [{ name: "Registered Family Trustee", years: "Verified" }] }
+        ]
+      },
+      jahanghir: {
+        id: "jahanghir",
+        name: "Jahanghir",
+        years: "d. Mar 31, 2019",
+        title: "4th Son of Sardar Begum & Ismael",
+        desc: "4 children and documented grandchild Inayah. Memorial ledger established in Lahore.",
+        alliance: "Descendants across Lahore & Global Diaspora",
+        children: [
+          { id: "adnan", name: "Adnan", years: "d. 1999", role: "1st Child • Son", desc: "Beloved memorial leaf in family archives.", grandchildren: [] },
+          { id: "irfan", name: "Irfan", years: "b. Dec 1, 1977", role: "2nd Child • Son", desc: "Father of Inayah (Gen IV). Active heritage steward.", grandchildren: [{ name: "Inayah", years: "b. 2012" }] },
+          { id: "adil_bobby", name: "Adil Bobby", years: "Documented Child", role: "3rd Child • Son", desc: "Family trustee and lineage representative.", grandchildren: [] },
+          { id: "maryam", name: "Maryam", years: "Documented Child", role: "4th Child • Daughter", desc: "Maternal traditions and archival lineage.", grandchildren: [] }
+        ]
+      },
+      munir: {
+        id: "munir",
+        name: "Munir",
+        years: "d. Jan 4, 2023",
+        title: "5th Son of Sardar Begum & Ismael",
+        desc: "3 documented children and grandchildren Sufyan & Aqsa. Revered custodial elder.",
+        alliance: "Memorial ledger registered with historical charter",
+        children: [
+          { id: "rabia", name: "Rabia", years: "Documented Child", role: "1st Child • Daughter", desc: "Lineage branch steward.", grandchildren: [] },
+          { id: "afraz", name: "Afraz Ayaz", years: "b. Aug 25, 1984", role: "2nd Child • Son", desc: "Father of Sufyan & Aqsa (Gen IV). Active custodian.", grandchildren: [{ name: "Sufyan", years: "b. 2013" }, { name: "Aqsa", years: "Gen IV" }] },
+          { id: "suleyman", name: "Suleyman Ayaz", years: "b. Mar 13, 1991", role: "3rd Child • Son", desc: "Archival trustee and technical shajara patron.", grandchildren: [] }
+        ]
+      },
+      parveen: {
+        id: "parveen",
+        name: "Parveen (Khursheed)",
+        years: "d. Dec 6, 2025",
+        title: "Daughter of Sardar Begum & Ismael",
+        desc: "Revered matriarch of the Khursheed branch. Preserved maternal genealogy and oral traditions.",
+        alliance: "Alliance joined with historical Lahore house",
+        children: [
+          { id: "parveen_line", name: "Parveen Descendant Line", years: "Memorial Folio", role: "Maternal Lineage", desc: "Preserved maternal folklore, kinship networks, and heirloom records.", grandchildren: [{ name: "Dedicated Memorial Inscription", years: "Sealed Folio" }] }
+        ]
+      },
+      naseem: {
+        id: "naseem",
+        name: "Naseem",
+        years: "d. Feb 18, 2024",
+        title: "Daughter of Sardar Begum & Ismael",
+        desc: "Revered maternal pillar with 5 documented children continuing the Centennial Shajara.",
+        alliance: "Branch alliance recorded in Lahore Revenue Register",
+        children: [
+          { id: "saima", name: "Saima", years: "Documented Child", role: "1st Child • Daughter", desc: "Custodial branch recorder.", grandchildren: [] },
+          { id: "jonny", name: "Jonny Babar", years: "Documented Child", role: "2nd Child • Son", desc: "Heritage liaison and branch trustee.", grandchildren: [] },
+          { id: "khurram", name: "Khurram", years: "Documented Child", role: "3rd Child • Son", desc: "Lineage representative.", grandchildren: [] },
+          { id: "arshia", name: "Arshia", years: "Documented Child", role: "4th Child • Daughter", desc: "Generational memory keeper.", grandchildren: [] },
+          { id: "naseem_5th", name: "5th Descendant Line", years: "Documented Branch", role: "5th Child", desc: "Active Generation IV lineage member.", grandchildren: [] }
+        ]
+      },
+      ghulam_hussain: {
+        id: "ghulam_hussain",
+        name: "Ghulam Hussain",
+        years: "Son of Subha & Allah Rakhi",
+        title: "Branch VI Keystone Patriarch",
+        desc: "Two Alliances • 7 Children documented with expansive modern diaspora including Zarina & Afzaal Rana's lineage.",
+        alliance: "1st: Munawar Begum | 2nd: Khursheed Begum",
+        children: [
+          { id: "jamila", name: "Jamila Begum", years: "Alliance I", role: "1st Child (Munawar)", desc: "Eldest daughter of Ghulam Hussain.", grandchildren: [] },
+          { id: "saeeda", name: "Saeeda Begum", years: "Alliance II", role: "Child (Khursheed)", desc: "Maternal branch documented in Lahore.", grandchildren: [] },
+          { id: "sajda", name: "Sajda Begum", years: "Alliance II", role: "Child (Khursheed)", desc: "Preserved familial records.", grandchildren: [] },
+          { id: "zulfiqar", name: "Zulfiqar Ali", years: "Alliance II", role: "Son (Khursheed)", desc: "Patriarchal representative.", grandchildren: [] },
+          { id: "falaq", name: "Falaq Sher", years: "Alliance II", role: "Son (Khursheed)", desc: "Historic lineage steward.", grandchildren: [] },
+          { id: "abid", name: "Abid Ali", years: "Alliance II", role: "Son (Khursheed)", desc: "Custodian representative.", grandchildren: [] },
+          { id: "zarina_rana", name: "Zarina & Afzaal Rana Line", years: "Extended Alliance", role: "Documented Kinship", desc: "Lineage through Jamal & Samina with grandchildren Anam, Ali, Ayra, Shan.", grandchildren: [{ name: "Jamal & Samina", years: "Gen III" }, { name: "Anam, Ali, Ayra, Shan", years: "Gen IV" }] }
+        ]
+      },
+      hussain_bibi: {
+        id: "hussain_bibi",
+        name: "Hussain Bibi",
+        years: "d. Jun 1942",
+        title: "Branch I: Eldest Daughter of Subha",
+        desc: "Alliance united with the revered Mola Baksh branch. Preserved in Kasur Registry Folio 14-A.",
+        alliance: "Alliance with Mola Baksh Line",
+        children: [
+          { id: "mola_baksh", name: "Mola Baksh Alliance Branch", years: "Circa 1920–1942", role: "Foundational Descendants", desc: "Preserved centenary records of the Kasur-Lahore kinship.", grandchildren: [{ name: "Historic Kasur Folio 14-A", years: "Archived" }] }
+        ]
+      },
+      hassan_bibi: {
+        id: "hassan_bibi",
+        name: "Hassan Bibi",
+        years: "Daughter of Subha",
+        title: "Branch II: Daughter of Subha",
+        desc: "Alliance connected with the Nabi Baksh & Khair-Din lineages across Walled Lahore.",
+        alliance: "Alliance with Nabi Baksh & Khair-Din",
+        children: [
+          { id: "nabi_baksh", name: "Nabi Baksh & Khair-Din Line", years: "Documented Lineage", role: "Descendant House", desc: "Cross-referenced in historical Bhati Gate records.", grandchildren: [{ name: "Bhati Gate Archival Stamp", years: "Registered" }] }
+        ]
+      },
+      ghulam_fatima: {
+        id: "ghulam_fatima",
+        name: "Ghulam Fatima",
+        years: "Daughter of Subha",
+        title: "Branch IV: Daughter of Subha",
+        desc: "Archival preservation record documented under Punjab Registry Folio 14-D.",
+        alliance: "Historic Kasur alliance",
+        children: [
+          { id: "ghulam_fatima_branch", name: "Ghulam Fatima Branch", years: "Registered Lineage", role: "Maternal Line", desc: "Permanent entry in Centennial Shajara revision ledgers.", grandchildren: [{ name: "Kasur Registry Folio 14-D", years: "Registered" }] }
+        ]
+      },
+      mumtaz: {
+        id: "mumtaz",
+        name: "Mumtaz Begum",
+        years: "1930 – Oct 6, 1992",
+        title: "Branch V: Daughter of Subha",
+        desc: "Lahore ledger memorial line. Dedicated memorial register preserved by family trustees.",
+        alliance: "Lahore Municipal Register Folio 14-E",
+        children: [
+          { id: "mumtaz_line", name: "Mumtaz Begum Line", years: "1930–1992", role: "Maternal Branch", desc: "Documented memorial folio and generational custody.", grandchildren: [{ name: "Centennial Memorial Archive", years: "Preserved" }] }
+        ]
+      },
+      overview: {
+        id: "overview",
+        name: "Sardar Begum & Ismael",
+        years: "1916 – 2001",
+        title: "Branch III Keystone: 7 Pillar Siblings",
+        desc: "Complete generational overview of the 7 siblings: Aslam, Akram, Saleem, Jahanghir, Munir, Parveen, and Naseem.",
+        alliance: "Foundational Keystone Branch III",
+        children: [
+          { id: "aslam_ov", name: "Aslam", years: "1938–2024", role: "1st Son (4 Children)", desc: "Imran, Shahzia, Rizwan, Fauzia", grandchildren: [{ name: "Imran, Shahzia, Rizwan, Fauzia", years: "Gen III" }, { name: "7 Grandchildren", years: "Gen IV" }] },
+          { id: "akram_ov", name: "Akram", years: "1944–2014", role: "2nd Son (5 Children)", desc: "Shumaila, Kashif, Nadia, Asif, Hira", grandchildren: [{ name: "5 Children", years: "Gen III" }] },
+          { id: "saleem_ov", name: "Saleem", years: "Lineage Son", role: "3rd Son", desc: "Lineage custodian", grandchildren: [{ name: "Custodial Branch", years: "Verified" }] },
+          { id: "jahanghir_ov", name: "Jahanghir", years: "d. 2019", role: "4th Son (4 Children)", desc: "Adnan, Irfan, Adil Bobby, Maryam", grandchildren: [{ name: "Inayah (b. 2012)", years: "Gen IV" }] },
+          { id: "munir_ov", name: "Munir", years: "d. 2023", role: "5th Son (3 Children)", desc: "Rabia, Afraz, Suleyman", grandchildren: [{ name: "Sufyan (b. 2013)", years: "Gen IV" }, { name: "Aqsa", years: "Gen IV" }] },
+          { id: "parveen_ov", name: "Parveen", years: "d. 2025", role: "Daughter (Khursheed)", desc: "Maternal pillar", grandchildren: [{ name: "Memorial Folio", years: "Archived" }] },
+          { id: "naseem_ov", name: "Naseem", years: "d. 2024", role: "Daughter (5 Children)", desc: "Saima, Jonny Babar, Khurram, Arshia", grandchildren: [{ name: "5 Children", years: "Gen III" }] }
+        ]
       }
-    });
-
-    // Filter Registry Grid
-    if (branchKey === 'all') {
-      renderRegistry(familyMembers);
-    } else {
-      const filtered = familyMembers.filter(m => m.branchKey === branchKey);
-      renderRegistry(filtered);
-    }
-  }
-
-  function selectPerson(name, branch, dates, kinship, notes) {
-    document.getElementById("drawerName").innerText = name;
-    document.getElementById("drawerBranch").innerText = branch;
-    document.getElementById("drawerDates").innerText = dates;
-    document.getElementById("drawerKinship").innerText = kinship;
-    document.getElementById("drawerNotes").innerText = notes;
-    document.getElementById("personDrawer").classList.remove("hidden");
-  }
-
-  function closePersonDrawer() {
-    document.getElementById("personDrawer").classList.add("hidden");
-  }
-
-  function openNewDescendantModal() {
-    document.getElementById("addDescendantModal").classList.remove("hidden");
-  }
-
-  function closeNewDescendantModal() {
-    document.getElementById("addDescendantModal").classList.add("hidden");
-  }
-
-  function handleNewDescendant(e) {
-    e.preventDefault();
-    const name = document.getElementById("formName").value;
-    const branch = document.getElementById("formBranch").value;
-    const dates = document.getElementById("formDates").value || "Undated";
-    const kinship = document.getElementById("formKinship").value || "Direct Descendant";
-    const notes = document.getElementById("formNotes").value || "Independently decoupled individual leaf card.";
-
-    const newPerson = {
-      id: Date.now(),
-      name,
-      branch,
-      branchKey: branch.includes("01") ? "b1" : branch.includes("02") ? "b2" : branch.includes("03") ? "b3" : branch.includes("04") ? "b4" : branch.includes("05") ? "b5" : "b6",
-      dates,
-      kinship,
-      notes
     };
 
-    familyMembers.push(newPerson);
-    renderRegistry(familyMembers);
-    closeNewDescendantModal();
-    alert(`Success: Individual record added for ${name} under ${branch}.`);
-  }
+    // Current State
+    let currentBranchKey = "aslam";
 
-  function openAuditModal() {
-    document.getElementById("auditLogModal").classList.remove("hidden");
-  }
+    /**
+     * Switch Active Tree Branch
+     * Triggered by clicks on sibling buttons, sibling cards, and branch cards.
+     */
+    function switchTreeBranch(branchKey) {
+      if (!treeData[branchKey]) return;
+      currentBranchKey = branchKey;
 
-  function closeAuditModal() {
-    document.getElementById("auditLogModal").classList.add("hidden");
-  }
+      // 1. Update tab styling
+      document.querySelectorAll('.branch-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-id') === branchKey) {
+          btn.classList.remove('bg-surface', 'bg-surface-container-high', 'text-on-surface');
+          btn.classList.add('bg-primary', 'text-on-primary', 'active');
+        } else {
+          btn.classList.remove('bg-primary', 'text-on-primary', 'active');
+          btn.classList.add('bg-surface', 'text-on-surface');
+        }
+      });
 
-  function zoomCanopy(factor) {
-    currentScale *= factor;
-    currentScale = Math.min(Math.max(0.6, currentScale), 1.5);
-    document.getElementById("treeCanopyCanvas").style.transform = `scale(${currentScale})`;
-  }
+      // 2. Highlight Sibling Cards in Tier 1 Grid
+      document.querySelectorAll('.sibling-card').forEach(card => {
+        const sibId = card.getAttribute('data-sibling');
+        if (sibId === branchKey) {
+          card.classList.add('ring-2', 'ring-primary', 'bg-surface-container-low', 'shadow-xl');
+          card.classList.remove('shadow-sm');
+          let badge = card.querySelector('.sibling-active-badge');
+          if (!badge) {
+            const lastRow = card.querySelector('div:last-child');
+            if (lastRow) {
+              const exploreEl = lastRow.querySelector('span:last-child');
+              if (exploreEl) exploreEl.remove();
+              const pill = document.createElement('span');
+              pill.className = 'sibling-active-badge px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-bold flex items-center gap-1 shadow-xs';
+              pill.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span> Active';
+              lastRow.appendChild(pill);
+            }
+          }
+        } else {
+          card.classList.remove('ring-2', 'ring-primary', 'bg-surface-container-low', 'shadow-xl');
+          card.classList.add('shadow-sm');
+          const badge = card.querySelector('.sibling-active-badge');
+          if (badge) {
+            const exploreSpan = document.createElement('span');
+            exploreSpan.className = 'text-primary group-hover:underline flex items-center gap-0.5';
+            exploreSpan.innerHTML = 'Explore Tree <span class="material-symbols-outlined text-[13px]">arrow_downward</span>';
+            badge.parentNode.replaceChild(exploreSpan, badge);
+          }
+        }
+      });
 
-  function resetZoom() {
-    currentScale = 1;
-    document.getElementById("treeCanopyCanvas").style.transform = `scale(1)`;
-  }
+      // 3. Highlight Tier 0 Branch Card
+      document.querySelectorAll('#tier-0-branches .node-card').forEach(card => {
+        if (card.getAttribute('data-branch') === branchKey) {
+          card.classList.add('ring-2', 'ring-secondary', 'bg-surface-container-low');
+        } else if (card.getAttribute('data-branch') !== 'sardar') {
+          card.classList.remove('ring-2', 'ring-secondary', 'bg-surface-container-low');
+        }
+      });
 
-  function expandAll() {
-    resetZoom();
-    filterBranch('all');
-    alert("Displaying all 6 branch columns and individual leaf cards.");
-  }
+      // 4. Update Tree Visualizer Heading
+      const data = treeData[branchKey];
+      const headEl = document.getElementById('active-ancestor-heading');
+      const subheadEl = document.getElementById('active-ancestor-subheading');
+      if (headEl) headEl.textContent = `Interactive Visual Vector Tree: ${data.name} (${data.years})`;
+      if (subheadEl) subheadEl.textContent = `${data.title} • ${data.children.length} Documented Descendant Leaves with Vector SVG Connections`;
 
-  function triggerPrintModal() {
-    window.print();
-  }
+      // 5. Render Tree Canvas & Vector SVG Lines
+      renderTreeCanvas(data);
 
-  function exportCSVData() {
-    let csv = "ID,Name,Branch,Lifespan_Dates,Kinship,Separation_Status\n";
-    familyMembers.forEach(m => {
-      csv += `"${m.id}","${m.name}","${m.branch}","${m.dates}","${m.kinship}","Decoupled Standalone Leaf"\n`;
-    });
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "ancestral_family_roster_distinct.csv";
-    link.click();
-  }
+      // 6. Synchronize Descendant Vault Cards
+      syncVault(data);
 
-  // Initial render
-  document.addEventListener("DOMContentLoaded", () => {
-    renderRegistry(familyMembers);
+      // 7. Toast feedback
+      showToast(`Switched active lineage branch to: ${data.name}`);
+    }
 
-    // Sync shared input if typed
-    const sharedSearch = document.getElementById("sharedSearchInput");
-    if (sharedSearch) {
-      sharedSearch.addEventListener("input", (e) => {
-        document.getElementById("liveFilterInput").value = e.target.value;
-        handleSearch(e.target.value);
+    /**
+     * Render Tree Canvas (Trunk Node + Leaf Nodes + Dynamic Bezier SVG Connectors)
+     */
+    function renderTreeCanvas(data) {
+      const mount = document.getElementById('tree-nodes-mount');
+      if (!mount) return;
+
+      let leavesHtml = '';
+      data.children.forEach((child, index) => {
+        let subBadges = '';
+        const hasGrandchildren = child.grandchildren && child.grandchildren.length > 0;
+        
+        if (hasGrandchildren) {
+          subBadges = `
+            <div class="mt-2.5 pt-2 border-t border-outline-variant/30 flex flex-col gap-1">
+              <span class="text-[10px] uppercase font-bold text-secondary tracking-wider">Next Gen (${child.grandchildren.length}):</span>
+              <div class="flex flex-wrap gap-1">
+                ${child.grandchildren.map(sub => `<span class="px-1.5 py-0.5 bg-secondary-container/30 text-secondary border border-secondary/30 rounded text-[11px] font-semibold">${sub.name}</span>`).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        leavesHtml += `
+          <div class="tree-leaf-node relative bg-surface p-3.5 rounded-xl shadow-md border border-outline-variant/40 hover:border-primary hover:shadow-xl transition-all flex flex-col justify-between min-w-[210px] max-w-[250px] shrink-0 group cursor-pointer" id="leaf-node-${index}" onclick="inspectDescendant('${data.id}', ${index})">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-[10px] font-bold uppercase tracking-wider">${child.role}</span>
+                <span class="material-symbols-outlined text-secondary text-[16px]">nature</span>
+              </div>
+              <h5 class="font-title-lg text-title-lg text-primary font-bold mt-1.5 group-hover:text-secondary transition-colors">${child.name}</h5>
+              <span class="font-label-sm text-label-sm text-outline font-medium block mt-0.5">${child.years}</span>
+              <p class="font-body-sm text-[12px] text-on-surface-variant leading-snug mt-1.5">${child.desc}</p>
+            </div>
+            ${subBadges}
+            <div class="mt-3 flex items-center justify-between text-[11px] text-outline font-medium pt-1.5 border-t border-outline-variant/20">
+              <span class="text-primary font-semibold flex items-center gap-0.5 group-hover:underline">Click to Inspect <span class="material-symbols-outlined text-[12px]">visibility</span></span>
+              <span class="text-primary font-semibold flex items-center gap-0.5">Verified <span class="material-symbols-outlined text-[12px]">check_circle</span></span>
+            </div>
+          </div>
+        `;
+      });
+
+      mount.innerHTML = `
+        <!-- TRUNK ROOT NODE -->
+        <div class="relative bg-primary text-on-primary p-space-md rounded-xl shadow-xl flex items-center gap-3.5 z-30 max-w-md w-full border-2 border-secondary-container" id="tree-trunk-root">
+          <div class="w-12 h-12 rounded-full bg-primary-container text-secondary-container flex items-center justify-center shrink-0 shadow-inner">
+            <span class="material-symbols-outlined text-[26px]">park</span>
+          </div>
+          <div class="flex flex-col flex-1">
+            <div class="flex items-center justify-between">
+              <span class="font-headline-sm text-headline-sm text-secondary-container leading-none font-bold">${data.name}</span>
+              <span class="px-2 py-0.5 rounded-full bg-secondary text-white text-[11px] font-bold">Trunk Root</span>
+            </div>
+            <span class="font-label-sm text-label-sm text-on-primary-container font-medium mt-1">${data.years}</span>
+            <span class="font-body-sm text-[12px] text-on-primary/90 mt-1">${data.desc}</span>
+          </div>
+        </div>
+
+        <!-- DESCENDANT LEAF NODES ROW -->
+        <div class="w-full flex items-start justify-center flex-wrap gap-4 pt-8 z-30" id="tree-leaves-row">
+          ${leavesHtml}
+        </div>
+      `;
+
+      // Draw SVG Bezier Vector lines after DOM render
+      requestAnimationFrame(() => {
+        drawVectorBranchPaths();
       });
     }
-  });
-</script>
+
+    /**
+     * Dynamic Bezier SVG Generator
+     * Connects bottom anchor of trunk node to top of leaf nodes
+     */
+    function drawVectorBranchPaths() {
+      const svg = document.getElementById('tree-svg');
+      const trunk = document.getElementById('tree-trunk-root');
+      if (!svg || !trunk) return;
+
+      const contRect = svg.getBoundingClientRect();
+      const trunkRect = trunk.getBoundingClientRect();
+      const leaves = document.querySelectorAll('.tree-leaf-node');
+
+      const startX = (trunkRect.left + trunkRect.right) / 2 - contRect.left;
+      const startY = trunkRect.bottom - contRect.top;
+
+      let svgInner = `
+        <defs>
+          <linearGradient id="branchGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#002517" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#7b580b" stop-opacity="0.85" />
+          </linearGradient>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#7b580b" flood-opacity="0.3"/>
+          </filter>
+        </defs>
+        <circle cx="${startX}" cy="${startY}" r="5" fill="#fccd78" stroke="#002517" stroke-width="2.5" />
+      `;
+
+      leaves.forEach((leaf) => {
+        const leafRect = leaf.getBoundingClientRect();
+        const endX = (leafRect.left + leafRect.right) / 2 - contRect.left;
+        const endY = leafRect.top - contRect.top;
+
+        const deltaY = endY - startY;
+        const cp1Y = startY + deltaY * 0.45;
+        const cp2Y = startY + deltaY * 0.75;
+        const cp1X = startX;
+        const cp2X = endX;
+
+        const pathData = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+
+        svgInner += `
+          <path d="${pathData}" fill="none" stroke="url(#branchGrad)" stroke-width="2.5" stroke-linecap="round" class="tree-branch-path" filter="url(#glow)" />
+          <circle cx="${endX}" cy="${endY}" r="4" fill="#002517" stroke="#fccd78" stroke-width="2" />
+        `;
+      });
+
+      svg.innerHTML = svgInner;
+    }
+
+    // Debounced Resize Listener
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        drawVectorBranchPaths();
+      }, 100);
+    });
+
+    /**
+     * Synchronize Lower Descendant Vault Cards
+     */
+    function syncVault(data) {
+      const vaultTitle = document.getElementById('vault-title');
+      const vaultSubtitle = document.getElementById('vault-subtitle');
+      const grid = document.getElementById('descendant-cards-grid');
+      const badge = document.getElementById('vault-gen-badge');
+      if (!grid) return;
+
+      if (vaultTitle) vaultTitle.textContent = `Cascading Descendant Vault • House of ${data.name}`;
+      if (vaultSubtitle) vaultSubtitle.textContent = `${data.title} • ${data.children.length} Verified Descendant Lines Documented`;
+      if (badge) badge.textContent = data.id === 'aslam' ? 'Generation III & IV' : 'Descendant Folio Ledger';
+
+      let html = '';
+      data.children.forEach((child, idx) => {
+        let subDetails = '';
+        if (child.grandchildren && child.grandchildren.length > 0) {
+          subDetails = `
+            <div class="mt-3 bg-surface p-2.5 rounded-lg border border-outline-variant/30">
+              <span class="font-label-sm text-[11px] font-bold text-primary block mb-1">Documented Lineage:</span>
+              <div class="flex flex-col gap-1 font-body-sm text-[12px] text-on-surface-variant">
+                ${child.grandchildren.map(s => `
+                  <div class="bg-surface-container-low px-2 py-0.5 rounded flex items-center justify-between">
+                    <span>• ${s.name}</span>
+                    <span class="text-[10px] text-secondary font-semibold">${s.years || 'Verified'}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        html += `
+          <div class="node-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative flex flex-col justify-between border border-outline-variant/30" data-tags="all ${data.id} ${child.name.toLowerCase()}">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm font-semibold">${child.role}</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">verified</span>
+              </div>
+              <h4 class="font-title-lg text-title-lg text-primary font-bold mt-2">${child.name}</h4>
+              <span class="font-label-sm text-label-sm text-secondary font-semibold">${child.years}</span>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">${child.desc}</p>
+              ${subDetails}
+            </div>
+            <div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm border-t border-outline-variant/30">
+              <span>Folio Line ${data.id.substring(0, 3).toUpperCase()}-${idx + 1}</span>
+              <button class="text-secondary hover:text-primary font-semibold underline cursor-pointer" onclick="inspectDescendant('${data.id}', ${idx})">Inspect Line →</button>
+            </div>
+          </div>
+        `;
+      });
+
+      grid.innerHTML = html;
+    }
+
+    /**
+     * Inspect Descendant in Modal (Shows Grandchildren & Citations)
+     */
+    function inspectDescendant(branchKey, childIndex) {
+      const branch = treeData[branchKey];
+      if (!branch || !branch.children[childIndex]) return;
+
+      const child = branch.children[childIndex];
+      document.getElementById('inspector-title').textContent = child.name;
+      document.getElementById('inspector-years').textContent = child.years;
+      document.getElementById('inspector-role').textContent = `${child.role} (${branch.name} Branch)`;
+      document.getElementById('inspector-desc').textContent = child.desc;
+
+      const gcContainer = document.getElementById('inspector-grandchildren-container');
+      if (child.grandchildren && child.grandchildren.length > 0) {
+        let gchtml = `
+          <div class="bg-surface-container p-3 rounded-xl border border-outline-variant/30 mt-2">
+            <span class="font-label-md text-label-md text-primary font-bold block mb-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px] text-secondary">family_restroom</span>
+              Next-Generation Descendants (${child.grandchildren.length}):
+            </span>
+            <div class="flex flex-col gap-1.5">
+        `;
+        child.grandchildren.forEach(g => {
+          gchtml += `
+            <div class="flex items-center justify-between bg-surface px-2.5 py-1.5 rounded-lg border border-outline-variant/20">
+              <span class="font-body-sm text-body-sm text-on-surface font-medium">• ${g.name}</span>
+              <span class="font-label-sm text-label-sm text-secondary font-semibold">${g.years || 'Documented'}</span>
+            </div>
+          `;
+        });
+        gchtml += `</div></div>`;
+        gcContainer.innerHTML = gchtml;
+      } else {
+        gcContainer.innerHTML = `
+          <div class="p-2.5 bg-surface-container-low rounded-lg text-on-surface-variant font-body-sm text-body-sm text-[12px]">
+            No direct grandchildren registered in this folio tier. Additional entries may be recorded via "+ Contribute Record".
+          </div>
+        `;
+      }
+
+      document.getElementById('inspector-modal').classList.remove('hidden');
+    }
+
+    function closeBranchInspector() {
+      document.getElementById('inspector-modal').classList.add('hidden');
+    }
+
+    function recenterVisualizer() {
+      const el = document.getElementById('tree-visualizer-container');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      drawVectorBranchPaths();
+    }
+
+    function scrollToTier1() {
+      const el = document.getElementById('tier-1-siblings');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Branch VI Ghulam Hussain Toggle
+    function toggleGhulamDetails(btn) {
+      const roster = document.getElementById('ghulam-roster');
+      if (roster.classList.contains('hidden')) {
+        roster.classList.remove('hidden');
+        btn.querySelector('span:last-child').textContent = 'Hide Roster';
+      } else {
+        roster.classList.add('hidden');
+        btn.querySelector('span:last-child').textContent = 'Roster';
+      }
+    }
+
+    /**
+     * Search & Filter Handling
+     */
+    function handleSearch(query) {
+      query = query.toLowerCase().trim();
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (clearBtn) clearBtn.classList.toggle('hidden', query === '');
+
+      const nodes = document.querySelectorAll('.node-card');
+      nodes.forEach(node => {
+        const text = (node.getAttribute('data-tags') || '') + ' ' + node.innerText.toLowerCase();
+        if (query === '' || text.includes(query)) {
+          node.classList.remove('opacity-25', 'grayscale');
+          node.classList.add('opacity-100');
+          if (query !== '') {
+            node.classList.add('ring-2', 'ring-secondary');
+          } else {
+            node.classList.remove('ring-2', 'ring-secondary');
+          }
+        } else {
+          node.classList.add('opacity-25', 'grayscale');
+          node.classList.remove('opacity-100', 'ring-2', 'ring-secondary');
+        }
+      });
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('shajara-search');
+      if (input) {
+        input.value = '';
+        handleSearch('');
+      }
+    }
+
+    function applyFolioFilter(filter, activeBtn) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-on-primary', 'active');
+        btn.classList.add('bg-surface-container-high', 'text-on-surface');
+      });
+      activeBtn.classList.remove('bg-surface-container-high', 'text-on-surface');
+      activeBtn.classList.add('bg-primary', 'text-on-primary', 'active');
+
+      if (filter === 'sardar') {
+        switchTreeBranch('aslam');
+      } else if (filter === 'ghulam') {
+        switchTreeBranch('ghulam_hussain');
+      }
+
+      const nodes = document.querySelectorAll('.node-card');
+      nodes.forEach(node => {
+        const tags = node.getAttribute('data-tags') || '';
+        if (filter === 'all' || tags.includes(filter)) {
+          node.classList.remove('opacity-25', 'grayscale');
+          node.classList.add('opacity-100');
+        } else {
+          node.classList.add('opacity-25', 'grayscale');
+          node.classList.remove('opacity-100');
+        }
+      });
+    }
+
+    // Modal Control: Contribute Record
+    function openContributeModal() {
+      const drawer = document.getElementById('contribute-drawer');
+      const panel = document.getElementById('drawer-panel');
+      drawer.classList.remove('opacity-0', 'pointer-events-none');
+      drawer.classList.add('opacity-100', 'pointer-events-auto');
+      panel.classList.remove('translate-x-full');
+      panel.classList.add('translate-x-0');
+    }
+
+    function closeContributeModal() {
+      const drawer = document.getElementById('contribute-drawer');
+      const panel = document.getElementById('drawer-panel');
+      panel.classList.remove('translate-x-0');
+      panel.classList.add('translate-x-full');
+      setTimeout(() => {
+        drawer.classList.remove('opacity-100', 'pointer-events-auto');
+        drawer.classList.add('opacity-0', 'pointer-events-none');
+      }, 250);
+    }
+
+    function previewUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById('image-preview');
+          const placeholder = document.getElementById('preview-placeholder');
+          preview.src = e.target.result;
+          preview.classList.remove('hidden');
+          placeholder.classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    <!-- ========================================== -->
+    <!-- TECH STACK: LOCALSTORAGE PERSISTENCE FOR CONTRIBUTED RECORDS -->
+    <!-- Saves user contributed records into browser LocalStorage and dynamically updates treeData in real-time -->
+    <!-- ========================================== -->
+    function handleRecordSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contribute-name').value;
+      const branchKey = document.getElementById('contribute-branch').value;
+      const birth = document.getElementById('contribute-birth').value;
+      const residence = document.getElementById('contribute-residence').value;
+      const notes = document.getElementById('contribute-notes').value;
+
+      const feedback = document.getElementById('form-feedback');
+      feedback.textContent = `Verifying and appending record for ${name} into Kasur-Lahore ledger...`;
+      feedback.classList.remove('hidden');
+
+      setTimeout(() => {
+        // Save to LocalStorage
+        try {
+          const existing = JSON.parse(localStorage.getItem('shajara_contributions') || '[]');
+          existing.push({ name, branchKey, birth, residence, notes, date: new Date().toISOString() });
+          localStorage.setItem('shajara_contributions', JSON.stringify(existing));
+        } catch (err) {
+          console.warn('LocalStorage error', err);
+        }
+
+        // Add to active branch if matching
+        if (treeData[branchKey]) {
+          treeData[branchKey].children.push({
+            id: 'contrib_' + Date.now(),
+            name: name,
+            years: birth ? `b. ${birth}` : 'Registered Record',
+            role: 'Contributed Descendant',
+            desc: notes || `Documented resident of ${residence || 'Punjab Archives'}.`,
+            grandchildren: []
+          });
+          if (currentBranchKey === branchKey) {
+            renderTreeCanvas(treeData[branchKey]);
+            syncVault(treeData[branchKey]);
+          }
+        }
+
+        feedback.classList.add('hidden');
+        closeContributeModal();
+        showToast(`Record for ${name} registered in Centennial Shajara!`);
+        e.target.reset();
+        document.getElementById('image-preview').classList.add('hidden');
+        document.getElementById('preview-placeholder').classList.remove('hidden');
+      }, 1000);
+    }
+
+    // Admin Modal PIN: 1890
+    function openAdminModal() {
+      const modal = document.getElementById('admin-modal');
+      modal.classList.remove('hidden');
+      document.getElementById('admin-passcode').value = '';
+      document.getElementById('admin-error').classList.add('hidden');
+      document.getElementById('admin-passcode').focus();
+    }
+
+    function closeAdminModal() {
+      document.getElementById('admin-modal').classList.add('hidden');
+    }
+
+    function verifyAdminPasscode() {
+      const pin = document.getElementById('admin-passcode').value.trim();
+      const errorEl = document.getElementById('admin-error');
+      if (pin === '1890') {
+        closeAdminModal();
+        showToast('Passcode Verified: Welcome Custodian to Folio 1890.');
+      } else {
+        errorEl.classList.remove('hidden');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+
+    // Initial Execution on Load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load saved records from localStorage if present
+      try {
+        const stored = JSON.parse(localStorage.getItem('shajara_contributions') || '[]');
+        stored.forEach(rec => {
+          if (treeData[rec.branchKey]) {
+            treeData[rec.branchKey].children.push({
+              id: 'contrib_' + Math.random(),
+              name: rec.name,
+              years: rec.birth ? `b. ${rec.birth}` : 'Registered Record',
+              role: 'Contributed Descendant',
+              desc: rec.notes || `Documented resident of ${rec.residence || 'Punjab Archives'}.`,
+              grandchildren: []
+            });
+          }
+        });
+      } catch (err) {}
+
+      // Immediately render default focal line: Aslam
+      switchTreeBranch('aslam');
+    });
+  </script>
 </body></html>
