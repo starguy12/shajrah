@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <meta content="The Subha &amp; Allah Rakhi Heritage - Interactive Shajara Folio" name="description"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="The Subha &amp; Allah Rakhi Heritage - Interactive Shajara Folio" name="description">
   <title>The Subha &amp; Allah Rakhi Heritage - Dynamic Live Tree &amp; Hover Branch Explorer</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -88,7 +86,7 @@
     <div class="flex items-center gap-2 sm:gap-3">
       <button onclick="openContributeModal()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-600 active:scale-95 text-white text-xs sm:text-sm font-semibold shadow-md transition-all border border-emerald-500/40">
         <span class="material-symbols-outlined text-lg">edit_note</span>
-        <span>Contribute Record</span>
+        <span class="">Contribute Record</span>
       </button>
       <button onclick="window.print()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-800/80 hover:bg-amber-700 active:scale-95 text-amber-100 text-xs sm:text-sm font-medium border border-amber-600/30 transition-all">
         <span class="material-symbols-outlined text-lg">print</span>
@@ -100,7 +98,7 @@
       </a>
       <button onclick="openAdminPortal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm border border-slate-600/40 transition-all">
         <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
-        <span>Admin</span>
+        <span class="">Admin</span>
       </button>
     </div>
   </div>
@@ -121,9 +119,9 @@
      TRANSLUCENT FLOATING HOVER SUB-TREE PANEL
      Displays on hover alongside grandchild cards (e.g. Aslam)
      ========================================================== -->
-<div id="hover-tree-panel" class="fixed z-50 pointer-events-none hidden transition-all duration-150 ease-out" style="top: 0; left: 0;">
+<div id="hover-tree-panel" class="fixed z-50 hidden transition-all duration-150 ease-out flex items-start gap-3" style="top: 0px; left: 0px; pointer-events: auto;" onmouseenter="cancelHoverHide()" onmouseleave="scheduleHoverHide()">
+  <!-- Primary Sub-Tree Panel -->
   <div class="hover-tree-panel w-80 sm:w-88 rounded-2xl bg-white/92 backdrop-blur-md border-2 border-archival-gold/60 shadow-2xl p-4 text-slate-800 text-xs relative overflow-hidden" style="box-shadow: 0 18px 38px -6px rgba(8, 38, 30, 0.3), 0 0 0 1px rgba(197, 160, 89, 0.3);">
-    <!-- Decorative background tree ring watermark -->
     <div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full border-8 border-emerald-600/10 pointer-events-none"></div>
     
     <!-- Header with ancestral badge & branch count -->
@@ -145,24 +143,58 @@
     <!-- Fake Tree Visual Canvas / Vector Branch Diagram -->
     <div class="bg-amber-50/70 rounded-xl p-2.5 border border-amber-200/80 mb-2.5 relative">
       <div class="flex items-center justify-between text-[10px] font-bold text-amber-900 tracking-wider uppercase mb-1">
-        <span>Ancestral Branch Architecture</span>
+        <span class="">Ancestral Branch Architecture</span>
         <span class="text-[9px] text-emerald-800 font-semibold bg-emerald-100/80 px-1.5 py-0.2 rounded">Descendant Canopy</span>
       </div>
-      <!-- Rendered SVG Tree Illustration with branch paths matching descendant count -->
       <div id="hover-panel-svg" class="w-full flex justify-center py-1"></div>
     </div>
 
-    <!-- Children Roster & Grandchildren Breakdown -->
+    <!-- Children Roster & Interactive Grandchildren Cascading Trigger -->
     <div class="space-y-1.5" id="hover-panel-roster"></div>
 
     <div class="mt-2.5 pt-1.5 border-t border-slate-200/80 flex items-center justify-between text-[10px] text-slate-500">
       <span class="inline-flex items-center gap-1 text-emerald-800 font-medium">
-        <span class="material-symbols-outlined text-[12px]">touch_app</span> Click card for full biography
+        <span class="material-symbols-outlined text-[12px]">touch_app</span> Hover any child for Gen V canopy
       </span>
-      <span class="text-[9px] text-amber-800 bg-amber-100/70 px-1.5 py-0.5 rounded">Translucent View</span>
+      <span class="text-[9px] text-amber-800 bg-amber-100/70 px-1.5 py-0.5 rounded">Interactive Sub-Tree</span>
     </div>
   </div>
-</div>
+
+  <!-- Tier 2 Secondary Cascading Grandchild Branch Panel -->
+  <div id="hover-child-subpanel" class="hidden w-72 sm:w-80 rounded-2xl bg-white/92 backdrop-blur-md border-2 border-emerald-600/70 shadow-2xl p-4 text-slate-800 text-xs relative overflow-hidden transition-all duration-150 ease-out" style="box-shadow: 0 18px 40px -6px rgba(14, 58, 47, 0.4), 0 0 0 1px rgba(22, 91, 76, 0.3);">
+    <div class="flex items-center justify-between pb-2 mb-2 border-b border-emerald-100">
+      <div class="flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-archival-emerald text-base">hub</span>
+        <div>
+          <h6 id="child-subpanel-title" class="font-serif font-bold text-slate-900 text-xs leading-none">Child Branch</h6>
+          <span id="child-subpanel-subtitle" class="text-[9px] text-emerald-800 font-medium">Gen IV Parent</span>
+        </div>
+      </div>
+      <span class="text-[9px] font-bold text-amber-900 bg-amber-100/90 px-1.5 py-0.5 rounded border border-amber-300">Gen V Descent</span>
+    </div>
+
+    <!-- Dynamic SVG Branch Connectors to 4 Grandchildren -->
+    <div class="bg-emerald-50/60 rounded-xl p-2 border border-emerald-200/80 mb-2">
+      <div class="text-[9px] uppercase tracking-wider font-bold text-emerald-900 mb-1 flex items-center justify-between">
+        <span class="">Connected Grandchildren Boughs</span>
+        <span class="text-[8px] bg-emerald-200/80 px-1 rounded text-emerald-950">Live Allocation View</span>
+      </div>
+      <div id="child-subpanel-svg" class="w-full flex justify-center py-0.5"></div>
+    </div>
+
+    <!-- Allocated or Unallocated Grandchildren Detailed List -->
+    <div id="child-subpanel-content" class="space-y-1.5 text-xs"></div>
+
+    <div class="mt-2 pt-2 border-t border-slate-200/80 text-[10px] text-slate-500 flex items-center justify-between">
+      <span class="text-emerald-800 font-medium flex items-center gap-1">
+        <span class="material-symbols-outlined text-[11px]">assignment_ind</span> Lineage Assignment Active
+      </span>
+      <button onclick="openContributeForChild()" class="text-[9px] px-2 py-0.5 rounded bg-emerald-700 hover:bg-emerald-600 text-white font-semibold transition-colors">
+        + Assign Issue
+      </button>
+    </div>
+  </div>
+</div><div id="hover-child-subpanel" class="fixed z-50 hidden transition-all duration-150 ease-out" onmouseenter="cancelHoverHide()" onmouseleave="scheduleHoverHide()" style="top: 0px; left: 0px;"><div class="hover-tree-panel w-80 sm:w-88 rounded-2xl bg-white/92 backdrop-blur-md border-2 border-archival-gold/60 shadow-2xl p-4 text-slate-800 text-xs relative overflow-hidden" style="box-shadow: 0 18px 38px -6px rgba(8, 38, 30, 0.3), 0 0 0 1px rgba(197, 160, 89, 0.3);"><div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full border-8 border-emerald-600/10 pointer-events-none"></div><div class="flex items-center justify-between pb-2 mb-2 border-b border-heritage-300/80"><div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-archival-emerald text-archival-gold flex items-center justify-center text-xs"><span class="material-symbols-outlined text-sm">account_tree</span></span><div><h5 id="child-subpanel-title" class="font-serif font-bold text-slate-900 text-sm leading-tight">Child Descent Canopy</h5><span id="child-subpanel-meta" class="text-[10px] text-emerald-800 font-medium">Gen IV Branch</span></div></div><span id="child-subpanel-badge" class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">4 Grandchildren</span></div><div class="mb-2 px-2.5 py-1.5 rounded-lg bg-amber-50/80 border border-amber-200 text-[10px] text-amber-950 flex items-center gap-1.5"><span class="material-symbols-outlined text-amber-700 text-xs">info</span><span class="">Unallocated Lineage Canopy — Hovering to Preview Descent</span></div><div class="bg-amber-50/70 rounded-xl p-2 border border-amber-200/80 mb-2 relative"><div class="flex items-center justify-between text-[10px] font-bold text-amber-900 tracking-wider uppercase mb-1"><span class="">Descent Branch Architecture</span><span class="text-[9px] text-emerald-800 font-semibold bg-emerald-100/80 px-1.5 py-0.2 rounded">Preview</span></div><div id="child-subpanel-svg" class="w-full flex justify-center py-1"></div></div><div class="space-y-1.5" id="child-subpanel-roster"></div><div class="mt-2.5 pt-2 border-t border-slate-200/80 flex items-center justify-between"><button id="child-subpanel-assign-btn" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-[10px] font-semibold transition-all shadow-xs"><span class="material-symbols-outlined text-xs">person_add</span><span class="">+ Assign Issue</span></button><span class="text-[9px] text-slate-500 italic">Previewing Gen V leaves</span></div></div></div>
 
 <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12" role="main">
 
@@ -171,7 +203,7 @@
     <div class="relative z-10 max-w-3xl">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-archival-lightgreen border border-emerald-200 text-archival-emerald text-xs font-semibold mb-4">
         <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-        <span>Ancestral Shajara Folio • Kasur &amp; Historic Lahore Origins (c. 1890)</span>
+        <span class="">Ancestral Shajara Folio • Kasur &amp; Historic Lahore Origins (c. 1890)</span>
       </div>
       <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-tight mb-4">
         The Living Ledger of the Subha &amp; Allah Rakhi Clan
@@ -182,11 +214,11 @@
       <div class="flex flex-wrap items-center gap-3">
         <a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-archival-emerald hover:bg-emerald-800 text-white font-medium text-sm shadow-md transition-all" href="#tree-canvas">
           <span class="material-symbols-outlined text-lg">account_tree</span>
-          <span>Open Interactive Tree Skeleton</span>
+          <span class="">Open Interactive Tree Skeleton</span>
         </a>
         <a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-heritage-100 hover:bg-heritage-200 text-heritage-900 font-medium text-sm border border-[#d8cdb9] transition-all" href="#lineages">
           <span class="material-symbols-outlined text-lg">hub</span>
-          <span>Dadhal &amp; Nanhal Lineages</span>
+          <span class="">Dadhal &amp; Nanhal Lineages</span>
         </a>
       </div>
     </div>
@@ -272,7 +304,7 @@
     <div class="mb-4 px-4 py-2.5 rounded-xl bg-amber-50/90 border border-amber-200/90 flex items-center justify-between text-xs text-amber-950 shadow-2xs">
       <div class="flex items-center gap-2.5">
         <span class="material-symbols-outlined text-amber-700 text-base">park</span>
-        <span><strong>Interactive Hover Sub-Tree:</strong> Hover over any descendant card (such as <strong>Aslam</strong>, <strong>Akram</strong>, or <strong>Zarina</strong>) to see a visual fake tree with the exact number of branches equivalent to their descendants.</span>
+        <span class=""><strong>Interactive Hover Sub-Tree:</strong> Hover over any descendant card (such as <strong>Aslam</strong>, <strong>Akram</strong>, or <strong>Zarina</strong>) to see a visual fake tree with the exact number of branches equivalent to their descendants.</span>
       </div>
       <span class="hidden sm:inline-block text-[11px] text-amber-900 bg-amber-100/90 px-2.5 py-0.5 rounded font-semibold border border-amber-300/60">Translucent Preview</span>
     </div>
@@ -306,16 +338,14 @@
                 <div class="mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold inline-block">7 Leaves</div>
               </div>
               <div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-1">
-                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" 
-                     onmouseenter="handleCardHover(event, 'nasir_din')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Nasir Din', '1921–2005 • Married Gia and Baji Riaz. Father of Lalo, Tony, Mazhar.')">
+                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'nasir_din')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Nasir Din', '1921–2005 • Married Gia and Baji Riaz. Father of Lalo, Tony, Mazhar.')">
                   <div class="flex items-center justify-between">
                     <div class="font-bold text-slate-800">Nasir Din</div>
                     <span class="text-[9px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">3 branches</span>
                   </div>
                   <div class="text-[10px] text-slate-500">1921–2005 • m. Gia &amp; Baji Riaz</div>
                 </div>
-                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" 
-                     onmouseenter="handleCardHover(event, 'abdul_rehman')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Abdul Rehman [R-1]', '1930–2012 • 6 Issue: Uzma (Gola), Amir (d. 2026), Azhar, Lubna, Adil (Teddy), Aisha.')">
+                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'abdul_rehman')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Abdul Rehman [R-1]', '1930–2012 • 6 Issue: Uzma (Gola), Amir (d. 2026), Azhar, Lubna, Adil (Teddy), Aisha.')">
                   <div class="flex items-center justify-between">
                     <div class="font-bold text-slate-800">Abdul Rehman [R-1]</div>
                     <span class="text-[9px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">6 branches</span>
@@ -326,8 +356,7 @@
                   <div class="font-bold text-slate-800">Abdul Qayum</div>
                   <div class="text-[10px] text-slate-500">Individual Son</div>
                 </div>
-                <div class="cursor-pointer bg-amber-50/80 p-2 rounded-lg border border-amber-300 hover:border-amber-600 shadow-2xs text-left transition-all" 
-                     onmouseenter="handleCardHover(event, 'zarina')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Zarina', 'Dec 29, 1933 – Nov 6, 2006 • Married Afzaal Rana. Mother of Jamal &amp; Samina Rana. Grandmother of Anam, Ali, Ayra, Shan.')">
+                <div class="cursor-pointer bg-amber-50/80 p-2 rounded-lg border border-amber-300 hover:border-amber-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'zarina')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Zarina', 'Dec 29, 1933 – Nov 6, 2006 • Married Afzaal Rana. Mother of Jamal &amp; Samina Rana. Grandmother of Anam, Ali, Ayra, Shan.')">
                   <div class="flex items-center justify-between">
                     <div class="font-bold text-amber-950">Zarina</div>
                     <span class="text-[9px] text-amber-900 bg-amber-100 px-1 py-0.2 rounded border border-amber-300">2 branches • 4 grand</span>
@@ -363,8 +392,7 @@
                   <div class="font-bold text-slate-800">Apa Anwar</div>
                   <div class="text-[10px] text-slate-500">d. ~2019 • Matriarch</div>
                 </div>
-                <div class="cursor-pointer bg-emerald-50/80 p-2 rounded-lg border border-emerald-300 hover:border-emerald-600 shadow-2xs text-left transition-all" 
-                     onmouseenter="handleCardHover(event, 'razia_begum')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Razia Begum (Gia)', 'd. 2024 • Married Khair-Din (d. 1986). Children: Nasir-Din, Gogi, Hafiz, Tariq, Arif, Rehanna.')">
+                <div class="cursor-pointer bg-emerald-50/80 p-2 rounded-lg border border-emerald-300 hover:border-emerald-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'razia_begum')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Razia Begum (Gia)', 'd. 2024 • Married Khair-Din (d. 1986). Children: Nasir-Din, Gogi, Hafiz, Tariq, Arif, Rehanna.')">
                   <div class="flex items-center justify-between">
                     <div class="font-bold text-emerald-950">Razia Begum (Gia)</div>
                     <span class="text-[9px] text-emerald-800 bg-emerald-100 px-1 py-0.2 rounded border border-emerald-300">6 branches</span>
@@ -402,13 +430,10 @@
               <div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-3">
                 
                 <!-- ASLAM: FEATURED GRANDCHILD CARD -->
-                <div class="cursor-pointer bg-emerald-50/80 hover:bg-emerald-100/90 p-2.5 rounded-lg border-2 border-emerald-600 shadow-xs hover:shadow-md text-left transition-all relative group" 
-                     onmouseenter="handleCardHover(event, 'aslam')" 
-                     onmouseleave="handleCardLeave()" 
-                     onclick="showPersonModal('Aslam', 'Jan 9, 1938 – Aug 29, 2024 • Keystone Son of Sardar Begum &amp; Ismael. Father of 4 children: Imran (b. 1968), Shahzia (b. 1969), Rizwan (b. 1970), Fauzia (b. 1973). Grandfather of Ambereen, Alina, Hamzah, and Farhan.')">
+                <div class="cursor-pointer bg-emerald-50/80 hover:bg-emerald-100/90 p-2.5 rounded-lg border-2 border-emerald-600 shadow-xs hover:shadow-md text-left transition-all relative group" onmouseenter="handleCardHover(event, 'aslam')" onmouseleave="scheduleHoverHide()" onclick="showPersonModal('Aslam', 'Jan 9, 1938 – Aug 29, 2024 • Keystone Son of Sardar Begum &amp; Ismael. Father of 4 children: Imran (b. 1968), Shahzia (b. 1969), Rizwan (b. 1970), Fauzia (b. 1973). Grandfather of Ambereen, Alina, Hamzah, and Farhan.')">
                   <div class="flex items-center justify-between mb-0.5">
                     <div class="font-bold text-emerald-950 flex items-center gap-1.5">
-                      <span>Aslam</span>
+                      <span class="">Aslam</span>
                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block animate-ping"></span>
                     </div>
                     <span class="text-[9px] font-semibold text-emerald-900 bg-emerald-200/90 px-1.5 py-0.2 rounded border border-emerald-300">
@@ -418,12 +443,11 @@
                   <div class="text-[10px] text-slate-600">1938–2024 • Gen IV &amp; V</div>
                   <div class="mt-1 flex items-center gap-1 text-[9px] text-emerald-800 font-medium opacity-85 group-hover:opacity-100">
                     <span class="material-symbols-outlined text-[11px]">park</span>
-                    <span>Hover for Descendant Tree</span>
+                    <span class="">Hover for Descendant Tree</span>
                   </div>
                 </div>
 
-                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" 
-                     onmouseenter="handleCardHover(event, 'akram')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Akram', '1944–2014 • Children: Shumaila, Kashif, Nadia, Asif, Hira.')">
+                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'akram')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Akram', '1944–2014 • Children: Shumaila, Kashif, Nadia, Asif, Hira.')">
                   <div class="flex items-center justify-between">
                     <div class="font-bold text-slate-800">Akram</div>
                     <span class="text-[9px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">5 branches</span>
@@ -436,8 +460,7 @@
                   <div class="text-[10px] text-slate-500">Individual Son</div>
                 </div>
 
-                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" 
-                     onmouseenter="handleCardHover(event, 'jahanghir')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Jahanghir', 'd. March 31, 2019 • Children: Adnan (d. 1999), Irfan (b. 1977), Adil (Bobby), Maryam.')">
+                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'jahanghir')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Jahanghir', 'd. March 31, 2019 • Children: Adnan (d. 1999), Irfan (b. 1977), Adil (Bobby), Maryam.')">
                   <div class="flex items-center justify-between">
                     <div class="font-bold text-slate-800">Jahanghir</div>
                     <span class="text-[9px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">4 branches</span>
@@ -445,8 +468,7 @@
                   <div class="text-[10px] text-slate-500">d. 2019 • Irfan Line</div>
                 </div>
 
-                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" 
-                     onmouseenter="handleCardHover(event, 'munir')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Munir', 'd. Jan 4, 2023 • Children: Rabia, Afraz (b. 1984; kids: Sufyan, Aqsa), Suleyman (b. 1991).')">
+                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'munir')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Munir', 'd. Jan 4, 2023 • Children: Rabia, Afraz (b. 1984; kids: Sufyan, Aqsa), Suleyman (b. 1991).')">
                   <div class="flex items-center justify-between">
                     <div class="font-bold text-slate-800">Munir</div>
                     <span class="text-[9px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">3 branches</span>
@@ -459,8 +481,7 @@
                   <div class="text-[10px] text-slate-500">d. Dec 6, 2025</div>
                 </div>
 
-                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" 
-                     onmouseenter="handleCardHover(event, 'naseem')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Naseem', 'd. Feb 18, 2024 • Children: Saima, Jonny Babar, Khurram, Arshia, and 1 more.')">
+                <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'naseem')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Naseem', 'd. Feb 18, 2024 • Children: Saima, Jonny Babar, Khurram, Arshia, and 1 more.')">
                   <div class="flex items-center justify-between">
                     <div class="font-bold text-slate-800">Naseem</div>
                     <span class="text-[9px] text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">5 branches</span>
@@ -641,10 +662,10 @@
             <div class="font-bold text-slate-900">2. Chiragh-Din</div>
             <div class="text-slate-600 text-xs">Brother of Mola Baksh; Progenitor of Ismael, Khair-Din, Tufail, Zori.</div>
             <ul class="list-disc list-inside text-xs space-y-1 text-slate-600 pl-1">
-              <li><strong>Ismael:</strong> Married to Sardar Begum (Branch 03). Father of Aslam, Akram, Saleem, Jahanghir, Munir, Parveen, Naseem.</li>
-              <li><strong>Khair-Din (d. 1986):</strong> Married to Razia Begum (Gia). Children: Nasir-Din, Gogi, Hafiz, Tariq, Arif, Rehanna.</li>
-              <li><strong>Tufail:</strong> Married in Karachi (3 stepdaughters).</li>
-              <li><strong>Zori (~1924–2009):</strong> Married Miraj-Din. Progenitors of 11 children.</li>
+              <li class=""><strong>Ismael:</strong> Married to Sardar Begum (Branch 03). Father of Aslam, Akram, Saleem, Jahanghir, Munir, Parveen, Naseem.</li>
+              <li class=""><strong>Khair-Din (d. 1986):</strong> Married to Razia Begum (Gia). Children: Nasir-Din, Gogi, Hafiz, Tariq, Arif, Rehanna.</li>
+              <li class=""><strong>Tufail:</strong> Married in Karachi (3 stepdaughters).</li>
+              <li class=""><strong>Zori (~1924–2009):</strong> Married Miraj-Din. Progenitors of 11 children.</li>
             </ul>
           </div>
           <div class="p-4 bg-amber-50/60 rounded-xl border border-amber-200">
@@ -653,22 +674,22 @@
               <div>
                 <div class="font-semibold text-emerald-900 mb-1">5 Sons:</div>
                 <ul class="space-y-0.5 text-slate-600">
-                  <li>• Mohammed Younis</li>
-                  <li>• Parvez Murad Din</li>
-                  <li>• Jamshed Akhtar Murad Din</li>
-                  <li>• Mohammed Nuhaiz Din</li>
-                  <li>• Mohammed Yousuf</li>
+                  <li class="">• Mohammed Younis</li>
+                  <li class="">• Parvez Murad Din</li>
+                  <li class="">• Jamshed Akhtar Murad Din</li>
+                  <li class="">• Mohammed Nuhaiz Din</li>
+                  <li class="">• Mohammed Yousuf</li>
                 </ul>
               </div>
               <div>
                 <div class="font-semibold text-emerald-900 mb-1">6 Daughters:</div>
                 <ul class="space-y-0.5 text-slate-600">
-                  <li>• Sameer's mom</li>
-                  <li>• Rubina Murad Din</li>
-                  <li>• Rehana Kausar Din</li>
-                  <li>• Rukhsana Ishrat Mehmood Butt (d. 2015)</li>
-                  <li>• Farzana Abid</li>
-                  <li>• Masarat Ishfaq</li>
+                  <li class="">• Sameer's mom</li>
+                  <li class="">• Rubina Murad Din</li>
+                  <li class="">• Rehana Kausar Din</li>
+                  <li class="">• Rukhsana Ishrat Mehmood Butt (d. 2015)</li>
+                  <li class="">• Farzana Abid</li>
+                  <li class="">• Masarat Ishfaq</li>
                 </ul>
               </div>
             </div>
@@ -710,26 +731,26 @@
             <div class="p-3 bg-heritage-50 rounded-xl border border-heritage-200">
               <div class="font-bold text-slate-900 text-xs">Line of Haji Sher Mohammad</div>
               <ul class="text-xs text-slate-600 mt-1 space-y-1">
-                <li>• <strong>Mian Shamas-u-Din</strong></li>
-                <li>• <strong>FaizUllah</strong> (never married, died late teens)</li>
-                <li>• <strong>Bakhtavar</strong> (married Chacha Mana)</li>
+                <li class="">• <strong>Mian Shamas-u-Din</strong></li>
+                <li class="">• <strong>FaizUllah</strong> (never married, died late teens)</li>
+                <li class="">• <strong>Bakhtavar</strong> (married Chacha Mana)</li>
               </ul>
             </div>
             <div class="p-3 bg-heritage-50 rounded-xl border border-heritage-200">
               <div class="font-bold text-slate-900 text-xs">Line of Qutb-Din</div>
               <ul class="text-xs text-slate-600 mt-1 space-y-1">
-                <li>• <strong>Chacha Mana</strong> (married Bakhtavar)</li>
-                <li>• <strong>Shaukat</strong> → Barkat Ali &amp; Nucho</li>
+                <li class="">• <strong>Chacha Mana</strong> (married Bakhtavar)</li>
+                <li class="">• <strong>Shaukat</strong> → Barkat Ali &amp; Nucho</li>
               </ul>
             </div>
           </div>
           <div class="p-4 bg-amber-50/60 rounded-xl border border-amber-200 space-y-2">
             <div class="font-bold text-amber-950 text-xs uppercase tracking-wider">Descendants of Bakhtavar &amp; Chacha Mana</div>
             <ul class="text-xs space-y-1 text-slate-700">
-              <li>• <strong>Pima</strong> (d. April 2017)</li>
-              <li>• <strong>Pua</strong> (Mother of Baji Riaz)</li>
-              <li>• <strong>Baji Rehmat:</strong> Married to M. Sadiq → <strong>Mehmood</strong> (4 kids)</li>
-              <li>• <strong>Wazir</strong> (Revered Daughter)</li>
+              <li class="">• <strong>Pima</strong> (d. April 2017)</li>
+              <li class="">• <strong>Pua</strong> (Mother of Baji Riaz)</li>
+              <li class="">• <strong>Baji Rehmat:</strong> Married to M. Sadiq → <strong>Mehmood</strong> (4 kids)</li>
+              <li class="">• <strong>Wazir</strong> (Revered Daughter)</li>
             </ul>
           </div>
           <div class="p-4 bg-archival-deepgreen text-white rounded-xl border border-archival-gold/40 shadow-sm">
@@ -765,47 +786,47 @@
       <div class="p-4 bg-heritage-50 rounded-xl border border-heritage-200">
         <div class="text-xs font-bold text-archival-emerald uppercase tracking-wider mb-2">January – April</div>
         <ul class="text-xs space-y-1.5 text-slate-700">
-          <li class="flex justify-between"><span>Fauzia Aslam</span><span class="font-semibold">Jan 03</span></li>
-          <li class="flex justify-between"><span>Shamshad</span><span class="font-semibold">Jan 06</span></li>
-          <li class="flex justify-between"><span>Aslam</span><span class="font-semibold">Jan 09</span></li>
-          <li class="flex justify-between"><span>Imran Aslam</span><span class="font-semibold">Jan 23</span></li>
-          <li class="flex justify-between text-red-700"><span>Phima Naseem (d. 2016)</span><span>Feb 12</span></li>
-          <li class="flex justify-between text-red-700"><span>Baji Riaz (d. 2013)</span><span>Feb 14</span></li>
-          <li class="flex justify-between text-red-700"><span>Naseem (d. 2024)</span><span>Feb 18</span></li>
-          <li class="flex justify-between"><span>Hamzah</span><span class="font-semibold">Mar 11</span></li>
-          <li class="flex justify-between"><span>Suleyman Ayaz</span><span class="font-semibold">Mar 13</span></li>
-          <li class="flex justify-between text-red-700"><span>Afzaal Rana (d. 2018)</span><span>Mar 29</span></li>
-          <li class="flex justify-between"><span>Shahzia Aslam</span><span class="font-semibold">Apr 06</span></li>
+          <li class="flex justify-between"><span class="">Fauzia Aslam</span><span class="font-semibold">Jan 03</span></li>
+          <li class="flex justify-between"><span class="">Shamshad</span><span class="font-semibold">Jan 06</span></li>
+          <li class="flex justify-between"><span class="">Aslam</span><span class="font-semibold">Jan 09</span></li>
+          <li class="flex justify-between"><span class="">Imran Aslam</span><span class="font-semibold">Jan 23</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Phima Naseem (d. 2016)</span><span class="">Feb 12</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Baji Riaz (d. 2013)</span><span class="">Feb 14</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Naseem (d. 2024)</span><span class="">Feb 18</span></li>
+          <li class="flex justify-between"><span class="">Hamzah</span><span class="font-semibold">Mar 11</span></li>
+          <li class="flex justify-between"><span class="">Suleyman Ayaz</span><span class="font-semibold">Mar 13</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Afzaal Rana (d. 2018)</span><span class="">Mar 29</span></li>
+          <li class="flex justify-between"><span class="">Shahzia Aslam</span><span class="font-semibold">Apr 06</span></li>
         </ul>
       </div>
       <div class="p-4 bg-heritage-50 rounded-xl border border-heritage-200">
         <div class="text-xs font-bold text-archival-emerald uppercase tracking-wider mb-2">May – September</div>
         <ul class="text-xs space-y-1.5 text-slate-700">
-          <li class="flex justify-between text-red-700"><span>Dilawar Hussain (d. 2014)</span><span>Jun 06</span></li>
-          <li class="flex justify-between text-red-700"><span>Rukhsana Ishrat (d. 2015)</span><span>June</span></li>
-          <li class="flex justify-between"><span>Jamal Rana</span><span class="font-semibold">Aug 08</span></li>
-          <li class="flex justify-between text-red-700"><span>Lalo (d. 2022)</span><span>Aug 17</span></li>
-          <li class="flex justify-between"><span>Hassan Hafeez</span><span class="font-semibold">Aug 23</span></li>
-          <li class="flex justify-between"><span>Afraz Ayaz</span><span class="font-semibold">Aug 25</span></li>
-          <li class="flex justify-between text-red-700"><span>Aslam (d. 2024)</span><span>Aug 29</span></li>
-          <li class="flex justify-between"><span>Goher Qadeer</span><span class="font-semibold">Sep 10</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Dilawar Hussain (d. 2014)</span><span class="">Jun 06</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Rukhsana Ishrat (d. 2015)</span><span class="">June</span></li>
+          <li class="flex justify-between"><span class="">Jamal Rana</span><span class="font-semibold">Aug 08</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Lalo (d. 2022)</span><span class="">Aug 17</span></li>
+          <li class="flex justify-between"><span class="">Hassan Hafeez</span><span class="font-semibold">Aug 23</span></li>
+          <li class="flex justify-between"><span class="">Afraz Ayaz</span><span class="font-semibold">Aug 25</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Aslam (d. 2024)</span><span class="">Aug 29</span></li>
+          <li class="flex justify-between"><span class="">Goher Qadeer</span><span class="font-semibold">Sep 10</span></li>
         </ul>
       </div>
       <div class="p-4 bg-heritage-50 rounded-xl border border-heritage-200">
         <div class="text-xs font-bold text-archival-emerald uppercase tracking-wider mb-2">October – December</div>
         <ul class="text-xs space-y-1.5 text-slate-700">
-          <li class="flex justify-between"><span>Farhan</span><span class="font-semibold">Oct 09</span></li>
-          <li class="flex justify-between text-red-700"><span>Musarat (d. 2021)</span><span>Oct 17</span></li>
-          <li class="flex justify-between text-red-700"><span>Rubina (d. 2023)</span><span>Oct 26</span></li>
-          <li class="flex justify-between"><span>Uncle Qadeer</span><span class="font-semibold">Nov 06</span></li>
-          <li class="flex justify-between text-red-700"><span>Zarina (d. 2006)</span><span>Nov 06</span></li>
-          <li class="flex justify-between"><span>Rizwan Aslam</span><span class="font-semibold">Nov 13</span></li>
-          <li class="flex justify-between text-red-700"><span>Shaukat (d. 2022)</span><span>Nov 21</span></li>
-          <li class="flex justify-between"><span>Ambereen</span><span class="font-semibold">Nov 28</span></li>
-          <li class="flex justify-between"><span>Irfan Jahanghir</span><span class="font-semibold">Dec 01</span></li>
-          <li class="flex justify-between"><span>Anam Rana</span><span class="font-semibold">Dec 04</span></li>
-          <li class="flex justify-between"><span>Alina</span><span class="font-semibold">Dec 05</span></li>
-          <li class="flex justify-between"><span>Ali &amp; Ayra Rana</span><span class="font-semibold">Dec 23</span></li>
+          <li class="flex justify-between"><span class="">Farhan</span><span class="font-semibold">Oct 09</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Musarat (d. 2021)</span><span class="">Oct 17</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Rubina (d. 2023)</span><span class="">Oct 26</span></li>
+          <li class="flex justify-between"><span class="">Uncle Qadeer</span><span class="font-semibold">Nov 06</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Zarina (d. 2006)</span><span class="">Nov 06</span></li>
+          <li class="flex justify-between"><span class="">Rizwan Aslam</span><span class="font-semibold">Nov 13</span></li>
+          <li class="flex justify-between text-red-700"><span class="">Shaukat (d. 2022)</span><span class="">Nov 21</span></li>
+          <li class="flex justify-between"><span class="">Ambereen</span><span class="font-semibold">Nov 28</span></li>
+          <li class="flex justify-between"><span class="">Irfan Jahanghir</span><span class="font-semibold">Dec 01</span></li>
+          <li class="flex justify-between"><span class="">Anam Rana</span><span class="font-semibold">Dec 04</span></li>
+          <li class="flex justify-between"><span class="">Alina</span><span class="font-semibold">Dec 05</span></li>
+          <li class="flex justify-between"><span class="">Ali &amp; Ayra Rana</span><span class="font-semibold">Dec 23</span></li>
         </ul>
       </div>
     </div>
@@ -828,7 +849,7 @@
     <div class="p-5">
       <p class="text-xs sm:text-sm text-slate-700 leading-relaxed" id="personModalBody"></p>
       <div class="mt-4 pt-3 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500">
-        <span id="personModalTag">Certified Standalone Leaf</span>
+        <span id="personModalTag" class="">Certified Standalone Leaf</span>
         <button class="px-3 py-1.5 rounded-lg bg-heritage-100 hover:bg-heritage-200 text-slate-800 font-medium" onclick="closePersonModal()">Close</button>
       </div>
     </div>
@@ -842,8 +863,8 @@
       <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-archival-gold">add_photo_alternate</span>
         <div>
-          <h4 class="font-serif font-bold text-base">Contribute Ancestor Photo &amp; Record</h4>
-          <p class="text-[11px] text-emerald-200">Preserving verified family lineages, portraits &amp; lore</p>
+          <h4 class="font-serif font-bold text-base">Contribute Ancestor Record &amp; Lineage Branch</h4>
+          <p class="text-[11px] text-emerald-200">Preserving verified family lineages, grandchildren boughs &amp; portraits</p>
         </div>
       </div>
       <button class="text-slate-300 hover:text-white p-1 rounded-lg" onclick="closeContributeModal()">
@@ -851,39 +872,83 @@
       </button>
     </div>
     <div class="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm custom-scroll">
-      <div>
-        <label class="block font-semibold text-slate-700 mb-1" for="contrib-branch">Select Ancestral Branch / Limb *</label>
-        <select class="w-full p-2.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-medium" id="contrib-branch">
-          <option value="1">Branch 1: Hussain Bibi (Limb 01 • Eldest Dau)</option>
-          <option value="2">Branch 2: Hassan Bibi (Limb 02 • 2nd Dau)</option>
-          <option value="3" selected>Branch 3: Sardar Begum (Limb 03 • Keystone)</option>
-          <option value="4">Branch 4: Ghulam Fatima (Limb 04 • 4th Dau)</option>
-          <option value="5">Branch 5: Mumtaz Begum (Limb 05 • 5th Dau)</option>
-          <option value="6">Branch 6: Ghulam Hussain (Limb 06 • Sole Son)</option>
-        </select>
-      </div>
-      <div>
-        <label class="block font-semibold text-slate-700 mb-1" for="contrib-person-name">Family Member Name *</label>
-        <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-person-name" placeholder="Full name of descendant" type="text"/>
-      </div>
+      <!-- Generation Level Selection -->
       <div class="grid grid-cols-2 gap-3">
         <div>
-          <label class="block font-semibold text-slate-700 mb-1" for="contrib-dates">Birth &amp; Death / Dates</label>
-          <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-dates" placeholder="e.g. b. 1968" type="text"/>
+          <label class="block font-semibold text-slate-700 mb-1" for="contrib-tier">Generation Level *</label>
+          <select class="w-full p-2.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-medium" id="contrib-tier" onchange="updateParentOptions()">
+            <option value="gen3">Gen III (Child of 6 Main Limbs)</option>
+            <option value="gen4">Gen IV (e.g. Child of Aslam / Grandchild of Sardar Begum)</option>
+            <option value="gen5" selected="">Gen V (Great-Grandchild / Child of Imran, Shahzia, etc.)</option>
+          </select>
         </div>
         <div>
-          <label class="block font-semibold text-slate-700 mb-1" for="contrib-subtitle">Lineage Note / Spouse</label>
-          <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-subtitle" placeholder="e.g. Son of Aslam" type="text"/>
+          <label class="block font-semibold text-slate-700 mb-1" for="contrib-branch">Primary Ancestral Limb *</label>
+          <select class="w-full p-2.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-medium" id="contrib-branch" onchange="updateParentOptions()">
+            <option value="3" selected="">Branch 3: Sardar Begum (Limb 03 • Keystone)</option>
+            <option value="1">Branch 1: Hussain Bibi (Limb 01 • Eldest Dau)</option>
+            <option value="2">Branch 2: Hassan Bibi (Limb 02 • 2nd Dau)</option>
+            <option value="4">Branch 4: Ghulam Fatima (Limb 04 • 4th Dau)</option>
+            <option value="5">Branch 5: Mumtaz Begum (Limb 05 • 5th Dau)</option>
+            <option value="6">Branch 6: Ghulam Hussain (Limb 06 • Sole Son)</option>
+          </select>
         </div>
       </div>
+
+      <!-- Parent Assignment Selector -->
+      <div class="p-3 bg-emerald-50/80 rounded-xl border border-emerald-200/80">
+        <label class="block font-bold text-emerald-950 mb-1 flex items-center justify-between" for="contrib-parent">
+          <span class="">Assign Immediate Parent / Branch Stem *</span>
+          <span class="text-[10px] text-emerald-800 font-normal">Updates Multi-Tier Hover Tree</span>
+        </label>
+        <select class="w-full p-2.5 rounded-lg border border-emerald-300 bg-white text-xs font-semibold text-slate-800" id="contrib-parent">
+          <optgroup label="Aslam's Children (Gen IV)">
+            <option value="imran_aslam">Imran Aslam (b. 1968)</option>
+            <option value="shahzia_aslam">Shahzia Aslam (b. 1969)</option>
+            <option value="rizwan_aslam">Rizwan Aslam (b. 1970)</option>
+            <option value="fauzia_aslam">Fauzia Aslam (b. 1973)</option>
+          </optgroup>
+          <optgroup label="Gen III Ancestor Cards">
+            <option value="aslam">Aslam (1938–2024)</option>
+            <option value="akram">Akram (1944–2014)</option>
+            <option value="jahanghir">Jahanghir (d. 2019)</option>
+            <option value="munir">Munir (d. 2023)</option>
+            <option value="naseem">Naseem (d. 2024)</option>
+            <option value="zarina">Zarina (1933–2006)</option>
+            <option value="nasir_din">Nasir Din (1921–2005)</option>
+          </optgroup>
+        </select>
+      </div>
+
       <div>
-        <label class="block font-semibold text-slate-700 mb-1" for="contrib-notes">Biographical Notes</label>
-        <textarea class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-notes" placeholder="Notes, generation, children..." rows="3"></textarea>
+        <label class="block font-semibold text-slate-700 mb-1" for="contrib-person-name">Descendant Full Name *</label>
+        <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-person-name" placeholder="e.g. Ambereen / Hamzah / Alina / Farhan or new descendant" type="text">
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1" for="contrib-dates">Birth &amp; Death / Milestones</label>
+          <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-dates" placeholder="e.g. b. Nov 28, 2000" type="text">
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1" for="contrib-status">Branch Status / Note</label>
+          <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-subtitle" placeholder="e.g. Verified Grandchild • Inscribed" type="text">
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-semibold text-slate-700 mb-1" for="contrib-notes">Biographical &amp; Oral Tradition Notes</label>
+        <textarea class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-notes" placeholder="Enter verification source, city of residence, oral family recollection..." rows="3"></textarea>
       </div>
     </div>
-    <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2">
-      <button class="px-4 py-2 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-medium" onclick="closeContributeModal()">Cancel</button>
-      <button class="px-4 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold shadow" onclick="submitContribution()">Submit &amp; Inscribe to Tree</button>
+    <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+      <span class="text-[11px] text-emerald-800 font-medium flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">verified</span> Real-time dynamic branch rendering
+      </span>
+      <div class="flex items-center gap-2">
+        <button class="px-4 py-2 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-medium" onclick="closeContributeModal()">Cancel</button>
+        <button class="px-4 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold shadow transition-all" onclick="submitContribution()">Inscribe &amp; Update Live Tree</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1368,5 +1433,7 @@
     closeContributeModal();
   }
 </script>
-</body>
-</html>
+
+
+
+</body></html>
