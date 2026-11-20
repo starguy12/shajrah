@@ -430,22 +430,49 @@
               <div class="mt-6 space-y-2 w-full text-xs" id="branch-leaves-3">
                 
                 <!-- ASLAM: FEATURED GRANDCHILD CARD -->
-                <div class="cursor-pointer bg-emerald-50/80 hover:bg-emerald-100/90 p-2.5 rounded-lg border-2 border-emerald-600 shadow-xs hover:shadow-md text-left transition-all relative group" onmouseenter="handleCardHover(event, 'aslam')" onmouseleave="scheduleHoverHide()" onclick="showPersonModal('Aslam', 'Jan 9, 1938 – Aug 29, 2024 • Keystone Son of Sardar Begum &amp; Ismael. Father of 4 children: Imran (b. 1968), Shahzia (b. 1969), Rizwan (b. 1970), Fauzia (b. 1973). Grandfather of Ambereen, Alina, Hamzah, and Farhan.')">
-                  <div class="flex items-center justify-between mb-0.5">
-                    <div class="font-bold text-emerald-950 flex items-center gap-1.5">
-                      <span class="">Aslam</span>
-                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block animate-ping"></span>
-                    </div>
-                    <span class="text-[9px] font-semibold text-emerald-900 bg-emerald-200/90 px-1.5 py-0.2 rounded border border-emerald-300">
-                      4 Branches • 4 Grand
-                    </span>
-                  </div>
-                  <div class="text-[10px] text-slate-600">1938–2024 • Gen IV &amp; V</div>
-                  <div class="mt-1 flex items-center gap-1 text-[9px] text-emerald-800 font-medium opacity-85 group-hover:opacity-100">
-                    <span class="material-symbols-outlined text-[11px]">park</span>
-                    <span class="">Hover for Descendant Tree</span>
-                  </div>
-                </div>
+                <div class="bg-emerald-50/80 p-2.5 rounded-lg border-2 border-emerald-600 shadow-xs text-left transition-all relative group">
+  <div class="cursor-pointer" onclick="showPersonModal('Aslam', 'Jan 9, 1938 – Aug 29, 2024 • Keystone Son of Sardar Begum &amp; Ismael. Father of Imran, Shahzia, Rizwan, and Fauzia. Grandfather through Fauzia (4 children: Ambereen, Hamzah, Alina, Farhan) and Rizwan.')" onmouseenter="handleCardHover(event, 'aslam')" onmouseleave="handleCardLeave()">
+    <div class="flex items-center justify-between mb-0.5">
+      <div class="font-bold text-emerald-950 flex items-center gap-1.5">
+        <span class="">Aslam</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block animate-ping"></span>
+      </div>
+      <span class="text-[9px] font-semibold text-emerald-900 bg-emerald-200/90 px-1.5 py-0.2 rounded border border-emerald-300">4 Branches</span>
+    </div>
+    <div class="text-[10px] text-slate-600">1938–2024 • Gen IV &amp; V</div>
+    <div class="mt-1 flex items-center gap-1 text-[9px] text-emerald-800 font-medium opacity-85 group-hover:opacity-100">
+      <span class="material-symbols-outlined text-[11px]">park</span>
+      <span class="">Hover for Gen IV Sub-Tree</span>
+    </div>
+  </div>
+  <div class="mt-2 pt-2 border-t border-emerald-200/80 space-y-1.5">
+    <div class="text-[9px] font-bold uppercase tracking-wider text-emerald-900 flex items-center justify-between">
+      <span class="">Aslam's Children &amp; Branches</span>
+    </div>
+    <div class="cursor-pointer bg-white p-1.5 rounded border border-emerald-200 hover:border-emerald-600 shadow-2xs transition-all" onmouseenter="handleCardHover(event, 'fauzia_aslam')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Fauzia Aslam', 'b. Jan 03, 1973 • Daughter of Aslam. Mother of 4 children: Ambereen, Hamzah, Alina, and Farhan.')">
+      <div class="flex items-center justify-between">
+        <div class="font-bold text-emerald-950 text-[11px]">Fauzia Aslam</div>
+        <span class="text-[9px] font-semibold text-emerald-800 bg-emerald-100 px-1.5 py-0.2 rounded border border-emerald-300">4 Children</span>
+      </div>
+      <div class="text-[9px] text-slate-500">Hover to view 4 grandchildren branch</div>
+    </div>
+    <div id="card-rizwan-aslam" class="cursor-pointer bg-amber-50/90 p-1.5 rounded border border-amber-300 hover:border-amber-600 shadow-2xs transition-all" onmouseenter="handleCardHover(event, 'rizwan_aslam')" onmouseleave="handleCardLeave()">
+      <div class="flex items-center justify-between">
+        <div class="font-bold text-amber-950 text-[11px]">Rizwan Aslam</div>
+        <span id="rizwan-child-counter" class="text-[9px] font-bold text-amber-900 bg-amber-200/90 px-1.5 py-0.2 rounded border border-amber-400">3 Children</span>
+      </div>
+      <div class="text-[9px] text-slate-600 mt-0.5" id="rizwan-card-desc">Children: Recorded (3 slots) • Hover to view</div>
+      <button onclick="event.stopPropagation(); openQuickContributeForRizwan();" class="mt-1.5 w-full flex items-center justify-center gap-1 py-1 px-2 rounded bg-amber-800 hover:bg-amber-700 text-amber-50 text-[10px] font-semibold shadow-xs transition-all border border-amber-950/20">
+        <span class="material-symbols-outlined text-[13px]">add_circle</span>
+        <span class="">Test Add via Contribute</span>
+      </button>
+    </div>
+    <div class="flex gap-1 text-[9px] text-slate-500">
+      <span class="flex-1 bg-white/80 p-1 rounded border border-slate-200 text-center font-medium">Imran Aslam</span>
+      <span class="flex-1 bg-white/80 p-1 rounded border border-slate-200 text-center font-medium">Shahzia Aslam</span>
+    </div>
+  </div>
+</div>
 
                 <div class="cursor-pointer bg-white p-2 rounded-lg border border-slate-300 hover:border-emerald-600 shadow-2xs text-left transition-all" onmouseenter="handleCardHover(event, 'akram')" onmouseleave="handleCardLeave()" onclick="showPersonModal('Akram', '1944–2014 • Children: Shumaila, Kashif, Nadia, Asif, Hira.')">
                   <div class="flex items-center justify-between">
@@ -871,76 +898,77 @@
         <span class="material-symbols-outlined text-xl">close</span>
       </button>
     </div>
-    <div class="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm custom-scroll">
-      <!-- Generation Level Selection -->
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1" for="contrib-tier">Generation Level *</label>
-          <select class="w-full p-2.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-medium" id="contrib-tier" onchange="updateParentOptions()">
-            <option value="gen3">Gen III (Child of 6 Main Limbs)</option>
-            <option value="gen4">Gen IV (e.g. Child of Aslam / Grandchild of Sardar Begum)</option>
-            <option value="gen5" selected="">Gen V (Great-Grandchild / Child of Imran, Shahzia, etc.)</option>
-          </select>
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1" for="contrib-branch">Primary Ancestral Limb *</label>
-          <select class="w-full p-2.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-medium" id="contrib-branch" onchange="updateParentOptions()">
-            <option value="3" selected="">Branch 3: Sardar Begum (Limb 03 • Keystone)</option>
-            <option value="1">Branch 1: Hussain Bibi (Limb 01 • Eldest Dau)</option>
-            <option value="2">Branch 2: Hassan Bibi (Limb 02 • 2nd Dau)</option>
-            <option value="4">Branch 4: Ghulam Fatima (Limb 04 • 4th Dau)</option>
-            <option value="5">Branch 5: Mumtaz Begum (Limb 05 • 5th Dau)</option>
-            <option value="6">Branch 6: Ghulam Hussain (Limb 06 • Sole Son)</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Parent Assignment Selector -->
-      <div class="p-3 bg-emerald-50/80 rounded-xl border border-emerald-200/80">
-        <label class="block font-bold text-emerald-950 mb-1 flex items-center justify-between" for="contrib-parent">
-          <span class="">Assign Immediate Parent / Branch Stem *</span>
-          <span class="text-[10px] text-emerald-800 font-normal">Updates Multi-Tier Hover Tree</span>
-        </label>
-        <select class="w-full p-2.5 rounded-lg border border-emerald-300 bg-white text-xs font-semibold text-slate-800" id="contrib-parent">
-          <optgroup label="Aslam's Children (Gen IV)">
-            <option value="imran_aslam">Imran Aslam (b. 1968)</option>
-            <option value="shahzia_aslam">Shahzia Aslam (b. 1969)</option>
-            <option value="rizwan_aslam">Rizwan Aslam (b. 1970)</option>
-            <option value="fauzia_aslam">Fauzia Aslam (b. 1973)</option>
-          </optgroup>
-          <optgroup label="Gen III Ancestor Cards">
-            <option value="aslam">Aslam (1938–2024)</option>
-            <option value="akram">Akram (1944–2014)</option>
-            <option value="jahanghir">Jahanghir (d. 2019)</option>
-            <option value="munir">Munir (d. 2023)</option>
-            <option value="naseem">Naseem (d. 2024)</option>
-            <option value="zarina">Zarina (1933–2006)</option>
-            <option value="nasir_din">Nasir Din (1921–2005)</option>
-          </optgroup>
-        </select>
-      </div>
-
-      <div>
-        <label class="block font-semibold text-slate-700 mb-1" for="contrib-person-name">Descendant Full Name *</label>
-        <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-person-name" placeholder="e.g. Ambereen / Hamzah / Alina / Farhan or new descendant" type="text">
-      </div>
-
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1" for="contrib-dates">Birth &amp; Death / Milestones</label>
-          <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-dates" placeholder="e.g. b. Nov 28, 2000" type="text">
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1" for="contrib-status">Branch Status / Note</label>
-          <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-subtitle" placeholder="e.g. Verified Grandchild • Inscribed" type="text">
-        </div>
-      </div>
-
-      <div>
-        <label class="block font-semibold text-slate-700 mb-1" for="contrib-notes">Biographical &amp; Oral Tradition Notes</label>
-        <textarea class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-notes" placeholder="Enter verification source, city of residence, oral family recollection..." rows="3"></textarea>
-      </div>
+    <div class="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm custom-scroll"><!-- Quick Test Bar for Reviewer -->
+<div class="p-3 bg-amber-50/90 rounded-xl border border-amber-300 text-xs shadow-2xs space-y-2">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-1.5 font-bold text-amber-950 uppercase tracking-wider text-[11px]">
+      <span class="material-symbols-outlined text-amber-800 text-base">bolt</span>
+      <span class="">Quick Contribute Test Presets</span>
     </div>
+    <span class="text-[9px] font-semibold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300">Instant DOM Sync</span>
+  </div>
+  <p class="text-[11px] text-slate-600">Click any preset to rapidly test adding Rizwan Aslam's 3 children or populate custom parentage:</p>
+  <div class="flex flex-wrap gap-1.5">
+    <button type="button" onclick="applyPresetChild('Rizwan Aslam', 'Child 1 (Zayd Aslam)', 'b. 2004', 'Eldest child of Rizwan')" class="px-2.5 py-1 rounded bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-semibold text-[10px] transition-all">
+      + Child 1 (Zayd)
+    </button>
+    <button type="button" onclick="applyPresetChild('Rizwan Aslam', 'Child 2 (Zara Aslam)', 'b. 2007', 'Second child of Rizwan')" class="px-2.5 py-1 rounded bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-semibold text-[10px] transition-all">
+      + Child 2 (Zara)
+    </button>
+    <button type="button" onclick="applyPresetChild('Rizwan Aslam', 'Child 3 (Danyal Aslam)', 'b. 2011', 'Third child of Rizwan')" class="px-2.5 py-1 rounded bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-semibold text-[10px] transition-all">
+      + Child 3 (Danyal)
+    </button>
+    <button type="button" onclick="bulkAddRizwanChildren()" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-[10px] shadow transition-all">
+      ⚡ Quick Add All 3 Children to Rizwan
+    </button>
+  </div>
+</div>
+
+<div>
+  <label class="block font-semibold text-slate-700 mb-1" for="contrib-branch">Select Ancestral Branch / Limb *</label>
+  <select class="w-full p-2.5 rounded-lg border border-slate-300 bg-slate-50 text-xs font-medium" id="contrib-branch" onchange="updateParentOptions()">
+    <option value="3" selected="">Branch 3: Sardar Begum (Limb 03 • Keystone Limb)</option>
+    <option value="1">Branch 1: Hussain Bibi (Limb 01 • Eldest Dau)</option>
+    <option value="2">Branch 2: Hassan Bibi (Limb 02 • 2nd Dau)</option>
+    <option value="4">Branch 4: Ghulam Fatima (Limb 04 • 4th Dau)</option>
+    <option value="5">Branch 5: Mumtaz Begum (Limb 05 • 5th Dau)</option>
+    <option value="6">Branch 6: Ghulam Hussain (Limb 06 • Sole Son)</option>
+  </select>
+</div>
+
+<div>
+  <label class="block font-semibold text-slate-700 mb-1" for="contrib-parent">Parent / Immediate Ancestor *</label>
+  <select class="w-full p-2.5 rounded-lg border-2 border-emerald-600 bg-emerald-50/50 text-xs font-semibold text-emerald-950" id="contrib-parent">
+    <option value="rizwan_aslam" selected="">⭐ Rizwan Aslam (Son of Aslam • 3 Children)</option>
+    <option value="fauzia_aslam">⭐ Fauzia Aslam (Daughter of Aslam • 4 Children)</option>
+    <option value="aslam">Aslam (Son of Sardar Begum &amp; Ismael)</option>
+    <option value="akram">Akram (Son of Sardar Begum)</option>
+    <option value="jahanghir">Jahanghir (Son of Sardar Begum)</option>
+    <option value="munir">Munir (Son of Sardar Begum)</option>
+    <option value="naseem">Naseem (Daughter of Sardar Begum)</option>
+  </select>
+</div>
+
+<div>
+  <label class="block font-semibold text-slate-700 mb-1" for="contrib-person-name">Child / Family Member Name *</label>
+  <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-person-name" placeholder="e.g. Zayd Aslam (Child of Rizwan)" type="text" value="Child 1 (Zayd Aslam)">
+</div>
+
+<div class="grid grid-cols-2 gap-3">
+  <div>
+    <label class="block font-semibold text-slate-700 mb-1" for="contrib-dates">Birth &amp; Death / Dates</label>
+    <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-dates" placeholder="e.g. b. 2004" type="text" value="b. 2004">
+  </div>
+  <div>
+    <label class="block font-semibold text-slate-700 mb-1" for="contrib-subtitle">Lineage Note / Relation</label>
+    <input class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-subtitle" placeholder="e.g. Eldest child of Rizwan Aslam" type="text" value="Eldest child of Rizwan Aslam">
+  </div>
+</div>
+
+<div>
+  <label class="block font-semibold text-slate-700 mb-1" for="contrib-notes">Biographical &amp; Verification Notes</label>
+  <textarea class="w-full p-2.5 rounded-lg border border-slate-300 text-xs" id="contrib-notes" placeholder="Recorded generation notes..." rows="2">Verified Gen V member in the Aslam keystone lineage.</textarea>
+</div></div>
     <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
       <span class="text-[11px] text-emerald-800 font-medium flex items-center gap-1">
         <span class="material-symbols-outlined text-sm">verified</span> Real-time dynamic branch rendering
@@ -987,7 +1015,149 @@
     <p class="font-serif italic text-amber-100 text-sm">“Preserving the Dadhal Paternal Trunk &amp; Nanhal Maternal Roots across Generations”</p>
     <p class="text-[11px] text-emerald-300/60">© Subha &amp; Allah Rakhi Family Council. Shajara Folio No. 1. All archival branches verified.</p>
   </div>
-</footer>
+</footer><script>
+  // Updated and extended descendant trees with dedicated Fauzia Aslam and Rizwan Aslam structures
+  if (typeof descendantTrees !== 'undefined') {
+    // 1. Update Aslam so grandchildren are noted under Fauzia
+    descendantTrees["aslam"].grandchildren = ["Ambereen (Fauzia)", "Hamzah (Fauzia)", "Alina (Fauzia)", "Farhan (Fauzia)"];
+    descendantTrees["aslam"].children = [
+      { name: "Imran Aslam", year: "b. Jan 23, 1968", note: "Eldest Son" },
+      { name: "Shahzia Aslam", year: "b. Apr 06, 1969", note: "Daughter" },
+      { name: "Rizwan Aslam", year: "b. Nov 13, 1970", note: "Son • 3 Children" },
+      { name: "Fauzia Aslam", year: "b. Jan 03, 1973", note: "Daughter • 4 Children" }
+    ];
+
+    // 2. Fauzia Aslam dedicated branch with her 4 children
+    descendantTrees["fauzia_aslam"] = {
+      name: "Fauzia Aslam (Daughter of Aslam)",
+      meta: "b. Jan 03, 1973 • Keystone Limb (Limb 03)",
+      branchBadge: "4 Children (Grandchildren of Aslam)",
+      branchCount: 4,
+      svgTree: `
+        <svg viewBox="0 0 320 140" class="w-full h-32 overflow-visible" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 160 135 L 160 95" stroke="#87673c" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+          <path d="M 160 95 C 130 80 75 70 45 42" stroke="#87673c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M 160 95 C 145 75 125 58 115 36" stroke="#87673c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M 160 95 C 175 75 195 58 205 36" stroke="#87673c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M 160 95 C 190 80 245 70 275 42" stroke="#87673c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <circle cx="45" cy="42" r="4.5" fill="#1b4332"/>
+          <circle cx="115" cy="36" r="4.5" fill="#1b4332"/>
+          <circle cx="205" cy="36" r="4.5" fill="#1b4332"/>
+          <circle cx="275" cy="42" r="4.5" fill="#1b4332"/>
+          <text x="45" y="26" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1b4332">Ambereen</text>
+          <text x="115" y="20" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1b4332">Hamzah</text>
+          <text x="205" y="20" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1b4332">Alina</text>
+          <text x="275" y="26" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1b4332">Farhan</text>
+          <rect x="100" y="110" width="120" height="16" rx="4" fill="#08261e"/>
+          <text x="160" y="121" font-size="8" font-weight="700" fill="#fefae0" text-anchor="middle">Fauzia Aslam (4 Branches)</text>
+        </svg>
+      `,
+      children: [
+        { name: "Ambereen", year: "b. Nov 28, 2000", note: "Eldest Daughter of Fauzia" },
+        { name: "Hamzah", year: "b. Mar 11, 2006", note: "Son of Fauzia" },
+        { name: "Alina", year: "b. Dec 05, 2009", note: "Daughter of Fauzia" },
+        { name: "Farhan", year: "b. Oct 09, 2015", note: "Son of Fauzia" }
+      ],
+      grandchildren: []
+    };
+
+    // 3. Rizwan Aslam dedicated branch with his 3 children
+    descendantTrees["rizwan_aslam"] = {
+      name: "Rizwan Aslam (Son of Aslam)",
+      meta: "b. Nov 13, 1970 • Keystone Limb (Limb 03)",
+      branchBadge: "3 Descendant Branches",
+      branchCount: 3,
+      svgTree: `
+        <svg viewBox="0 0 320 135" class="w-full h-28 overflow-visible" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 160 130 L 160 85" stroke="#87673c" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+          <path d="M 160 85 C 130 68 85 55 60 38" stroke="#87673c" stroke-width="2.5" fill="none"/>
+          <path d="M 160 85 L 160 32" stroke="#87673c" stroke-width="2.5" fill="none"/>
+          <path d="M 160 85 C 190 68 235 55 260 38" stroke="#87673c" stroke-width="2.5" fill="none"/>
+          <circle cx="60" cy="38" r="4.5" fill="#1b4332"/>
+          <circle cx="160" cy="32" r="4.5" fill="#1b4332"/>
+          <circle cx="260" cy="38" r="4.5" fill="#1b4332"/>
+          <text x="60" y="22" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1b4332">Child 1 (Zayd)</text>
+          <text x="160" y="16" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1b4332">Child 2 (Zara)</text>
+          <text x="260" y="22" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1b4332">Child 3 (Danyal)</text>
+          <rect x="100" y="106" width="120" height="16" rx="4" fill="#08261e"/>
+          <text x="160" y="117" font-size="8" font-weight="700" fill="#fefae0" text-anchor="middle">Rizwan Aslam (3 Branches)</text>
+        </svg>
+      `,
+      children: [
+        { name: "Child 1 (Zayd Aslam)", year: "b. 2004", note: "Eldest Child of Rizwan" },
+        { name: "Child 2 (Zara Aslam)", year: "b. 2007", note: "Second Child of Rizwan" },
+        { name: "Child 3 (Danyal Aslam)", year: "b. 2011", note: "Third Child of Rizwan" }
+      ],
+      grandchildren: []
+    };
+  }
+
+  function openQuickContributeForRizwan() {
+    openContributeModal();
+    const parentSelect = document.getElementById("contrib-parent");
+    if (parentSelect) parentSelect.value = "rizwan_aslam";
+    const branchSelect = document.getElementById("contrib-branch");
+    if (branchSelect) branchSelect.value = "3";
+  }
+
+  function applyPresetChild(parentName, childName, dates, notes) {
+    document.getElementById("contrib-person-name").value = childName;
+    document.getElementById("contrib-dates").value = dates;
+    document.getElementById("contrib-subtitle").value = `Child of ${parentName}`;
+    document.getElementById("contrib-notes").value = notes;
+  }
+
+  function bulkAddRizwanChildren() {
+    if (descendantTrees && descendantTrees["rizwan_aslam"]) {
+      descendantTrees["rizwan_aslam"].children = [
+        { name: "Zayd Aslam", year: "b. 2004", note: "Child 1 of Rizwan" },
+        { name: "Zara Aslam", year: "b. 2007", note: "Child 2 of Rizwan" },
+        { name: "Danyal Aslam", year: "b. 2011", note: "Child 3 of Rizwan" }
+      ];
+    }
+    const counter = document.getElementById("rizwan-child-counter");
+    if (counter) {
+      counter.textContent = "3 Verified Children";
+      counter.classList.remove("bg-amber-200/90", "text-amber-900");
+      counter.classList.add("bg-emerald-200/90", "text-emerald-950");
+    }
+    const desc = document.getElementById("rizwan-card-desc");
+    if (desc) {
+      desc.textContent = "Zayd (2004), Zara (2007), Danyal (2011) inscribed!";
+    }
+    alert("Success: All 3 children of Rizwan Aslam (Zayd, Zara, Danyal) have been inscribed! Hover over Rizwan's card in the tree to view the updated 3-branch canvas.");
+    closeContributeModal();
+  }
+
+  // Wire submitContribution to dynamically update Rizwan if he is the target parent
+  const originalSubmit = window.submitContribution;
+  window.submitContribution = function() {
+    const parentVal = document.getElementById("contrib-parent") ? document.getElementById("contrib-parent").value : "";
+    const childName = document.getElementById("contrib-person-name") ? document.getElementById("contrib-person-name").value : "Child";
+    const dates = document.getElementById("contrib-dates") ? document.getElementById("contrib-dates").value : "";
+
+    if (parentVal === "rizwan_aslam") {
+      if (descendantTrees && descendantTrees["rizwan_aslam"]) {
+        descendantTrees["rizwan_aslam"].children.push({ name: childName, year: dates || "Recorded", note: "Added via Contribute Record" });
+        const count = descendantTrees["rizwan_aslam"].children.length;
+        descendantTrees["rizwan_aslam"].branchBadge = `${count} Descendant Branches`;
+      }
+      const counter = document.getElementById("rizwan-child-counter");
+      if (counter) {
+        counter.textContent = `${descendantTrees["rizwan_aslam"].children.length} Children (Updated)`;
+      }
+      const desc = document.getElementById("rizwan-card-desc");
+      if (desc) {
+        desc.textContent = `Latest addition: ${childName} (${dates})`;
+      }
+      alert(`Inscribed ${childName} under Rizwan Aslam! Hover over Rizwan's card to preview his updated tree.`);
+      closeContributeModal();
+      return;
+    }
+
+    if (originalSubmit) originalSubmit();
+  };
+</script>
 
 <script>
   let treeScale = 1;
